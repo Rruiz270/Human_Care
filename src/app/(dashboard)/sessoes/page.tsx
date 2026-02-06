@@ -15,6 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogFooter,
 } from '@/components/ui/dialog'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {
@@ -32,11 +33,19 @@ import {
   Play,
   CheckCircle,
   XCircle,
+  MessageSquare,
+  Send,
+  Mic,
+  MicOff,
+  VideoOff,
+  PhoneOff,
+  Users,
+  X,
 } from 'lucide-react'
 import { formatDateTime } from '@/lib/utils'
 
 // Demo data
-const sessions = [
+const initialSessions = [
   {
     id: '1',
     type: 'THERAPY',
@@ -50,6 +59,8 @@ const sessions = [
       { title: 'Praticar auto-compaixao', completed: true },
       { title: 'Registrar gatilhos de estresse', completed: false },
     ],
+    notes: 'Sessao muito produtiva. Me senti acolhida.',
+    professionalNotes: 'Paciente demonstrou abertura para explorar questoes do passado.',
   },
   {
     id: '2',
@@ -64,6 +75,8 @@ const sessions = [
       { title: 'Criar cronograma semanal', completed: true },
       { title: 'Pesquisar oportunidades de networking', completed: false },
     ],
+    notes: '',
+    professionalNotes: '',
   },
   {
     id: '3',
@@ -73,6 +86,8 @@ const sessions = [
     scheduledAt: new Date(Date.now() + 86400000),
     duration: 60,
     isOnline: true,
+    notes: 'Gostaria de falar sobre ansiedade com prazos.',
+    professionalNotes: '',
   },
   {
     id: '4',
@@ -82,6 +97,8 @@ const sessions = [
     scheduledAt: new Date(Date.now() + 86400000 * 4),
     duration: 45,
     isOnline: true,
+    notes: '',
+    professionalNotes: '',
   },
 ]
 
@@ -89,7 +106,19 @@ export default function SessoesPage() {
   const [activeTab, setActiveTab] = useState('todas')
   const [showNewSessionDialog, setShowNewSessionDialog] = useState(false)
   const [showUploadDialog, setShowUploadDialog] = useState(false)
-  const [selectedSession, setSelectedSession] = useState<typeof sessions[0] | null>(null)
+  const [showVideoCallDialog, setShowVideoCallDialog] = useState(false)
+  const [showDetailsDialog, setShowDetailsDialog] = useState(false)
+  const [selectedSession, setSelectedSession] = useState<typeof initialSessions[0] | null>(null)
+  const [sessions, setSessions] = useState(initialSessions)
+  const [sessionNotes, setSessionNotes] = useState('')
+  const [isAnalyzing, setIsAnalyzing] = useState(false)
+  const [transcriptText, setTranscriptText] = useState('')
+  const [showSuccess, setShowSuccess] = useState(false)
+  const [successMessage, setSuccessMessage] = useState('')
+
+  // Video call state
+  const [isMuted, setIsMuted] = useState(false)
+  const [isVideoOn, setIsVideoOn] = useState(true)
 
   const filteredSessions = sessions.filter((session) => {
     if (activeTab === 'todas') return true
@@ -98,8 +127,70 @@ export default function SessoesPage() {
     return true
   })
 
+  const handleJoinSession = (session: typeof initialSessions[0]) => {
+    setSelectedSession(session)
+    setShowVideoCallDialog(true)
+  }
+
+  const handleEndCall = () => {
+    setShowVideoCallDialog(false)
+    setSelectedSession(null)
+    setIsMuted(false)
+    setIsVideoOn(true)
+  }
+
+  const handleViewDetails = (session: typeof initialSessions[0]) => {
+    setSelectedSession(session)
+    setSessionNotes(session.notes || '')
+    setShowDetailsDialog(true)
+  }
+
+  const handleSaveNotes = () => {
+    if (selectedSession) {
+      setSessions(sessions.map(s =>
+        s.id === selectedSession.id
+          ? { ...s, notes: sessionNotes }
+          : s
+      ))
+      setShowDetailsDialog(false)
+      setSuccessMessage('Notas salvas com sucesso!')
+      setShowSuccess(true)
+      setTimeout(() => setShowSuccess(false), 3000)
+    }
+  }
+
+  const handleAnalyzeTranscript = () => {
+    if (!transcriptText.trim()) return
+
+    setIsAnalyzing(true)
+    // Simulate AI analysis
+    setTimeout(() => {
+      setIsAnalyzing(false)
+      setShowUploadDialog(false)
+      setTranscriptText('')
+      setSuccessMessage('Transcricao analisada com sucesso!')
+      setShowSuccess(true)
+      setTimeout(() => setShowSuccess(false), 3000)
+    }, 2000)
+  }
+
+  const handleScheduleSession = () => {
+    setShowNewSessionDialog(false)
+    setSuccessMessage('Sessao agendada com sucesso!')
+    setShowSuccess(true)
+    setTimeout(() => setShowSuccess(false), 3000)
+  }
+
   return (
     <div className="space-y-6 animate-fade-in">
+      {/* Success notification */}
+      {showSuccess && (
+        <div className="fixed top-4 right-4 z-50 bg-[#A4DF00] text-[#001011] px-4 py-3 rounded-lg shadow-lg flex items-center gap-2 animate-fade-in">
+          <CheckCircle className="h-5 w-5" />
+          <span className="font-medium">{successMessage}</span>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -161,24 +252,39 @@ export default function SessoesPage() {
                   <Textarea
                     placeholder="Cole o texto da transcricao aqui..."
                     className="min-h-[120px]"
+                    value={transcriptText}
+                    onChange={(e) => setTranscriptText(e.target.value)}
                   />
                 </div>
               </div>
-              <div className="flex justify-end gap-3">
+              <DialogFooter>
                 <Button variant="outline" onClick={() => setShowUploadDialog(false)}>
                   Cancelar
                 </Button>
-                <Button onClick={() => setShowUploadDialog(false)}>
-                  <Sparkles className="mr-2 h-4 w-4" />
-                  Analisar com IA
+                <Button
+                  onClick={handleAnalyzeTranscript}
+                  disabled={isAnalyzing || !transcriptText.trim()}
+                  className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-[#001011] border-t-transparent" />
+                      Analisando...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="mr-2 h-4 w-4" />
+                      Analisar com IA
+                    </>
+                  )}
                 </Button>
-              </div>
+              </DialogFooter>
             </DialogContent>
           </Dialog>
 
           <Dialog open={showNewSessionDialog} onOpenChange={setShowNewSessionDialog}>
             <DialogTrigger asChild>
-              <Button>
+              <Button className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]">
                 <Plus className="mr-2 h-4 w-4" />
                 Agendar Sessao
               </Button>
@@ -243,14 +349,17 @@ export default function SessoesPage() {
                   <Textarea placeholder="Algo que gostaria de abordar na sessao..." />
                 </div>
               </div>
-              <div className="flex justify-end gap-3">
+              <DialogFooter>
                 <Button variant="outline" onClick={() => setShowNewSessionDialog(false)}>
                   Cancelar
                 </Button>
-                <Button onClick={() => setShowNewSessionDialog(false)}>
+                <Button
+                  onClick={handleScheduleSession}
+                  className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]"
+                >
                   Agendar
                 </Button>
-              </div>
+              </DialogFooter>
             </DialogContent>
           </Dialog>
         </div>
@@ -404,26 +513,35 @@ export default function SessoesPage() {
                           )}
                         </span>
                       </div>
+                      {/* Session notes preview */}
+                      {session.notes && (
+                        <div className="mt-2 flex items-start gap-2 text-sm">
+                          <MessageSquare className="h-4 w-4 text-[#6CCFF6] mt-0.5" />
+                          <p className="text-[#757780] italic line-clamp-1">{session.notes}</p>
+                        </div>
+                      )}
                     </div>
                   </div>
 
                   <div className="flex gap-2">
                     {session.status === 'SCHEDULED' && (
-                      <Button size="sm">
+                      <Button
+                        size="sm"
+                        onClick={() => handleJoinSession(session)}
+                        className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]"
+                      >
                         <Play className="mr-2 h-4 w-4" />
                         Entrar
                       </Button>
                     )}
-                    {session.status === 'COMPLETED' && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setSelectedSession(session)}
-                      >
-                        <FileText className="mr-2 h-4 w-4" />
-                        Ver Detalhes
-                      </Button>
-                    )}
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleViewDetails(session)}
+                    >
+                      <FileText className="mr-2 h-4 w-4" />
+                      {session.status === 'COMPLETED' ? 'Ver Detalhes' : 'Notas'}
+                    </Button>
                   </div>
                 </div>
 
@@ -475,6 +593,182 @@ export default function SessoesPage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Video Call Dialog */}
+      <Dialog open={showVideoCallDialog} onOpenChange={setShowVideoCallDialog}>
+        <DialogContent className="max-w-4xl h-[80vh]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Video className="h-5 w-5 text-[#A4DF00]" />
+              Sessao ao Vivo
+            </DialogTitle>
+            <DialogDescription>
+              {selectedSession?.type === 'THERAPY' ? 'Terapia' : 'Coaching'} com {selectedSession?.professional.name}
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="flex-1 grid grid-cols-2 gap-4 py-4">
+            {/* Professional video */}
+            <div className="relative bg-gradient-to-br from-[#001011] to-[#001011]/80 rounded-lg flex items-center justify-center aspect-video">
+              <div className="text-center">
+                <div className="w-20 h-20 bg-[#6CCFF6]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Users className="h-10 w-10 text-[#6CCFF6]" />
+                </div>
+                <p className="text-white font-medium">{selectedSession?.professional.name}</p>
+                <p className="text-white/60 text-sm">{selectedSession?.professional.role}</p>
+              </div>
+              <Badge className="absolute top-3 left-3 bg-[#A4DF00] text-[#001011]">
+                Conectado
+              </Badge>
+            </div>
+
+            {/* User video */}
+            <div className="relative bg-gradient-to-br from-[#757780]/50 to-[#757780]/30 rounded-lg flex items-center justify-center aspect-video">
+              {isVideoOn ? (
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-[#A4DF00]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Users className="h-10 w-10 text-[#A4DF00]" />
+                  </div>
+                  <p className="text-[#001011] font-medium">Voce</p>
+                </div>
+              ) : (
+                <div className="text-center">
+                  <VideoOff className="h-12 w-12 text-[#757780] mx-auto mb-2" />
+                  <p className="text-[#757780]">Camera desligada</p>
+                </div>
+              )}
+              {isMuted && (
+                <Badge variant="destructive" className="absolute top-3 left-3">
+                  <MicOff className="h-3 w-3 mr-1" />
+                  Mudo
+                </Badge>
+              )}
+            </div>
+          </div>
+
+          {/* Controls */}
+          <div className="flex items-center justify-center gap-4 py-4 border-t">
+            <Button
+              variant={isMuted ? "destructive" : "outline"}
+              size="lg"
+              className="rounded-full w-14 h-14"
+              onClick={() => setIsMuted(!isMuted)}
+            >
+              {isMuted ? <MicOff className="h-6 w-6" /> : <Mic className="h-6 w-6" />}
+            </Button>
+            <Button
+              variant={!isVideoOn ? "destructive" : "outline"}
+              size="lg"
+              className="rounded-full w-14 h-14"
+              onClick={() => setIsVideoOn(!isVideoOn)}
+            >
+              {isVideoOn ? <Video className="h-6 w-6" /> : <VideoOff className="h-6 w-6" />}
+            </Button>
+            <Button
+              variant="destructive"
+              size="lg"
+              className="rounded-full w-14 h-14"
+              onClick={handleEndCall}
+            >
+              <PhoneOff className="h-6 w-6" />
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Session Details/Notes Dialog */}
+      <Dialog open={showDetailsDialog} onOpenChange={setShowDetailsDialog}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Detalhes da Sessao</DialogTitle>
+            <DialogDescription>
+              {selectedSession?.type === 'THERAPY' ? 'Terapia' : 'Coaching'} com {selectedSession?.professional.name}
+              {' - '}{selectedSession && formatDateTime(selectedSession.scheduledAt)}
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4 py-4">
+            {/* AI Summary if completed */}
+            {selectedSession?.status === 'COMPLETED' && selectedSession?.aiSummary && (
+              <div className="rounded-lg bg-[#A4DF00]/5 p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Sparkles className="h-4 w-4 text-[#A4DF00]" />
+                  <span className="text-sm font-medium text-[#001011]">Resumo da IA</span>
+                </div>
+                <p className="text-sm text-[#757780]">{selectedSession.aiSummary}</p>
+              </div>
+            )}
+
+            {/* Professional notes if any */}
+            {selectedSession?.professionalNotes && (
+              <div className="rounded-lg bg-[#6CCFF6]/5 p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Brain className="h-4 w-4 text-[#6CCFF6]" />
+                  <span className="text-sm font-medium text-[#001011]">
+                    Notas do Profissional
+                  </span>
+                </div>
+                <p className="text-sm text-[#757780]">{selectedSession.professionalNotes}</p>
+              </div>
+            )}
+
+            {/* User notes */}
+            <div className="space-y-2">
+              <Label htmlFor="session-notes" className="flex items-center gap-2">
+                <MessageSquare className="h-4 w-4 text-[#757780]" />
+                Minhas Anotacoes
+              </Label>
+              <Textarea
+                id="session-notes"
+                placeholder="Escreva suas anotacoes sobre esta sessao..."
+                value={sessionNotes}
+                onChange={(e) => setSessionNotes(e.target.value)}
+                className="min-h-[120px]"
+              />
+              <p className="text-xs text-[#757780]">
+                Estas anotacoes sao privadas e apenas voce pode ve-las.
+              </p>
+            </div>
+
+            {/* Action items if completed */}
+            {selectedSession?.status === 'COMPLETED' && selectedSession?.aiActionItems && (
+              <div className="space-y-2">
+                <Label className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-[#757780]" />
+                  Acoes Identificadas
+                </Label>
+                <div className="space-y-2">
+                  {selectedSession.aiActionItems.map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-2 p-2 rounded border border-[#757780]/20">
+                      {item.completed ? (
+                        <CheckCircle className="h-5 w-5 text-[#A4DF00]" />
+                      ) : (
+                        <div className="h-5 w-5 rounded-full border-2 border-[#757780]/30" />
+                      )}
+                      <span className={item.completed ? 'text-[#757780] line-through' : 'text-[#001011]'}>
+                        {item.title}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowDetailsDialog(false)}>
+              Cancelar
+            </Button>
+            <Button
+              onClick={handleSaveNotes}
+              className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]"
+            >
+              <Send className="mr-2 h-4 w-4" />
+              Salvar Notas
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

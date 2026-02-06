@@ -1,0 +1,544 @@
+'use client'
+
+import { useState } from 'react'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+} from '@/components/ui/dialog'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import {
+  Play,
+  Clock,
+  Calendar,
+  Video,
+  BookOpen,
+  Brain,
+  Target,
+  Heart,
+  Users,
+  CheckCircle,
+  Star,
+  Filter,
+  Search,
+  Plus,
+  CalendarPlus,
+} from 'lucide-react'
+
+// Demo videos data
+const videos = [
+  {
+    id: '1',
+    title: 'Introducao ao Mapa da Vida',
+    description: 'Entenda como funciona a metodologia do Mapa da Vida e como ela pode transformar sua jornada de autoconhecimento.',
+    duration: '15:30',
+    category: 'fundamentos',
+    thumbnail: '/api/placeholder/320/180',
+    instructor: 'Dra. Ana Costa',
+    watched: true,
+    progress: 100,
+  },
+  {
+    id: '2',
+    title: 'Trabalhando com Traumas do Passado',
+    description: 'Tecnicas terapeuticas para identificar e processar experiencias traumaticas de forma segura.',
+    duration: '28:45',
+    category: 'terapia',
+    thumbnail: '/api/placeholder/320/180',
+    instructor: 'Dra. Ana Costa',
+    watched: true,
+    progress: 65,
+  },
+  {
+    id: '3',
+    title: 'Definindo Metas com OKRs',
+    description: 'Aprenda a usar a metodologia OKR para definir e alcancar seus objetivos pessoais e profissionais.',
+    duration: '22:10',
+    category: 'coaching',
+    thumbnail: '/api/placeholder/320/180',
+    instructor: 'Carlos Mendes',
+    watched: false,
+    progress: 0,
+  },
+  {
+    id: '4',
+    title: 'Mindfulness para o Dia a Dia',
+    description: 'Praticas simples de mindfulness que voce pode incorporar na sua rotina diaria.',
+    duration: '18:20',
+    category: 'autocuidado',
+    thumbnail: '/api/placeholder/320/180',
+    instructor: 'Lucia Fernandes',
+    watched: false,
+    progress: 0,
+  },
+  {
+    id: '5',
+    title: 'Comunicacao Nao-Violenta',
+    description: 'Como melhorar seus relacionamentos atraves da comunicacao empatica e assertiva.',
+    duration: '35:00',
+    category: 'relacionamentos',
+    thumbnail: '/api/placeholder/320/180',
+    instructor: 'Dra. Ana Costa',
+    watched: false,
+    progress: 0,
+  },
+  {
+    id: '6',
+    title: 'Gestao do Estresse',
+    description: 'Estrategias praticas para identificar gatilhos de estresse e desenvolver resiliencia.',
+    duration: '24:15',
+    category: 'autocuidado',
+    thumbnail: '/api/placeholder/320/180',
+    instructor: 'Carlos Mendes',
+    watched: true,
+    progress: 100,
+  },
+  {
+    id: '7',
+    title: 'Construindo Habitos Saudaveis',
+    description: 'A ciencia por tras da formacao de habitos e como criar rotinas que funcionam.',
+    duration: '20:00',
+    category: 'coaching',
+    thumbnail: '/api/placeholder/320/180',
+    instructor: 'Carlos Mendes',
+    watched: false,
+    progress: 30,
+  },
+  {
+    id: '8',
+    title: 'Autocompaixao e Aceitacao',
+    description: 'Aprenda a ser mais gentil consigo mesmo e a aceitar suas imperfeicoes.',
+    duration: '19:45',
+    category: 'terapia',
+    thumbnail: '/api/placeholder/320/180',
+    instructor: 'Dra. Ana Costa',
+    watched: false,
+    progress: 0,
+  },
+]
+
+// Available time slots for scheduling
+const availableSlots = [
+  { date: '2026-02-09', time: '09:00', professional: 'Dra. Ana Costa', type: 'THERAPY' },
+  { date: '2026-02-09', time: '14:00', professional: 'Carlos Mendes', type: 'COACHING' },
+  { date: '2026-02-10', time: '10:00', professional: 'Dra. Ana Costa', type: 'THERAPY' },
+  { date: '2026-02-10', time: '15:00', professional: 'Lucia Fernandes', type: 'CARE_TEAM' },
+  { date: '2026-02-11', time: '11:00', professional: 'Carlos Mendes', type: 'COACHING' },
+  { date: '2026-02-12', time: '09:00', professional: 'Dra. Ana Costa', type: 'THERAPY' },
+  { date: '2026-02-12', time: '14:00', professional: 'Lucia Fernandes', type: 'CARE_TEAM' },
+  { date: '2026-02-13', time: '10:00', professional: 'Carlos Mendes', type: 'COACHING' },
+]
+
+const categories = [
+  { value: 'all', label: 'Todos', icon: BookOpen },
+  { value: 'fundamentos', label: 'Fundamentos', icon: Star },
+  { value: 'terapia', label: 'Terapia', icon: Brain },
+  { value: 'coaching', label: 'Coaching', icon: Target },
+  { value: 'autocuidado', label: 'Autocuidado', icon: Heart },
+  { value: 'relacionamentos', label: 'Relacionamentos', icon: Users },
+]
+
+export default function ConteudoPage() {
+  const [selectedCategory, setSelectedCategory] = useState('all')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedVideo, setSelectedVideo] = useState<typeof videos[0] | null>(null)
+  const [isVideoDialogOpen, setIsVideoDialogOpen] = useState(false)
+  const [isScheduleDialogOpen, setIsScheduleDialogOpen] = useState(false)
+  const [selectedSlot, setSelectedSlot] = useState<typeof availableSlots[0] | null>(null)
+  const [scheduleNotes, setScheduleNotes] = useState('')
+  const [scheduledSessions, setScheduledSessions] = useState<Array<typeof availableSlots[0] & { notes: string }>>([])
+
+  const filteredVideos = videos.filter(video => {
+    const matchesCategory = selectedCategory === 'all' || video.category === selectedCategory
+    const matchesSearch = video.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         video.description.toLowerCase().includes(searchQuery.toLowerCase())
+    return matchesCategory && matchesSearch
+  })
+
+  const watchedCount = videos.filter(v => v.watched).length
+  const inProgressCount = videos.filter(v => v.progress > 0 && v.progress < 100).length
+
+  const handleScheduleSession = () => {
+    if (selectedSlot) {
+      setScheduledSessions([...scheduledSessions, { ...selectedSlot, notes: scheduleNotes }])
+      setIsScheduleDialogOpen(false)
+      setSelectedSlot(null)
+      setScheduleNotes('')
+    }
+  }
+
+  const getTypeLabel = (type: string) => {
+    switch (type) {
+      case 'THERAPY': return 'Terapia'
+      case 'COACHING': return 'Coaching'
+      case 'CARE_TEAM': return 'Time de Cuidado'
+      default: return type
+    }
+  }
+
+  const getTypeColor = (type: string) => {
+    switch (type) {
+      case 'THERAPY': return 'bg-purple-100 text-purple-700'
+      case 'COACHING': return 'bg-blue-100 text-blue-700'
+      case 'CARE_TEAM': return 'bg-green-100 text-green-700'
+      default: return 'bg-gray-100 text-gray-700'
+    }
+  }
+
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr + 'T00:00:00')
+    return date.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-[#001011]">Conteudo e Sessoes</h1>
+          <p className="text-[#757780]">Videos educativos e agendamento de sessoes ao vivo</p>
+        </div>
+        <Dialog open={isScheduleDialogOpen} onOpenChange={setIsScheduleDialogOpen}>
+          <DialogTrigger asChild>
+            <Button className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]">
+              <CalendarPlus className="mr-2 h-4 w-4" />
+              Agendar Sessao ao Vivo
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-lg">
+            <DialogHeader>
+              <DialogTitle>Agendar Sessao ao Vivo</DialogTitle>
+              <DialogDescription>
+                Escolha um horario disponivel para sua proxima sessao
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <div className="space-y-2">
+                <Label>Horarios Disponiveis</Label>
+                <div className="grid gap-2 max-h-60 overflow-y-auto">
+                  {availableSlots.map((slot, index) => (
+                    <div
+                      key={index}
+                      onClick={() => setSelectedSlot(slot)}
+                      className={`p-3 border rounded-lg cursor-pointer transition-colors ${
+                        selectedSlot === slot
+                          ? 'border-[#6CCFF6] bg-[#6CCFF6]/10'
+                          : 'border-gray-200 hover:border-[#6CCFF6]/50'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="font-medium text-[#001011]">{formatDate(slot.date)}</p>
+                          <p className="text-sm text-[#757780]">{slot.time} - {slot.professional}</p>
+                        </div>
+                        <Badge className={getTypeColor(slot.type)}>
+                          {getTypeLabel(slot.type)}
+                        </Badge>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {selectedSlot && (
+                <div className="space-y-2">
+                  <Label htmlFor="notes">Observacoes para a sessao (opcional)</Label>
+                  <Textarea
+                    id="notes"
+                    placeholder="Descreva o que gostaria de trabalhar nesta sessao..."
+                    value={scheduleNotes}
+                    onChange={(e) => setScheduleNotes(e.target.value)}
+                    rows={3}
+                  />
+                </div>
+              )}
+            </div>
+            <DialogFooter>
+              <Button variant="outline" onClick={() => setIsScheduleDialogOpen(false)}>
+                Cancelar
+              </Button>
+              <Button
+                onClick={handleScheduleSession}
+                disabled={!selectedSlot}
+                className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]"
+              >
+                Confirmar Agendamento
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </div>
+
+      {/* Stats */}
+      <div className="grid gap-4 md:grid-cols-4">
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-[#6CCFF6]/20 rounded-full">
+                <Video className="h-6 w-6 text-[#6CCFF6]" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-[#001011]">{videos.length}</p>
+                <p className="text-sm text-[#757780]">Videos Disponiveis</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-[#A4DF00]/20 rounded-full">
+                <CheckCircle className="h-6 w-6 text-[#A4DF00]" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-[#001011]">{watchedCount}</p>
+                <p className="text-sm text-[#757780]">Assistidos</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-yellow-100 rounded-full">
+                <Play className="h-6 w-6 text-yellow-600" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-[#001011]">{inProgressCount}</p>
+                <p className="text-sm text-[#757780]">Em Progresso</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-purple-100 rounded-full">
+                <Calendar className="h-6 w-6 text-purple-600" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-[#001011]">{scheduledSessions.length}</p>
+                <p className="text-sm text-[#757780]">Sessoes Agendadas</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <Tabs defaultValue="videos" className="space-y-4">
+        <TabsList>
+          <TabsTrigger value="videos">Videos</TabsTrigger>
+          <TabsTrigger value="agendadas">Sessoes Agendadas ({scheduledSessions.length})</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="videos" className="space-y-4">
+          {/* Filters */}
+          <div className="flex flex-col gap-4 md:flex-row md:items-center">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#757780]" />
+              <Input
+                placeholder="Buscar videos..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+            <div className="flex gap-2 flex-wrap">
+              {categories.map((cat) => {
+                const Icon = cat.icon
+                return (
+                  <Button
+                    key={cat.value}
+                    variant={selectedCategory === cat.value ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => setSelectedCategory(cat.value)}
+                    className={selectedCategory === cat.value ? 'bg-[#6CCFF6] text-[#001011] hover:bg-[#5bb8e0]' : ''}
+                  >
+                    <Icon className="mr-1 h-4 w-4" />
+                    {cat.label}
+                  </Button>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Video Grid */}
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filteredVideos.map((video) => (
+              <Card key={video.id} className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group">
+                <div
+                  className="relative"
+                  onClick={() => {
+                    setSelectedVideo(video)
+                    setIsVideoDialogOpen(true)
+                  }}
+                >
+                  {/* Thumbnail placeholder */}
+                  <div className="aspect-video bg-gradient-to-br from-[#6CCFF6]/30 to-[#A4DF00]/30 flex items-center justify-center relative">
+                    <Video className="h-12 w-12 text-[#001011]/30" />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="p-3 bg-white rounded-full shadow-lg">
+                          <Play className="h-6 w-6 text-[#001011] fill-[#001011]" />
+                        </div>
+                      </div>
+                    </div>
+                    {video.watched && video.progress === 100 && (
+                      <div className="absolute top-2 right-2">
+                        <Badge className="bg-[#A4DF00] text-[#001011]">
+                          <CheckCircle className="mr-1 h-3 w-3" />
+                          Assistido
+                        </Badge>
+                      </div>
+                    )}
+                    {video.progress > 0 && video.progress < 100 && (
+                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200">
+                        <div
+                          className="h-full bg-[#6CCFF6]"
+                          style={{ width: `${video.progress}%` }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <CardContent className="p-4">
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <Badge variant="outline" className="text-xs">
+                        {categories.find(c => c.value === video.category)?.label}
+                      </Badge>
+                      <span className="text-xs text-[#757780] flex items-center">
+                        <Clock className="mr-1 h-3 w-3" />
+                        {video.duration}
+                      </span>
+                    </div>
+                    <h3 className="font-semibold text-[#001011] line-clamp-2 mb-1">
+                      {video.title}
+                    </h3>
+                    <p className="text-sm text-[#757780] line-clamp-2 mb-2">
+                      {video.description}
+                    </p>
+                    <p className="text-xs text-[#757780]">
+                      {video.instructor}
+                    </p>
+                  </CardContent>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          {filteredVideos.length === 0 && (
+            <Card className="p-8 text-center">
+              <p className="text-[#757780]">Nenhum video encontrado para os filtros selecionados.</p>
+            </Card>
+          )}
+        </TabsContent>
+
+        <TabsContent value="agendadas" className="space-y-4">
+          {scheduledSessions.length > 0 ? (
+            <div className="grid gap-4 md:grid-cols-2">
+              {scheduledSessions.map((session, index) => (
+                <Card key={index}>
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <Badge className={getTypeColor(session.type)}>
+                        {getTypeLabel(session.type)}
+                      </Badge>
+                      <Badge variant="outline" className="text-[#A4DF00] border-[#A4DF00]">
+                        Confirmada
+                      </Badge>
+                    </div>
+                    <CardTitle className="text-lg">{session.professional}</CardTitle>
+                    <CardDescription>
+                      {formatDate(session.date)} as {session.time}
+                    </CardDescription>
+                  </CardHeader>
+                  {session.notes && (
+                    <CardContent>
+                      <div className="bg-gray-50 p-3 rounded-lg">
+                        <p className="text-sm text-[#757780]">
+                          <span className="font-medium text-[#001011]">Suas observacoes:</span><br />
+                          {session.notes}
+                        </p>
+                      </div>
+                    </CardContent>
+                  )}
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <Card className="p-8 text-center">
+              <Calendar className="h-12 w-12 text-[#757780] mx-auto mb-4" />
+              <h3 className="font-semibold text-[#001011] mb-2">Nenhuma sessao agendada</h3>
+              <p className="text-[#757780] mb-4">
+                Agende uma sessao ao vivo com nossos profissionais para dar continuidade ao seu desenvolvimento.
+              </p>
+              <Button
+                onClick={() => setIsScheduleDialogOpen(true)}
+                className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]"
+              >
+                <CalendarPlus className="mr-2 h-4 w-4" />
+                Agendar Primeira Sessao
+              </Button>
+            </Card>
+          )}
+        </TabsContent>
+      </Tabs>
+
+      {/* Video Player Dialog */}
+      <Dialog open={isVideoDialogOpen} onOpenChange={setIsVideoDialogOpen}>
+        <DialogContent className="max-w-4xl">
+          {selectedVideo && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedVideo.title}</DialogTitle>
+                <DialogDescription>
+                  {selectedVideo.instructor} | {selectedVideo.duration}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4">
+                {/* Video Player Placeholder */}
+                <div className="aspect-video bg-gradient-to-br from-[#001011] to-[#001011]/80 rounded-lg flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="p-4 bg-white/10 rounded-full inline-block mb-4 cursor-pointer hover:bg-white/20 transition-colors">
+                      <Play className="h-12 w-12 text-white fill-white" />
+                    </div>
+                    <p className="text-white/80 text-sm">Clique para reproduzir</p>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-[#001011] mb-2">Sobre este video</h4>
+                  <p className="text-[#757780]">{selectedVideo.description}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Badge variant="outline">
+                    {categories.find(c => c.value === selectedVideo.category)?.label}
+                  </Badge>
+                  {selectedVideo.progress > 0 && (
+                    <Badge variant="outline" className="text-[#6CCFF6] border-[#6CCFF6]">
+                      {selectedVideo.progress}% concluido
+                    </Badge>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  )
+}

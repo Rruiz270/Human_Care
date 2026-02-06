@@ -21,12 +21,14 @@ import {
   ChevronLeft,
   ChevronRight,
   Shield,
+  Video,
 } from 'lucide-react'
 import { useState } from 'react'
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard },
   { name: 'Mapa da Vida', href: '/mapa-da-vida', icon: Map },
+  { name: 'Conteudo', href: '/conteudo', icon: Video },
   { name: 'Agenda', href: '/agenda', icon: Calendar },
   { name: 'Sessoes', href: '/sessoes', icon: Heart },
   { name: 'Missoes', href: '/missoes', icon: Target },

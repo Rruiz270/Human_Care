@@ -4,6 +4,24 @@ import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+} from '@/components/ui/dialog'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import {
   ChevronLeft,
   ChevronRight,
@@ -14,10 +32,11 @@ import {
   Target,
   Plus,
   Users,
+  CheckCircle,
 } from 'lucide-react'
 
 // Demo data for calendar events
-const events = [
+const initialEvents = [
   {
     id: '1',
     title: 'Terapia - Dra. Ana Costa',
@@ -26,6 +45,7 @@ const events = [
     time: '14:00',
     duration: 60,
     isOnline: true,
+    notes: '',
   },
   {
     id: '2',
@@ -35,6 +55,7 @@ const events = [
     time: '10:00',
     duration: 45,
     isOnline: true,
+    notes: '',
   },
   {
     id: '3',
@@ -44,7 +65,20 @@ const events = [
     time: '16:00',
     duration: 30,
     isOnline: true,
+    notes: '',
   },
+]
+
+// Available time slots
+const availableSlots = [
+  { date: '2026-02-09', time: '09:00', professional: 'Dra. Ana Costa', type: 'THERAPY' },
+  { date: '2026-02-09', time: '14:00', professional: 'Carlos Mendes', type: 'COACHING' },
+  { date: '2026-02-10', time: '10:00', professional: 'Dra. Ana Costa', type: 'THERAPY' },
+  { date: '2026-02-10', time: '15:00', professional: 'Lucia Fernandes', type: 'CARE_TEAM' },
+  { date: '2026-02-11', time: '11:00', professional: 'Carlos Mendes', type: 'COACHING' },
+  { date: '2026-02-12', time: '09:00', professional: 'Dra. Ana Costa', type: 'THERAPY' },
+  { date: '2026-02-12', time: '14:00', professional: 'Lucia Fernandes', type: 'CARE_TEAM' },
+  { date: '2026-02-13', time: '10:00', professional: 'Carlos Mendes', type: 'COACHING' },
 ]
 
 const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
@@ -56,6 +90,11 @@ const monthNames = [
 export default function AgendaPage() {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+  const [events, setEvents] = useState(initialEvents)
+  const [isScheduleDialogOpen, setIsScheduleDialogOpen] = useState(false)
+  const [selectedSlot, setSelectedSlot] = useState<typeof availableSlots[0] | null>(null)
+  const [scheduleNotes, setScheduleNotes] = useState('')
+  const [showSuccess, setShowSuccess] = useState(false)
 
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear()
@@ -128,8 +167,60 @@ export default function AgendaPage() {
 
   const days = getDaysInMonth(currentDate)
 
+  const handleScheduleSession = () => {
+    if (selectedSlot) {
+      const newEvent = {
+        id: `new-${Date.now()}`,
+        title: `${getTypeLabel(selectedSlot.type)} - ${selectedSlot.professional}`,
+        type: selectedSlot.type,
+        date: new Date(selectedSlot.date + 'T00:00:00'),
+        time: selectedSlot.time,
+        duration: selectedSlot.type === 'THERAPY' ? 60 : selectedSlot.type === 'COACHING' ? 45 : 30,
+        isOnline: true,
+        notes: scheduleNotes,
+      }
+      setEvents([...events, newEvent])
+      setIsScheduleDialogOpen(false)
+      setSelectedSlot(null)
+      setScheduleNotes('')
+      setShowSuccess(true)
+      setTimeout(() => setShowSuccess(false), 3000)
+    }
+  }
+
+  const getTypeLabel = (type: string) => {
+    switch (type) {
+      case 'THERAPY': return 'Terapia'
+      case 'COACHING': return 'Coaching'
+      case 'CARE_TEAM': return 'Time de Cuidado'
+      default: return type
+    }
+  }
+
+  const getTypeColor = (type: string) => {
+    switch (type) {
+      case 'THERAPY': return 'bg-purple-100 text-purple-700'
+      case 'COACHING': return 'bg-blue-100 text-blue-700'
+      case 'CARE_TEAM': return 'bg-green-100 text-green-700'
+      default: return 'bg-gray-100 text-gray-700'
+    }
+  }
+
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr + 'T00:00:00')
+    return date.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })
+  }
+
   return (
     <div className="space-y-6 animate-fade-in">
+      {/* Success notification */}
+      {showSuccess && (
+        <div className="fixed top-4 right-4 z-50 bg-[#A4DF00] text-[#001011] px-4 py-3 rounded-lg shadow-lg flex items-center gap-2 animate-fade-in">
+          <CheckCircle className="h-5 w-5" />
+          <span className="font-medium">Sessao agendada com sucesso!</span>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -138,10 +229,74 @@ export default function AgendaPage() {
             Visualize e gerencie suas sessoes
           </p>
         </div>
-        <Button>
-          <Plus className="mr-2 h-4 w-4" />
-          Agendar Sessao
-        </Button>
+        <Dialog open={isScheduleDialogOpen} onOpenChange={setIsScheduleDialogOpen}>
+          <DialogTrigger asChild>
+            <Button className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]">
+              <Plus className="mr-2 h-4 w-4" />
+              Agendar Sessao
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-lg">
+            <DialogHeader>
+              <DialogTitle>Agendar Nova Sessao</DialogTitle>
+              <DialogDescription>
+                Escolha um horario disponivel para sua proxima sessao
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <div className="space-y-2">
+                <Label>Horarios Disponiveis</Label>
+                <div className="grid gap-2 max-h-60 overflow-y-auto">
+                  {availableSlots.map((slot, index) => (
+                    <div
+                      key={index}
+                      onClick={() => setSelectedSlot(slot)}
+                      className={`p-3 border rounded-lg cursor-pointer transition-colors ${
+                        selectedSlot === slot
+                          ? 'border-[#6CCFF6] bg-[#6CCFF6]/10'
+                          : 'border-gray-200 hover:border-[#6CCFF6]/50'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="font-medium text-[#001011]">{formatDate(slot.date)}</p>
+                          <p className="text-sm text-[#757780]">{slot.time} - {slot.professional}</p>
+                        </div>
+                        <Badge className={getTypeColor(slot.type)}>
+                          {getTypeLabel(slot.type)}
+                        </Badge>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {selectedSlot && (
+                <div className="space-y-2">
+                  <Label htmlFor="notes">Observacoes para a sessao (opcional)</Label>
+                  <Textarea
+                    id="notes"
+                    placeholder="Descreva o que gostaria de trabalhar nesta sessao..."
+                    value={scheduleNotes}
+                    onChange={(e) => setScheduleNotes(e.target.value)}
+                    rows={3}
+                  />
+                </div>
+              )}
+            </div>
+            <DialogFooter>
+              <Button variant="outline" onClick={() => setIsScheduleDialogOpen(false)}>
+                Cancelar
+              </Button>
+              <Button
+                onClick={handleScheduleSession}
+                disabled={!selectedSlot}
+                className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]"
+              >
+                Confirmar Agendamento
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
@@ -260,6 +415,11 @@ export default function AgendaPage() {
                           <p className="text-sm text-[#757780]">
                             {event.time} - {event.duration} min
                           </p>
+                          {event.notes && (
+                            <p className="text-sm text-[#757780] mt-1 italic">
+                              Nota: {event.notes}
+                            </p>
+                          )}
                         </div>
                         {event.isOnline && (
                           <Badge variant="secondary">

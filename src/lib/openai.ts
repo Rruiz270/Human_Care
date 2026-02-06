@@ -1,8 +1,16 @@
 import OpenAI from 'openai'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+// Lazy initialization to avoid build-time errors
+let openaiClient: OpenAI | null = null
+
+function getOpenAI(): OpenAI {
+  if (!openaiClient) {
+    openaiClient = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
+  }
+  return openaiClient
+}
 
 export interface TranscriptAnalysis {
   summary: string
@@ -87,7 +95,7 @@ Analise a transcricao e retorne um JSON com a seguinte estrutura:
 Seja objetivo, empatico e profissional na analise.`
 
   try {
-    const response = await openai.chat.completions.create({
+    const response = await getOpenAI().chat.completions.create({
       model: 'gpt-4-turbo-preview',
       messages: [
         { role: 'system', content: systemPrompt },
@@ -160,7 +168,7 @@ Retorne um JSON com:
       { role: 'user', content: userMessage }
     ]
 
-    const response = await openai.chat.completions.create({
+    const response = await getOpenAI().chat.completions.create({
       model: 'gpt-4-turbo-preview',
       messages,
       response_format: { type: 'json_object' },
@@ -205,7 +213,7 @@ Retorne um JSON com:
 }`
 
   try {
-    const response = await openai.chat.completions.create({
+    const response = await getOpenAI().chat.completions.create({
       model: 'gpt-4-turbo-preview',
       messages: [
         { role: 'system', content: systemPrompt },
@@ -225,4 +233,4 @@ Retorne um JSON com:
   }
 }
 
-export default openai
+export default getOpenAI

@@ -94,7 +94,7 @@ export function InventoryPanel({
           <Clock className="mx-auto mb-1 h-6 w-6 text-[#B8755C]" />
           <p className="text-lg font-mono font-bold text-[#1A1A1E]">{timeAvailable}%</p>
           <p className="text-[10px] font-mono uppercase tracking-wider text-[#8C8580]">
-            Tempo Disponivel
+            Tempo Disponível
           </p>
         </div>
 
@@ -175,7 +175,7 @@ export function GameplayPhase({
   return (
     <div className="rounded-lg border border-[var(--border-architectural)] bg-[var(--parchment-light)] p-4">
       <h4 className="mb-3 text-center text-xs font-mono uppercase tracking-widest text-[#8C8580]">
-        Gameplay - Rotina Diaria
+        Gameplay - Rotina Diária
       </h4>
       <div className="space-y-2">
         {phases.map((phase) => {
@@ -355,7 +355,7 @@ export function TopographicMap({
                 PONTO B
               </text>
               <text x="700" y={h * 0.4 + 36} textAnchor="middle" className="text-[8px] font-mono fill-[#8C8580]">
-                Proposito
+                Propósito
               </text>
             </>
           )}
@@ -484,7 +484,7 @@ export function QuestCard({
             onClick={onAction}
             className="mt-2 w-full rounded-sm border border-[#B8755C]/30 bg-[#B8755C]/5 px-3 py-1.5 text-xs font-mono uppercase tracking-wider text-[#B8755C] transition-colors hover:bg-[#B8755C]/10"
           >
-            {type === 'habit' ? 'Check-in' : 'Concluir Missao'}
+            {type === 'habit' ? 'Check-in' : 'Concluir Missão'}
           </button>
         )}
       </div>
@@ -538,8 +538,8 @@ export function CarePartyMember({
       </div>
       {(lastSession || nextSession) && (
         <div className="mt-2 space-y-0.5 text-[10px] font-mono text-[#8C8580]">
-          {lastSession && <p>Ultimo: {lastSession}</p>}
-          {nextSession && <p className="text-[#B8755C]">Proximo: {nextSession}</p>}
+          {lastSession && <p>Último: {lastSession}</p>}
+          {nextSession && <p className="text-[#B8755C]">Próximo: {nextSession}</p>}
         </div>
       )}
     </div>
@@ -571,7 +571,7 @@ export function XPProgressBar({
             {level}
           </span>
           <span className="text-xs font-mono uppercase tracking-wider text-[#8C8580]">
-            Nivel {level}
+            Nível {level}
           </span>
         </div>
         <span className="text-xs font-mono text-[#8C8580]">

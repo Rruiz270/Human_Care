@@ -38,18 +38,18 @@ const suggestedPrompts = [
   },
   {
     icon: Brain,
-    title: 'Analisar padrao',
-    prompt: 'Baseado no meu historico, voce consegue identificar algum padrao nos meus niveis de estresse?',
+    title: 'Analisar padrão',
+    prompt: 'Baseado no meu histórico, você consegue identificar algum padrão nos meus níveis de estresse?',
   },
   {
     icon: Target,
     title: 'Progresso nas metas',
-    prompt: 'Como esta meu progresso em relacao aos meus objetivos e proposito de vida?',
+    prompt: 'Como está meu progresso em relação aos meus objetivos e propósito de vida?',
   },
   {
     icon: Lightbulb,
-    title: 'Sugestoes para hoje',
-    prompt: 'O que voce sugere que eu faca hoje para melhorar meu bem-estar?',
+    title: 'Sugestões para hoje',
+    prompt: 'O que você sugere que eu faça hoje para melhorar meu bem-estar?',
   },
 ]
 
@@ -57,19 +57,19 @@ const initialMessages: Message[] = [
   {
     id: '1',
     role: 'assistant',
-    content: `Saudacoes, aventureiro. Eu sou o Oraculo — guardiao do conhecimento do seu Mapa da Vida.
+    content: `Saudações, aventureiro. Eu sou o Oráculo — guardião do conhecimento do seu Mapa da Vida.
 
-Tenho visao sobre sua jornada e posso:
-- Revelar padroes ocultos nos seus sentimentos e pensamentos
+Tenho visão sobre sua jornada e posso:
+- Revelar padrões ocultos nos seus sentimentos e pensamentos
 - Analisar as trilhas do seu progresso
 - Sugerir caminhos baseados no seu contexto
-- Acompanhar seu avanco em direcao ao Ponto B
+- Acompanhar seu avanço em direção ao Ponto B
 
 Que sabedoria busca hoje?`,
     suggestions: [
       'Quero falar sobre como me sinto hoje',
       'Analise meu progresso recente',
-      'Me de dicas para reduzir estresse',
+      'Me dê dicas para reduzir estresse',
     ],
     timestamp: new Date(),
   },
@@ -113,7 +113,7 @@ export default function ChatAIPage() {
         content: generateMockResponse(messageText),
         suggestions: [
           'Conte-me mais sobre isso',
-          'Quais sao os proximos passos?',
+          'Quais são os próximos passos?',
           'Como posso melhorar?',
         ],
         timestamp: new Date(),
@@ -127,67 +127,67 @@ export default function ChatAIPage() {
     const lowerInput = input.toLowerCase()
 
     if (lowerInput.includes('sentindo') || lowerInput.includes('sinto')) {
-      return `Entendo que voce quer explorar seus sentimentos. Consultando os registros do seu Mapa...
+      return `Entendo que você quer explorar seus sentimentos. Consultando os registros do seu Mapa...
 
-**Padroes observados:**
-- Seu humor tem oscilado entre 6 e 8 nos ultimos dias
-- O nivel de estresse aumentou levemente no inicio da semana
-- Sua energia esta estavel, mas poderia ser melhor
+**Padrões observados:**
+- Seu humor tem oscilado entre 6 e 8 nos últimos dias
+- O nível de estresse aumentou levemente no início da semana
+- Sua energia está estável, mas poderia ser melhor
 
-**Reflexao do Oraculo:**
-Como voce se sente em relacao ao trabalho ultimamente? Seus registros mostram que os picos de estresse coincidem com os dias de maior carga.
+**Reflexão do Oráculo:**
+Como você se sente em relação ao trabalho ultimamente? Seus registros mostram que os picos de estresse coincidem com os dias de maior carga.
 
-Quer explorar mais esse territorio ou prefere falar sobre estrategias de combate?`
+Quer explorar mais esse território ou prefere falar sobre estratégias de combate?`
     }
 
     if (lowerInput.includes('progresso') || lowerInput.includes('metas')) {
       return `Consultando o Quest Log...
 
-**Missoes Completadas:** 12 de 15 (80%) — +720 XP
+**Missões Completadas:** 12 de 15 (80%) — +720 XP
 **Alinhamento com Ponto B:** 78%
 
 **Conquistas desbloqueadas:**
-- Consistencia nas praticas de autocuidado
-- O projeto do mestrado avanca conforme o mapa
+- Consistência nas práticas de autocuidado
+- O projeto do mestrado avança conforme o mapa
 - Encontros de terapia trazendo insights valiosos
 
-**Atencao do Oraculo:**
-- A quest "Definir metas do trimestre" ainda esta pendente
-- O atributo "Exercicio Fisico" pode ser fortalecido
+**Atenção do Oráculo:**
+- A quest "Definir metas do trimestre" ainda está pendente
+- O atributo "Exercício Físico" pode ser fortalecido
 
-Gostaria de revisar algum objetivo especifico?`
+Gostaria de revisar algum objetivo específico?`
     }
 
     if (lowerInput.includes('estresse') || lowerInput.includes('ansiedade')) {
-      return `O Oraculo percebe tensao nos seus registros. Vamos trabalhar nisso.
+      return `O Oráculo percebe tensão nos seus registros. Vamos trabalhar nisso.
 
-**Diagnostico:**
+**Diagnóstico:**
 - Estresse atual: 7/10 (debuff ativo)
-- Gatilhos identificados: pressao no trabalho, falta de tempo
+- Gatilhos identificados: pressão no trabalho, falta de tempo
 - Sono: 6.5h (abaixo do recomendado)
 
 **Pergaminhos de cura sugeridos:**
-1. **Respiracao 4-7-8**: 3 vezes ao longo do dia (+15 HP)
+1. **Respiração 4-7-8**: 3 vezes ao longo do dia (+15 HP)
 2. **Pausa consciente**: 5 min sem tela a cada 2h (+10 MP)
-3. **Caminhada**: Movimento libera tensao (+20 Energia)
+3. **Caminhada**: Movimento libera tensão (+20 Energia)
 
 **Sabedoria antiga:**
 O que costuma restaurar sua energia quando o estresse ataca? Podemos criar um plano personalizado de defesa.`
     }
 
-    return `O Oraculo ouviu sua mensagem. Consultando o Mapa da Vida...
+    return `O Oráculo ouviu sua mensagem. Consultando o Mapa da Vida...
 
-**Visao revelada:**
-- Voce esta em uma fase de transformacao importante
-- Ha conexoes entre o que vive agora e padroes do territorio passado
-- Seu proposito de "transformar vidas atraves da educacao" continua como bussola apontando para o Ponto B
+**Visão revelada:**
+- Você está em uma fase de transformação importante
+- Há conexões entre o que vive agora e padrões do território passado
+- Seu propósito de "transformar vidas através da educação" continua como bússola apontando para o Ponto B
 
 **Caminhos sugeridos:**
-1. Continue registrando pensamentos e sentimentos (Quest Diaria)
-2. Explore essa questao no proximo encontro com seu terapeuta
+1. Continue registrando pensamentos e sentimentos (Quest Diária)
+2. Explore essa questão no próximo encontro com seu terapeuta
 3. Lembre-se das conquistas recentes no seu Quest Log
 
-Deseja que eu aprofunde em algum territorio especifico?`
+Deseja que eu aprofunde em algum território específico?`
   }
 
   const copyToClipboard = (text: string, id: string) => {
@@ -201,10 +201,10 @@ Deseja que eu aprofunde em algum territorio especifico?`
       <div className="mb-6">
         <h2 className="text-3xl font-serif font-bold text-[#1A1A1E] flex items-center gap-2">
           <Compass className="h-7 w-7 text-[#B8755C]" />
-          O Oraculo
+          O Oráculo
         </h2>
         <p className="text-sm text-[#8C8580]">
-          Guardiao do conhecimento — Disponivel 24/7
+          Guardião do conhecimento — Disponível 24/7
         </p>
       </div>
 
@@ -266,7 +266,7 @@ Deseja que eu aprofunde em algum territorio especifico?`
                     >
                       {/* Message label */}
                       <span className="text-[10px] font-mono uppercase tracking-wider text-[#8C8580]">
-                        {message.role === 'assistant' ? 'Oraculo' : 'Diario do Aventureiro'}
+                        {message.role === 'assistant' ? 'Oráculo' : 'Diário do Aventureiro'}
                       </span>
 
                       <div
@@ -326,7 +326,7 @@ Deseja que eu aprofunde em algum territorio especifico?`
                     </Avatar>
                     <div className="flex items-center gap-2 oracle-message px-4 py-3">
                       <RefreshCw className="h-4 w-4 animate-spin text-[#B8755C]" />
-                      <span className="text-xs font-mono text-[#8C8580]">O Oraculo consulta o mapa...</span>
+                      <span className="text-xs font-mono text-[#8C8580]">O Oráculo consulta o mapa...</span>
                     </div>
                   </div>
                 )}
@@ -341,7 +341,7 @@ Deseja que eu aprofunde em algum territorio especifico?`
                 <Textarea
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Escreva no seu diario..."
+                  placeholder="Escreva no seu diário..."
                   className="min-h-[44px] resize-none"
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && !e.shiftKey) {
@@ -359,7 +359,7 @@ Deseja que eu aprofunde em algum territorio especifico?`
                 </Button>
               </div>
               <p className="mt-2 text-center text-[10px] font-mono text-[#8C8580]">
-                O Oraculo tem acesso ao seu Mapa da Vida para oferecer visoes personalizadas
+                O Oráculo tem acesso ao seu Mapa da Vida para oferecer visões personalizadas
               </p>
             </div>
           </Card>

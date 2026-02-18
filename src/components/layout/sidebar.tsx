@@ -31,17 +31,17 @@ const navigation = [
   { name: 'Quartel General', href: '/', icon: LayoutDashboard },
   { name: 'Mapa do Mundo', href: '/mapa-da-vida', icon: Compass },
   { name: 'Biblioteca', href: '/conteudo', icon: Video },
-  { name: 'Calendario', href: '/agenda', icon: Calendar },
+  { name: 'Calendário', href: '/agenda', icon: Calendar },
   { name: 'Encontros', href: '/sessoes', icon: Heart },
-  { name: 'Missoes', href: '/missoes', icon: Target },
-  { name: 'O Oraculo', href: '/chat-ai', icon: MessageSquare },
+  { name: 'Missões', href: '/missoes', icon: Target },
+  { name: 'O Oráculo', href: '/chat-ai', icon: MessageSquare },
   { name: 'Status do Avatar', href: '/metricas', icon: BarChart3 },
 ]
 
 const adminNavigation = [
-  { name: 'Usuarios', href: '/admin/usuarios', icon: Users },
-  { name: 'Conteudo Life Map', href: '/admin/conteudo', icon: BookOpen },
-  { name: 'Configuracoes', href: '/configuracoes', icon: Settings },
+  { name: 'Usuários', href: '/admin/usuarios', icon: Users },
+  { name: 'Conteúdo Life Map', href: '/admin/conteudo', icon: BookOpen },
+  { name: 'Configurações', href: '/configuracoes', icon: Settings },
 ]
 
 export function Sidebar() {
@@ -117,7 +117,7 @@ export function Sidebar() {
               <div className="my-4 border-t border-[#B8755C]/20" />
               {!collapsed && (
                 <p className="px-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#B8755C]/50">
-                  Administracao
+                  Administração
                 </p>
               )}
               {adminNavigation.map((item) => {
@@ -192,7 +192,7 @@ export function Sidebar() {
           {!collapsed && (
             <div className="mt-4 border-t border-[#B8755C]/10 pt-3">
               <p className="text-[10px] italic text-[#B8755C]/40" style={{ fontFamily: "'Playfair Display', serif" }}>
-                &ldquo;O que te limita e o que esta te limitando.&rdquo;
+                &ldquo;O que te limita e o que está te limitando.&rdquo;
               </p>
             </div>
           )}

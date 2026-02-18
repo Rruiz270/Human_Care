@@ -11,14 +11,14 @@ import { getInitials } from '@/lib/utils'
 const pageTitles: Record<string, string> = {
   '/': 'Quartel General',
   '/mapa-da-vida': 'Mapa do Mundo',
-  '/agenda': 'Calendario',
+  '/agenda': 'Calendário',
   '/sessoes': 'Encontros',
-  '/missoes': 'Missoes',
-  '/chat-ai': 'O Oraculo',
+  '/missoes': 'Missões',
+  '/chat-ai': 'O Oráculo',
   '/metricas': 'Status do Avatar',
   '/conteudo': 'Biblioteca',
-  '/configuracoes': 'Configuracoes',
-  '/admin/usuarios': 'Gestao de Usuarios',
+  '/configuracoes': 'Configurações',
+  '/admin/usuarios': 'Gestão de Usuários',
 }
 
 interface HeaderProps {

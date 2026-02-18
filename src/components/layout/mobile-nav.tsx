@@ -15,8 +15,8 @@ const navigation = [
   { name: 'QG', href: '/', icon: LayoutDashboard },
   { name: 'Mapa', href: '/mapa-da-vida', icon: Compass },
   { name: 'Agenda', href: '/agenda', icon: Calendar },
-  { name: 'Missoes', href: '/missoes', icon: Target },
-  { name: 'Oraculo', href: '/chat-ai', icon: MessageSquare },
+  { name: 'Missões', href: '/missoes', icon: Target },
+  { name: 'Oráculo', href: '/chat-ai', icon: MessageSquare },
 ]
 
 export function MobileNav() {

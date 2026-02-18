@@ -50,7 +50,7 @@ const upcomingSessions = [
 const pendingMissions = [
   {
     id: '1',
-    title: 'Praticar respiracao consciente',
+    title: 'Praticar respiração consciente',
     type: 'habit' as const,
     status: 'active' as const,
     xp: 30,
@@ -59,7 +59,7 @@ const pendingMissions = [
   },
   {
     id: '2',
-    title: 'Escrever carta de perdao',
+    title: 'Escrever carta de perdão',
     type: 'therapy' as const,
     status: 'active' as const,
     xp: 80,
@@ -78,8 +78,8 @@ const pendingMissions = [
 ]
 
 const dailyMissions = [
-  { title: 'Respiracao 4-7-8', phase: 'morning' as const },
-  { title: 'Revisao de metas', phase: 'afternoon' as const },
+  { title: 'Respiração 4-7-8', phase: 'morning' as const },
+  { title: 'Revisão de metas', phase: 'afternoon' as const },
   { title: 'Journaling noturno', phase: 'night' as const },
 ]
 
@@ -127,7 +127,7 @@ export default function DashboardPage() {
           {/* Center: Three Status Bars */}
           <div className="space-y-2.5">
             <AvatarStatusBar
-              label="Energia Fisica"
+              label="Energia Física"
               value={70}
               maxValue={100}
               color="copper"
@@ -158,7 +158,7 @@ export default function DashboardPage() {
         {/* Quote */}
         <div className="mt-3 border-t border-[#B8755C]/10 pt-2">
           <p className="text-center text-[11px] italic text-[#8C8580]" style={{ fontFamily: "'Playfair Display', serif" }}>
-            &ldquo;O que te limita e o que esta te limitando.&rdquo;
+            &ldquo;O que te limita é o que está te limitando.&rdquo;
           </p>
         </div>
       </div>
@@ -178,7 +178,7 @@ export default function DashboardPage() {
         {/* Center: Inventory Panel */}
         <div>
           <h3 className="mb-2 text-xs font-mono uppercase tracking-widest text-[#8C8580]">
-            Inventario
+            Inventário
           </h3>
           <InventoryPanel timeAvailable={68} energyQuality={55} />
         </div>
@@ -198,7 +198,7 @@ export default function DashboardPage() {
         <div className="lg:col-span-2">
           <div className="mb-3 flex items-center justify-between">
             <h3 className="text-xs font-mono uppercase tracking-widest text-[#8C8580]">
-              Missoes Ativas
+              Missões Ativas
             </h3>
             <Link href="/missoes">
               <Button variant="ghost" size="sm" className="text-xs">
@@ -235,7 +235,7 @@ export default function DashboardPage() {
                 roleLabel="Terapeuta ↓ DOWN"
                 avatarInitials="AC"
                 lastSession="10 Jan"
-                nextSession="Amanha"
+                nextSession="Amanhã"
               />
               <CarePartyMember
                 name="Carlos Mendes"
@@ -257,7 +257,7 @@ export default function DashboardPage() {
           {/* Upcoming Encounters */}
           <div>
             <h3 className="mb-3 text-xs font-mono uppercase tracking-widest text-[#8C8580]">
-              Proximos Encontros
+              Próximos Encontros
             </h3>
             <div className="space-y-2">
               {upcomingSessions.map((session) => (
@@ -298,7 +298,7 @@ export default function DashboardPage() {
             <Link href="/chat-ai" className="flex-1">
               <Button className="w-full bg-[#B8755C] text-white hover:bg-[#A0634D] text-xs">
                 <MessageSquare className="mr-1.5 h-3.5 w-3.5" />
-                O Oraculo
+                O Oráculo
               </Button>
             </Link>
             <Link href="/mapa-da-vida" className="flex-1">
@@ -313,7 +313,7 @@ export default function DashboardPage() {
 
       {/* Editorial Quote */}
       <div className="relative z-10">
-        <EditorialQuote text="Cada passo na jornada e parte do destino." />
+        <EditorialQuote text="Cada passo na jornada é parte do destino." />
       </div>
     </div>
   )

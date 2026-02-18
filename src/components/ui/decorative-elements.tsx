@@ -129,7 +129,7 @@ export function LifeMapDiagram() {
           <h3 className="mb-2 font-serif text-xl font-bold text-[#1A1A1E]">MAPA</h3>
           <p className="text-xs font-mono uppercase tracking-widest text-[#8C8580] mb-3">Passado &middot; Presente &middot; Futuro</p>
           <p className="text-sm text-[#8C8580]">
-            Registre sua historia de vida, relacoes familiares e eventos significativos
+            Registre sua história de vida, relações familiares e eventos significativos
           </p>
         </div>
 
@@ -155,10 +155,10 @@ export function LifeMapDiagram() {
               <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
             </svg>
           </div>
-          <h3 className="mb-2 font-serif text-xl font-bold text-[#1A1A1E]">VISAO</h3>
-          <p className="text-xs font-mono uppercase tracking-widest text-[#8C8580] mb-3">Proposito &middot; Metas &middot; OKRs</p>
+          <h3 className="mb-2 font-serif text-xl font-bold text-[#1A1A1E]">VISÃO</h3>
+          <p className="text-xs font-mono uppercase tracking-widest text-[#8C8580] mb-3">Propósito &middot; Metas &middot; OKRs</p>
           <p className="text-sm text-[#8C8580]">
-            Defina seu proposito de vida e acompanhe seu progresso com clareza
+            Defina seu propósito de vida e acompanhe seu progresso com clareza
           </p>
         </div>
       </div>

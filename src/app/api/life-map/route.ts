@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
 
     if (!userId) {
       return NextResponse.json(
-        { success: false, error: 'userId e obrigatorio' },
+        { success: false, error: 'userId é obrigatório' },
         { status: 400 }
       )
     }
@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
 
     if (!lifeMap) {
       return NextResponse.json(
-        { success: false, error: 'Mapa da vida nao encontrado' },
+        { success: false, error: 'Mapa da vida não encontrado' },
         { status: 404 }
       )
     }

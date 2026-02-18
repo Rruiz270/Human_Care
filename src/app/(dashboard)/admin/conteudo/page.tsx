@@ -88,12 +88,12 @@ function SlideCover() {
             Desbloqueando o Potencial Humano
           </h2>
           <p className="text-sm text-[#8C8580] max-w-md leading-relaxed">
-            Uma estrutura de cuidado integrado para navegar a disrupcao transformacional e converter consciencia em performance.
+            Uma estrutura de cuidado integrado para navegar a disrupção transformacional e converter consciência em performance.
           </p>
         </div>
       </div>
       <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs italic text-[#8C8580]" style={{ fontFamily: "'Playfair Display', serif" }}>
-        O que te limita e o que esta te limitando.
+        O que te limita é o que está te limitando.
       </p>
     </SlideWrapper>
   )
@@ -115,7 +115,7 @@ function SlideDisrupcao() {
                 ))}
               </div>
               <p className="absolute bottom-2 left-2 text-[8px] text-[#F5F0EB]/40 uppercase tracking-widest">Reflexo Estrutural:</p>
-              <p className="absolute bottom-2 right-2 text-[8px] text-[#F5F0EB]/40 uppercase">Instabilidade e Fragmentacao</p>
+              <p className="absolute bottom-2 right-2 text-[8px] text-[#F5F0EB]/40 uppercase">Instabilidade e Fragmentação</p>
             </div>
             {/* Water line */}
             <div className="h-1 bg-[#8C8580]/30" />
@@ -138,7 +138,7 @@ function SlideDisrupcao() {
 
         {/* Right: Content */}
         <div className="flex-1 flex flex-col justify-center space-y-5">
-          <h2 className="text-2xl sm:text-3xl font-serif font-bold">O Contexto: A Disrupcao Transformacional</h2>
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold">O Contexto: A Disrupção Transformacional</h2>
 
           <div className="space-y-4">
             <div className="flex gap-3">
@@ -146,8 +146,8 @@ function SlideDisrupcao() {
                 <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#B8755C" strokeWidth="1.5" fill="none"/><line x1="10" y1="4" x2="10" y2="10" stroke="#B8755C" strokeWidth="1.5"/><line x1="10" y1="10" x2="14" y2="10" stroke="#B8755C" strokeWidth="1.5"/></svg>
               </div>
               <div>
-                <p className="font-bold text-sm text-[#B8755C]">O Cenario</p>
-                <p className="text-xs text-[#3D3D3D] leading-relaxed">O mundo exige uma velocidade de adaptacao gigantesca. Vivemos uma disrupcao coletiva onde as ferramentas tradicionais de desenvolvimento ja nao dao conta do ritmo atual.</p>
+                <p className="font-bold text-sm text-[#B8755C]">O Cenário</p>
+                <p className="text-xs text-[#3D3D3D] leading-relaxed">O mundo exige uma velocidade de adaptação gigantesca. Vivemos uma disrupção coletiva onde as ferramentas tradicionais de desenvolvimento já não dão conta do ritmo atual.</p>
               </div>
             </div>
 
@@ -157,7 +157,7 @@ function SlideDisrupcao() {
               </div>
               <div>
                 <p className="font-bold text-sm">O Colapso</p>
-                <p className="text-xs text-[#3D3D3D] leading-relaxed">Organizacoes e sistemas estao falhando. Nao e apenas burnout; e um colapso estrutural das relacoes humanas.</p>
+                <p className="text-xs text-[#3D3D3D] leading-relaxed">Organizações e sistemas estão falhando. Não é apenas burnout; é um colapso estrutural das relações humanas.</p>
               </div>
             </div>
 
@@ -166,8 +166,8 @@ function SlideDisrupcao() {
                 <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" stroke="#8C8580" strokeWidth="1" fill="none"/><circle cx="10" cy="10" r="3" stroke="#8C8580" strokeWidth="1" fill="none"/><circle cx="10" cy="10" r="1" fill="#8C8580"/></svg>
               </div>
               <div>
-                <p className="font-bold text-sm">Os Sintomas Visiveis</p>
-                <p className="text-xs text-[#3D3D3D] leading-relaxed">Fofoca de corredor e inseguranca. Reunioes improdutivas que drenam a vida. A exigencia de &apos;fazer mais&apos; esbarrando em bloqueios invisiveis.</p>
+                <p className="font-bold text-sm">Os Sintomas Visíveis</p>
+                <p className="text-xs text-[#3D3D3D] leading-relaxed">Fofoca de corredor e insegurança. Reuniões improdutivas que drenam a vida. A exigência de &apos;fazer mais&apos; esbarrando em bloqueios invisíveis.</p>
               </div>
             </div>
 
@@ -177,7 +177,7 @@ function SlideDisrupcao() {
               </div>
               <div>
                 <p className="font-bold text-sm text-[#B8755C]">A Realidade</p>
-                <p className="text-xs text-[#3D3D3D] leading-relaxed">Profissionais querem entregar, mas operam com um sistema operacional interno defasado para a pressao atual.</p>
+                <p className="text-xs text-[#3D3D3D] leading-relaxed">Profissionais querem entregar, mas operam com um sistema operacional interno defasado para a pressão atual.</p>
               </div>
             </div>
           </div>
@@ -211,7 +211,7 @@ function SlideSabotador() {
             <ellipse cx="140" cy="280" rx="80" ry="15" fill="#1A1A1E" opacity="0.3"/>
             {/* Labels */}
             <text x="220" y="80" className="text-[8px] uppercase tracking-widest" fill="#8C8580" opacity="0.6">Peso do Passado</text>
-            <text x="220" y="250" className="text-[8px] uppercase tracking-widest" fill="#8C8580" opacity="0.6">Sombra Invisivel</text>
+            <text x="220" y="250" className="text-[8px] uppercase tracking-widest" fill="#8C8580" opacity="0.6">Sombra Invisível</text>
             {/* Dimension arrows */}
             <line x1="200" y1="75" x2="200" y2="245" stroke="#8C8580" strokeWidth="0.5" opacity="0.3"/>
           </svg>
@@ -220,27 +220,27 @@ function SlideSabotador() {
         {/* Right: Content */}
         <div className="flex-1 flex flex-col justify-center space-y-4">
           <h2 className="text-xl sm:text-2xl font-serif font-bold leading-tight">
-            O Sabotador Invisivel: Por que<br/>&lsquo;Todo Mundo Tem Trauma&rsquo;
+            O Sabotador Invisível: Por que<br/>&lsquo;Todo Mundo Tem Trauma&rsquo;
           </h2>
 
           <div className="space-y-3">
             <div>
-              <p className="font-bold text-sm">A Mecanica do Bloqueio:</p>
-              <p className="text-xs text-[#3D3D3D] leading-relaxed">O problema nao e falta de habilidade tecnica, e a biografia emocional. Trauma e um mecanismo de economia de energia do cerebro — uma reacao automatica a um gatilho.</p>
+              <p className="font-bold text-sm">A Mecânica do Bloqueio:</p>
+              <p className="text-xs text-[#3D3D3D] leading-relaxed">O problema não é falta de habilidade técnica, é a biografia emocional. Trauma é um mecanismo de economia de energia do cérebro — uma reação automática a um gatilho.</p>
             </div>
             <div>
-              <p className="font-bold text-sm">A Metafora do Cafe:</p>
-              <p className="text-xs text-[#3D3D3D] leading-relaxed">Derrubar cafe no computador e um problema pequeno. Mas se voce teve um pai que jogou cafe no seu rosto, a xicara e uma ameaca. O mesmo evento neutro no corporativo pode acionar uma resposta de &quot;luta ou fuga&quot; baseada em historias antigas.</p>
+              <p className="font-bold text-sm">A Metáfora do Café:</p>
+              <p className="text-xs text-[#3D3D3D] leading-relaxed">Derrubar café no computador é um problema pequeno. Mas se você teve um pai que jogou café no seu rosto, a xícara é uma ameaça. O mesmo evento neutro no corporativo pode acionar uma resposta de &quot;luta ou fuga&quot; baseada em histórias antigas.</p>
             </div>
             <div>
               <p className="font-bold text-sm">O Custo:</p>
-              <p className="text-xs text-[#3D3D3D] leading-relaxed">Quando um gatilho e ativado, a capacidade cognitiva cai. O profissional reage ao passado, nao ao presente.</p>
+              <p className="text-xs text-[#3D3D3D] leading-relaxed">Quando um gatilho é ativado, a capacidade cognitiva cai. O profissional reage ao passado, não ao presente.</p>
             </div>
           </div>
 
           <div className="mt-2 rounded-md bg-[#B8755C]/10 border border-[#B8755C]/20 p-3">
             <p className="text-xs italic text-[#B8755C]" style={{ fontFamily: "'Playfair Display', serif" }}>
-              Se voce continuar assumindo que esta tudo bem, vai continuar tudo mal. Sem ver o limite, a transformacao nao acontece.
+              Se você continuar assumindo que está tudo bem, vai continuar tudo mal. Sem ver o limite, a transformação não acontece.
             </p>
           </div>
         </div>
@@ -267,9 +267,9 @@ function SlideFilosofia() {
             <circle cx="250" cy="160" r="110" fill="none" stroke="#B8755C" strokeWidth="3" opacity="0.6"/>
             <circle cx="250" cy="160" r="95" fill="none" stroke="#8B9E7C" strokeWidth="2" opacity="0.4"/>
             <circle cx="250" cy="160" r="70" fill="none" stroke="#8C8580" strokeWidth="1" opacity="0.3"/>
-            {/* Center - Individuo */}
+            {/* Center - Indivíduo */}
             <circle cx="250" cy="160" r="35" fill="#F5F0EB" stroke="#1A1A1E" strokeWidth="1.5"/>
-            <text x="250" y="164" textAnchor="middle" className="text-xs font-medium" fill="#1A1A1E">Individuo</text>
+            <text x="250" y="164" textAnchor="middle" className="text-xs font-medium" fill="#1A1A1E">Indivíduo</text>
             {/* Compass rose in center */}
             <line x1="250" y1="130" x2="250" y2="190" stroke="#B8755C" strokeWidth="0.5" opacity="0.3"/>
             <line x1="220" y1="160" x2="280" y2="160" stroke="#B8755C" strokeWidth="0.5" opacity="0.3"/>
@@ -288,13 +288,13 @@ function SlideFilosofia() {
               <line x1="60" y1="78" x2="60" y2="102" stroke="#1A1A1E" strokeWidth="0.5"/>
               <line x1="48" y1="90" x2="72" y2="90" stroke="#1A1A1E" strokeWidth="0.5"/>
               <text x="88" y="95" className="text-sm font-bold" fill="#1A1A1E">MAP</text>
-              <text x="88" y="108" className="text-[10px]" fill="#8C8580">(A Navegacao)</text>
+              <text x="88" y="108" className="text-[10px]" fill="#8C8580">(A Navegação)</text>
               {/* Items */}
               <circle cx="40" cy="140" r="6" fill="none" stroke="#8C8580" strokeWidth="1"/>
-              <text x="52" y="144" className="text-[10px]" fill="#1A1A1E">Inventario do Passado</text>
-              <text x="52" y="178" className="text-[10px]" fill="#1A1A1E">Direcao do Futuro</text>
+              <text x="52" y="144" className="text-[10px]" fill="#1A1A1E">Inventário do Passado</text>
+              <text x="52" y="178" className="text-[10px]" fill="#1A1A1E">Direção do Futuro</text>
               <polygon points="40,172 45,178 35,178" fill="#B8755C" opacity="0.6"/>
-              <text x="52" y="212" className="text-[10px]" fill="#1A1A1E">Consciencia</text>
+              <text x="52" y="212" className="text-[10px]" fill="#1A1A1E">Consciência</text>
               <circle cx="40" cy="208" r="6" fill="none" stroke="#8B9E7C" strokeWidth="1"/>
             </g>
 
@@ -305,9 +305,9 @@ function SlideFilosofia() {
               <circle cx="440" cy="90" r="12" fill="none" stroke="#1A1A1E" strokeWidth="1.5"/>
               <circle cx="440" cy="90" r="5" fill="none" stroke="#1A1A1E" strokeWidth="1"/>
               <text x="390" y="95" className="text-sm font-bold" textAnchor="end" fill="#1A1A1E">MANAGER</text>
-              <text x="390" y="108" className="text-[10px]" textAnchor="end" fill="#8C8580">(A Gestao)</text>
+              <text x="390" y="108" className="text-[10px]" textAnchor="end" fill="#8C8580">(A Gestão)</text>
               {/* Items */}
-              <text x="380" y="144" className="text-[10px]" textAnchor="end" fill="#1A1A1E">Orquestracao do Presente</text>
+              <text x="380" y="144" className="text-[10px]" textAnchor="end" fill="#1A1A1E">Orquestração do Presente</text>
               <text x="380" y="178" className="text-[10px]" textAnchor="end" fill="#1A1A1E">Rotina</text>
               <text x="380" y="212" className="text-[10px]" textAnchor="end" fill="#1A1A1E">Intencionalidade</text>
             </g>
@@ -325,7 +325,7 @@ function SlideFilosofia() {
       {/* Bottom quote */}
       <div className="mt-auto border-t border-[#8C8580]/20 pt-3 text-center">
         <p className="text-xs italic text-[#8C8580]" style={{ fontFamily: "'Playfair Display', serif" }}>
-          O presente e uma fabrica de passado. O modo como vivemos hoje e o material que formara a historia de amanha.
+          O presente é uma fábrica de passado. O modo como vivemos hoje é o material que formará a história de amanhã.
         </p>
       </div>
     </SlideWrapper>
@@ -336,7 +336,7 @@ function SlideFilosofia() {
 function SlideMapFog() {
   return (
     <SlideWrapper>
-      <h2 className="text-xl sm:text-2xl font-serif font-bold mb-4">O Componente &lsquo;Map&rsquo;: Navegando a Nevoa de Guerra</h2>
+      <h2 className="text-xl sm:text-2xl font-serif font-bold mb-4">O Componente &lsquo;Map&rsquo;: Navegando a Névoa de Guerra</h2>
 
       <div className="flex-1 relative">
         <svg viewBox="0 0 800 300" className="w-full h-full">
@@ -376,13 +376,13 @@ function SlideMapFog() {
             <circle cx="15" cy="12" r="8" fill="none" stroke="#F5F0EB" strokeWidth="1"/>
           </g>
           <text x="250" y="185" textAnchor="middle" className="text-[10px] font-bold" fill="#1A1A1E">Ponto A</text>
-          <text x="250" y="197" textAnchor="middle" className="text-[8px]" fill="#8C8580">(Presente / Inventario)</text>
+          <text x="250" y="197" textAnchor="middle" className="text-[8px]" fill="#8C8580">(Presente / Inventário)</text>
 
           {/* Ponto B */}
           <circle cx="740" cy="160" r="14" fill="none" stroke="#1A1A1E" strokeWidth="2" strokeDasharray="4 2"/>
           <circle cx="740" cy="160" r="6" fill="none" stroke="#1A1A1E" strokeWidth="1"/>
           <text x="740" y="195" textAnchor="middle" className="text-[10px] font-bold" fill="#1A1A1E">Ponto B</text>
-          <text x="740" y="207" textAnchor="middle" className="text-[8px]" fill="#8C8580">(Futuro / Proposito Movel)</text>
+          <text x="740" y="207" textAnchor="middle" className="text-[8px]" fill="#8C8580">(Futuro / Propósito Móvel)</text>
 
           {/* Compass icon at Ponto B */}
           <g transform="translate(720, 125)">
@@ -393,7 +393,7 @@ function SlideMapFog() {
       </div>
 
       <div className="mt-2 space-y-1">
-        <p className="text-xs text-[#3D3D3D]"><strong>A Jornada:</strong> Entre A e B existe o desconhecido. Como em um RPG, descobrimos o mapa andando. Se o caminho pela floresta esta bloqueado, precisamos voltar e equipar itens de montanha.</p>
+        <p className="text-xs text-[#3D3D3D]"><strong>A Jornada:</strong> Entre A e B existe o desconhecido. Como em um RPG, descobrimos o mapa andando. Se o caminho pela floresta está bloqueado, precisamos voltar e equipar itens de montanha.</p>
         <p className="text-xs text-[#3D3D3D]"><strong>Objetivo:</strong> Transformar uma vida reativa em uma vida intencional.</p>
       </div>
       <SlideNum n="04" />
@@ -411,19 +411,19 @@ function SlideManager() {
         <div className="flex-1 space-y-4">
           <div>
             <p className="font-bold text-sm">O Hardware:</p>
-            <p className="text-xs text-[#3D3D3D]">&quot;Sem corpo, nao tem mente.&quot; A consciencia depende da fisiologia.</p>
+            <p className="text-xs text-[#3D3D3D]">&quot;Sem corpo, não tem mente.&quot; A consciência depende da fisiologia.</p>
           </div>
           <div>
-            <p className="font-bold text-sm">Gestao de Necessidades:</p>
-            <p className="text-xs text-[#3D3D3D]">Sono, lazer, alimentacao, conexoes. Nao sao luxos, sao requisitos operacionais.</p>
+            <p className="font-bold text-sm">Gestão de Necessidades:</p>
+            <p className="text-xs text-[#3D3D3D]">Sono, lazer, alimentação, conexões. Não são luxos, são requisitos operacionais.</p>
           </div>
           <div>
-            <p className="font-bold text-sm">Gestao da Rotina:</p>
-            <p className="text-xs text-[#3D3D3D]">A distribuicao inteligente do tempo para atender as necessidades e mover-se do Ponto A ao B.</p>
+            <p className="font-bold text-sm">Gestão da Rotina:</p>
+            <p className="text-xs text-[#3D3D3D]">A distribuição inteligente do tempo para atender as necessidades e mover-se do Ponto A ao B.</p>
           </div>
           <div>
             <p className="font-bold text-sm">O Painel de Controle:</p>
-            <p className="text-xs text-[#3D3D3D]">O Manager e quem olha para a barra de energia e decide se e possivel entrar na proxima batalha ou se e preciso descansar.</p>
+            <p className="text-xs text-[#3D3D3D]">O Manager é quem olha para a barra de energia e decide se é possível entrar na próxima batalha ou se é preciso descansar.</p>
           </div>
         </div>
 
@@ -453,18 +453,18 @@ function SlideManager() {
             <div className="h-6 w-full rounded-sm border border-[#8C8580]/30 bg-[#8C8580]/10 overflow-hidden">
               <div className="h-full rounded-sm" style={{ width: '55%', background: 'linear-gradient(90deg, #8B9E7C 0%, #A8B89A 100%)' }} />
             </div>
-            <p className="text-right text-[10px] font-mono text-[#8C8580]">EXPERIENCIA</p>
+            <p className="text-right text-[10px] font-mono text-[#8C8580]">EXPERIÊNCIA</p>
           </div>
 
           {/* Inventory icons */}
           <div className="space-y-1">
-            <p className="text-[10px] font-mono text-[#8C8580] uppercase tracking-widest">Inventario</p>
+            <p className="text-[10px] font-mono text-[#8C8580] uppercase tracking-widest">Inventário</p>
             <div className="grid grid-cols-4 gap-2">
               {[
                 { label: 'SONO', icon: 'M4,14 L4,6 C4,4 8,4 8,6 L8,14' },
-                { label: 'NUTRICAO', icon: 'M8,3 C8,3 12,5 10,8 C9,10 7,10 6,8 C4,5 8,3 8,3' },
+                { label: 'NUTRIÇÃO', icon: 'M8,3 C8,3 12,5 10,8 C9,10 7,10 6,8 C4,5 8,3 8,3' },
                 { label: 'ROTINA', icon: 'M3,3 L13,3 L13,13 L3,13 Z M3,6 L13,6 M7,3 L7,6' },
-                { label: 'CONEXOES', icon: 'M8,3 C6,3 4,5 4,7 C4,10 8,13 8,13 C8,13 12,10 12,7 C12,5 10,3 8,3' },
+                { label: 'CONEXÕES', icon: 'M8,3 C6,3 4,5 4,7 C4,10 8,13 8,13 C8,13 12,10 12,7 C12,5 10,3 8,3' },
               ].map(item => (
                 <div key={item.label} className="flex flex-col items-center gap-1">
                   <div className="flex h-10 w-10 items-center justify-center rounded-md border border-[#8C8580]/30 bg-[#F5F0EB]">
@@ -486,14 +486,14 @@ function SlideManager() {
 function SlideEquacao() {
   return (
     <SlideWrapper>
-      <h2 className="text-xl sm:text-2xl font-serif font-bold text-center mb-8">A Fisica da Performance: A Equacao Tempo x Energia</h2>
+      <h2 className="text-xl sm:text-2xl font-serif font-bold text-center mb-8">A Física da Performance: A Equação Tempo x Energia</h2>
 
       <div className="flex-1 flex flex-col items-center justify-center">
         {/* Big equation */}
         <div className="flex items-center gap-3 sm:gap-6 mb-8">
           <div className="border-2 border-[#B8755C] rounded-sm px-4 py-3 text-center">
             <p className="text-lg sm:text-2xl font-serif font-bold">Tempo</p>
-            <p className="text-lg sm:text-2xl font-serif font-bold">Disponivel</p>
+            <p className="text-lg sm:text-2xl font-serif font-bold">Disponível</p>
             <p className="text-xs text-[#8C8580]">(24h)</p>
           </div>
           <span className="text-2xl sm:text-3xl font-bold text-[#B8755C]">+</span>
@@ -503,7 +503,7 @@ function SlideEquacao() {
           </div>
           <span className="text-2xl sm:text-3xl font-bold text-[#1A1A1E]">=</span>
           <div className="border-2 border-[#1A1A1E] rounded-sm px-4 py-3 text-center">
-            <p className="text-lg sm:text-2xl font-serif font-bold">Presenca &amp;</p>
+            <p className="text-lg sm:text-2xl font-serif font-bold">Presença &amp;</p>
             <p className="text-lg sm:text-2xl font-serif font-bold">Resultado</p>
           </div>
         </div>
@@ -512,21 +512,21 @@ function SlideEquacao() {
         <div className="grid grid-cols-3 gap-4 w-full max-w-2xl">
           <div className="border border-[#8C8580]/30 rounded-sm p-3 bg-[#8C8580]/5">
             <p className="font-bold text-xs mb-1">A Moeda Universal:</p>
-            <p className="text-[10px] text-[#3D3D3D] leading-relaxed">O Tempo e a unica coisa que todos tem em comum. E a estrutura da experiencia.</p>
+            <p className="text-[10px] text-[#3D3D3D] leading-relaxed">O Tempo é a única coisa que todos têm em comum. É a estrutura da experiência.</p>
           </div>
           <div className="border border-[#B8755C]/30 rounded-sm p-3 bg-[#B8755C]/5">
-            <p className="font-bold text-xs mb-1">A Variavel de Qualidade:</p>
-            <p className="text-[10px] text-[#3D3D3D] leading-relaxed">Energia. Tempo sem energia e tempo perdido. &ldquo;O gold vira latao.&rdquo; Emocoes negativas e traumas drenam a bateria.</p>
+            <p className="font-bold text-xs mb-1">A Variável de Qualidade:</p>
+            <p className="text-[10px] text-[#3D3D3D] leading-relaxed">Energia. Tempo sem energia e tempo perdido. &ldquo;O gold vira latão.&rdquo; Emoções negativas e traumas drenam a bateria.</p>
           </div>
           <div className="border border-[#8B9E7C]/30 rounded-sm p-3 bg-[#8B9E7C]/5">
-            <p className="font-bold text-xs mb-1">A Recuperacao:</p>
-            <p className="text-[10px] text-[#3D3D3D] leading-relaxed">A energia sutil (mental/emocional) so e recuperada atraves do sono de qualidade.</p>
+            <p className="font-bold text-xs mb-1">A Recuperação:</p>
+            <p className="text-[10px] text-[#3D3D3D] leading-relaxed">A energia sutil (mental/emocional) só é recuperada através do sono de qualidade.</p>
           </div>
         </div>
       </div>
 
       <p className="text-xs italic text-[#8C8580] text-center mt-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-        Saude mental e, na pratica, a gestao eficiente da relacao tempo-energia-vida.
+        Saúde mental é, na prática, a gestão eficiente da relação tempo-energia-vida.
       </p>
       <SlideNum n="06" />
     </SlideWrapper>
@@ -537,7 +537,7 @@ function SlideEquacao() {
 function SlideFisiologia() {
   return (
     <SlideWrapper>
-      <h2 className="text-xl sm:text-2xl font-serif font-bold text-center mb-6">A Fisiologia do Desperdicio: Como a emocao drena o cognitivo</h2>
+      <h2 className="text-xl sm:text-2xl font-serif font-bold text-center mb-6">A Fisiologia do Desperdício: Como a emoção drena o cognitivo</h2>
 
       <div className="flex-1 flex items-center justify-center gap-8">
         {/* Brain diagram */}
@@ -571,15 +571,15 @@ function SlideFisiologia() {
         <div className="flex-1 space-y-5">
           <div>
             <p className="font-bold text-sm text-[#B8755C]">1. O Mecanismo</p>
-            <p className="text-xs text-[#3D3D3D] leading-relaxed">Quando acionados emocionalmente, o corpo entra em modo de sobrevivencia. O processamento cognitivo e reduzido.</p>
+            <p className="text-xs text-[#3D3D3D] leading-relaxed">Quando acionados emocionalmente, o corpo entra em modo de sobrevivência. O processamento cognitivo e reduzido.</p>
           </div>
           <div>
             <p className="font-bold text-sm">2. O Custo</p>
-            <p className="text-xs text-[#3D3D3D] leading-relaxed">Emocoes intensas drenam a energia qualitativa (recuperavel apenas com sono REM).</p>
+            <p className="text-xs text-[#3D3D3D] leading-relaxed">Emoções intensas drenam a energia qualitativa (recuperável apenas com sono REM).</p>
           </div>
           <div>
             <p className="font-bold text-sm">3. O Ciclo Vicioso</p>
-            <p className="text-xs text-[#3D3D3D] leading-relaxed">O cerebro cria mecanismos de defesa (ironia, silencio, ataque) para economizar energia, mantendo a pessoa presa no trauma.</p>
+            <p className="text-xs text-[#3D3D3D] leading-relaxed">O cérebro cria mecanismos de defesa (ironia, silêncio, ataque) para economizar energia, mantendo a pessoa presa no trauma.</p>
           </div>
         </div>
       </div>
@@ -592,7 +592,7 @@ function SlideFisiologia() {
 function SlideCorrente() {
   return (
     <SlideWrapper>
-      <h2 className="text-xl sm:text-2xl font-serif font-bold text-center mb-4">O Impacto Coletivo: A Metafora da Corrente</h2>
+      <h2 className="text-xl sm:text-2xl font-serif font-bold text-center mb-4">O Impacto Coletivo: A Metáfora da Corrente</h2>
 
       <div className="flex-1 flex items-center justify-center">
         <svg viewBox="0 0 800 200" className="w-full max-w-3xl">
@@ -638,9 +638,9 @@ function SlideCorrente() {
       </div>
 
       <div className="space-y-3 mt-2">
-        <p className="text-xs"><strong>A Regra:</strong> &ldquo;A forca de uma corrente e definida pela forca do seu elo mais fraco.&rdquo;</p>
-        <p className="text-xs"><strong>O Custo Oculto:</strong> Se um individuo falha por questoes emocionais nao tratadas (o elo fraco), o coletivo paga a conta.</p>
-        <p className="text-xs"><strong>Interdependencia:</strong> Uma organizacao e um centro de relacoes humanas. &ldquo;Quanto mais voce performar, mais eu performo.&rdquo;</p>
+        <p className="text-xs"><strong>A Regra:</strong> &ldquo;A força de uma corrente e definida pela força do seu elo mais fraco.&rdquo;</p>
+        <p className="text-xs"><strong>O Custo Oculto:</strong> Se um indivíduo falha por questões emocionais não tratadas (o elo fraco), o coletivo paga a conta.</p>
+        <p className="text-xs"><strong>Interdependência:</strong> Uma organização é um centro de relações humanas. &ldquo;Quanto mais você performar, mais eu performo.&rdquo;</p>
       </div>
       <SlideNum n="08" />
     </SlideWrapper>
@@ -664,7 +664,7 @@ function SlideCuidadoIntegrado() {
           {/* Dome - Conselho Multidisciplinar */}
           <path d="M120,260 C120,120 480,120 480,260" fill="#8B9E7C" opacity="0.15" stroke="#8B9E7C" strokeWidth="1.5"/>
           <text x="300" y="170" textAnchor="middle" className="text-xs font-bold" fill="#1A1A1E">3. Conselho Multidisciplinar</text>
-          <text x="300" y="185" textAnchor="middle" className="text-[9px]" fill="#8C8580">(A Visao do Todo)</text>
+          <text x="300" y="185" textAnchor="middle" className="text-[9px]" fill="#8C8580">(A Visão do Todo)</text>
 
           {/* Middle - Especialistas label */}
           <text x="300" y="215" textAnchor="middle" className="text-[10px] font-bold" fill="#1A1A1E">2. Especialistas</text>
@@ -679,7 +679,7 @@ function SlideCuidadoIntegrado() {
           <g transform="translate(340, 200)">
             <path d="M40,70 L40,25 L10,25 L40,0 L70,25 L40,25 L40,70 Z" fill="#8B9E7C" opacity="0.5" stroke="#8B9E7C" strokeWidth="1"/>
           </g>
-          <text x="420" y="235" className="text-[9px]" fill="#8C8580">(Coaching/Expansao)</text>
+          <text x="420" y="235" className="text-[9px]" fill="#8C8580">(Coaching/Expansão)</text>
 
           {/* Side labels */}
           <text x="60" y="215" textAnchor="middle" className="text-[9px] font-bold" fill="#1A1A1E">2. Especialistas</text>
@@ -691,7 +691,7 @@ function SlideCuidadoIntegrado() {
       </div>
 
       <p className="text-xs text-center text-[#3D3D3D] mt-2">
-        Um <strong>sistema</strong> desenhado para sustentar a transformacao com seguranca e visao ampla. Nao e apenas suporte, e estrategia de performance. Garante que o individuo nunca esteja <strong>a deriva</strong>.
+        Um <strong>sistema</strong> desenhado para sustentar a transformação com segurança e visão ampla. Não é apenas suporte, é estratégia de performance. Garante que o indivíduo nunca esteja <strong>à deriva</strong>.
       </p>
       <SlideNum n="08" />
     </SlideWrapper>
@@ -740,16 +740,16 @@ function SlideTimeCuidado() {
 
       <div className="grid grid-cols-3 gap-4 mt-4">
         <div>
-          <p className="font-bold text-xs">Funcao:</p>
-          <p className="text-[10px] text-[#3D3D3D]">Acompanhamento continuo (Walk-alongside).</p>
+          <p className="font-bold text-xs">Função:</p>
+          <p className="text-[10px] text-[#3D3D3D]">Acompanhamento contínuo (Walk-alongside).</p>
         </div>
         <div>
           <p className="font-bold text-xs">O Papel:</p>
-          <p className="text-[10px] text-[#3D3D3D]">Integra as frentes, prepara o terreno para os especialistas e mantem o &ldquo;Life Map&rdquo; atualizado.</p>
+          <p className="text-[10px] text-[#3D3D3D]">Integra as frentes, prepara o terreno para os especialistas e mantém o &ldquo;Life Map&rdquo; atualizado.</p>
         </div>
         <div>
           <p className="font-bold text-xs">O Registro:</p>
-          <p className="text-[10px] text-[#3D3D3D]">E quem guarda a historia e garante que o contexto nao se perca.</p>
+          <p className="text-[10px] text-[#3D3D3D]">E quem guarda a história e garante que o contexto não se perca.</p>
         </div>
       </div>
       <SlideNum n="09" />
@@ -762,7 +762,7 @@ function SlideVerticais() {
   return (
     <SlideWrapper>
       <SlideTag text="Editorial New" />
-      <h2 className="text-xl sm:text-2xl font-serif font-bold text-center mb-6">2. As Verticais Simbioticas: &lsquo;As Duas Maos&rsquo;</h2>
+      <h2 className="text-xl sm:text-2xl font-serif font-bold text-center mb-6">2. As Verticais Simbióticas: &lsquo;As Duas Mãos&rsquo;</h2>
 
       <div className="flex-1 flex items-center justify-center gap-12">
         {/* Terapia - Down Arrow */}
@@ -776,7 +776,7 @@ function SlideVerticais() {
           <div className="text-center">
             <p className="font-bold text-base">Terapia</p>
             <p className="text-sm text-[#8C8580]">(Para Dentro)</p>
-            <p className="text-xs text-[#3D3D3D] mt-1">Foco em emocoes,<br/>passado, traumas e cura.</p>
+            <p className="text-xs text-[#3D3D3D] mt-1">Foco em emoções,<br/>passado, traumas e cura.</p>
           </div>
         </div>
 
@@ -791,14 +791,14 @@ function SlideVerticais() {
           <div className="text-center">
             <p className="font-bold text-base">Coaching</p>
             <p className="text-sm text-[#8C8580]">(Para Fora)</p>
-            <p className="text-xs text-[#3D3D3D] mt-1">Foco em visao, futuro,<br/>acao e novas habilidades.</p>
+            <p className="text-xs text-[#3D3D3D] mt-1">Foco em visão, futuro,<br/>ação e novas habilidades.</p>
           </div>
         </div>
       </div>
 
       <div className="mt-auto border-t border-[#8C8580]/20 pt-3">
         <p className="text-xs text-center text-[#3D3D3D]">
-          <strong>A Simbiose:</strong> &ldquo;Nao se cozinha com uma mao e limpa com a outra. Usa-se as duas para tudo.&rdquo; O bloqueio que impede a visao de futuro geralmente esta enraizado no passado.
+          <strong>A Simbiose:</strong> &ldquo;Não se cozinha com uma mão e limpa com a outra. Usa-se as duas para tudo.&rdquo; O bloqueio que impede a visão de futuro geralmente está enraizado no passado.
         </p>
       </div>
       <SlideNum n="10" />
@@ -811,7 +811,7 @@ function SlideConselho() {
   return (
     <SlideWrapper>
       <SlideTag text="Editorial New" />
-      <h2 className="text-xl sm:text-2xl font-serif font-bold text-center mb-4">3. O Conselho Multidisciplinar: A Visao do Todo</h2>
+      <h2 className="text-xl sm:text-2xl font-serif font-bold text-center mb-4">3. O Conselho Multidisciplinar: A Visão do Todo</h2>
 
       <div className="flex-1 flex items-center justify-center">
         <svg viewBox="0 0 500 300" className="w-full max-w-lg">
@@ -829,7 +829,7 @@ function SlideConselho() {
           <text x="160" y="114" textAnchor="middle" className="text-[8px] font-bold" fill="#F5F0EB">Financeiro</text>
 
           <circle cx="340" cy="90" r="16" fill="#8B9E7C" opacity="0.7"/>
-          <text x="340" y="94" textAnchor="middle" className="text-[8px] font-bold" fill="#F5F0EB">Lideranca</text>
+          <text x="340" y="94" textAnchor="middle" className="text-[8px] font-bold" fill="#F5F0EB">Liderança</text>
 
           <circle cx="330" cy="210" r="20" fill="#6D6D6D" opacity="0.7"/>
           <text x="330" y="214" textAnchor="middle" className="text-[8px] font-bold" fill="#F5F0EB">Emocional</text>
@@ -844,15 +844,15 @@ function SlideConselho() {
 
       <div className="grid grid-cols-3 gap-4 mt-2">
         <div>
-          <p className="font-bold text-xs">O Principio:</p>
+          <p className="font-bold text-xs">O Princípio:</p>
           <p className="text-[10px] text-[#3D3D3D]">&ldquo;Nunca deixar que uma parte cuide do todo; o todo cuida da parte.&rdquo;</p>
         </div>
         <div>
-          <p className="font-bold text-xs">A Funcao:</p>
-          <p className="text-[10px] text-[#3D3D3D]">Um grupo que se responsabiliza pelo ser humano integral, nao apenas por uma disciplina isolada.</p>
+          <p className="font-bold text-xs">A Função:</p>
+          <p className="text-[10px] text-[#3D3D3D]">Um grupo que se responsabiliza pelo ser humano integral, não apenas por uma disciplina isolada.</p>
         </div>
         <div>
-          <p className="font-bold text-xs">Estrategia:</p>
+          <p className="font-bold text-xs">Estratégia:</p>
           <p className="text-[10px] text-[#3D3D3D]">Define rotas alternativas quando o progresso trava. Evita reducionismo e garante a integridade do processo evolutivo.</p>
         </div>
       </div>
@@ -865,7 +865,7 @@ function SlideConselho() {
 function SlideEcossistema() {
   return (
     <SlideWrapper>
-      <h2 className="text-xl sm:text-2xl font-serif font-bold mb-2">O Ecossistema Life Map: Integracao Total</h2>
+      <h2 className="text-xl sm:text-2xl font-serif font-bold mb-2">O Ecossistema Life Map: Integração Total</h2>
 
       {/* Legend */}
       <div className="flex gap-4 mb-2 text-[9px]">
@@ -963,7 +963,7 @@ function SlideIA() {
             </svg>
           </div>
           <p className="font-bold text-sm text-center">O Fator IA:</p>
-          <p className="text-xs text-[#3D3D3D] text-center max-w-xs">A Inteligencia Artificial superara humanos em tarefas mecanicas e &ldquo;coisas de robo&rdquo;.</p>
+          <p className="text-xs text-[#3D3D3D] text-center max-w-xs">A Inteligência Artificial superará humanos em tarefas mecânicas e &ldquo;coisas de robô&rdquo;.</p>
         </div>
 
         {/* Human side */}
@@ -988,13 +988,13 @@ function SlideIA() {
             </svg>
           </div>
           <p className="font-bold text-sm text-center">O Diferencial Humano:</p>
-          <p className="text-xs text-[#3D3D3D] text-center max-w-xs">O que sobra e o que e estritamente humano — relacoes, empatia, maturidade emocional e presenca.</p>
+          <p className="text-xs text-[#3D3D3D] text-center max-w-xs">O que sobra é o que é estritamente humano — relações, empatia, maturidade emocional e presença.</p>
         </div>
       </div>
 
       <div className="mt-auto border-t border-[#8C8580]/20 pt-3">
         <p className="text-xs text-center italic text-[#B8755C]" style={{ fontFamily: "'Playfair Display', serif" }}>
-          <strong>A Tese:</strong> Cuidado nao e um beneficio de RH. E uma estrategia central de ROI. &ldquo;Cuidador artificial&rdquo; nao funciona; a tecnologia deve apoiar o humano, nao substitui-lo.
+          <strong>A Tese:</strong> Cuidado não é um benefício de RH. É uma estratégia central de ROI. &ldquo;Cuidador artificial&rdquo; não funciona; a tecnologia deve apoiar o humano, não substitui-lo.
         </p>
       </div>
       <SlideNum n="13" />
@@ -1006,12 +1006,12 @@ function SlideIA() {
 function SlidePerformance() {
   return (
     <SlideWrapper>
-      <h2 className="text-xl sm:text-2xl font-serif font-bold text-center mb-6">A Equacao da Performance</h2>
+      <h2 className="text-xl sm:text-2xl font-serif font-bold text-center mb-6">A Equação da Performance</h2>
 
       <div className="flex-1 flex flex-col items-center justify-center space-y-6">
         {/* Big equation */}
         <div className="flex items-center gap-4 text-xl sm:text-2xl font-serif">
-          <span className="border-b-2 border-[#1A1A1E]/30 pb-1">Tempo Disponivel</span>
+          <span className="border-b-2 border-[#1A1A1E]/30 pb-1">Tempo Disponível</span>
           <span className="font-bold">X</span>
           <span className="border-b-2 border-[#1A1A1E]/30 pb-1">Qualidade de Energia</span>
           <span className="font-bold">=</span>
@@ -1031,7 +1031,7 @@ function SlidePerformance() {
         <div className="w-full max-w-xl space-y-1">
           <div className="flex justify-between items-center">
             <span className="text-sm font-bold">Baixa Energia<br/><span className="text-[10px] font-normal text-[#8C8580]">(Stress/Defensiva)</span></span>
-            <span className="text-sm font-bold text-[#8C8580]">Latao (Desperdicio)</span>
+            <span className="text-sm font-bold text-[#8C8580]">Latão (Desperdício)</span>
           </div>
           <div className="h-8 w-3/4 rounded-sm overflow-hidden" style={{ background: 'linear-gradient(90deg, #8B7355, #A0926B, #8B7355)' }} />
         </div>
@@ -1040,15 +1040,15 @@ function SlidePerformance() {
         <div className="grid grid-cols-3 gap-4 w-full max-w-xl mt-4">
           <div className="border border-[#8C8580]/20 p-3 rounded-sm">
             <p className="font-bold text-xs">O Mito da Disponibilidade:</p>
-            <p className="text-[10px] text-[#3D3D3D]">Nao adianta ter tempo e nao ter energia.</p>
+            <p className="text-[10px] text-[#3D3D3D]">Não adianta ter tempo e não ter energia.</p>
           </div>
           <div className="border border-[#8C8580]/20 p-3 rounded-sm">
-            <p className="font-bold text-xs">A Transformacao:</p>
-            <p className="text-[10px] text-[#3D3D3D]">Se voce dedica tempo mas esta &ldquo;na amigdala&rdquo;, a qualidade da entrega cai. O ouro vira latao.</p>
+            <p className="font-bold text-xs">A Transformação:</p>
+            <p className="text-[10px] text-[#3D3D3D]">Se você dedica tempo mas está &ldquo;na amígdala&rdquo;, a qualidade da entrega cai. O ouro vira latão.</p>
           </div>
           <div className="border border-[#8C8580]/20 p-3 rounded-sm">
             <p className="font-bold text-xs">O Colapso:</p>
-            <p className="text-[10px] text-[#3D3D3D]">Burnout e o colapso da relacao Tempo-Energia-Vida.</p>
+            <p className="text-[10px] text-[#3D3D3D]">Burnout é o colapso da relação Tempo-Energia-Vida.</p>
           </div>
         </div>
       </div>
@@ -1060,7 +1060,7 @@ function SlidePerformance() {
 function SlideManagerTatico() {
   return (
     <SlideWrapper>
-      <h2 className="text-xl sm:text-2xl font-serif font-bold text-center mb-2">O MANAGER: A Gestao Tatica da Realidade</h2>
+      <h2 className="text-xl sm:text-2xl font-serif font-bold text-center mb-2">O MANAGER: A Gestão Tática da Realidade</h2>
       <p className="text-center text-sm text-[#8C8580] mb-6">O Menu do Jogo: O controle do que acontece &lsquo;Agora&rsquo;.</p>
 
       <div className="flex-1 flex items-center justify-center">
@@ -1070,7 +1070,7 @@ function SlideManagerTatico() {
             {/* Energy bars */}
             <div className="space-y-1">
               <div className="flex justify-between text-xs font-bold">
-                <span>Energia Fisica</span>
+                <span>Energia Física</span>
                 <span>70%</span>
               </div>
               <div className="h-7 w-full rounded-sm bg-[#8C8580]/10 border border-[#8C8580]/20 overflow-hidden">
@@ -1112,11 +1112,11 @@ function SlideManagerTatico() {
       <div className="grid grid-cols-2 gap-4 mt-4">
         <div>
           <p className="font-bold text-xs">Os Ativos:</p>
-          <p className="text-[10px] text-[#3D3D3D]">- Energia: Fisica (Nutricao) e Sutil (Sono/Emocao).<br/>- Rotina: Distribuicao das 24h.<br/>- Necessidades: Lazer, conexao e proposito.</p>
+          <p className="text-[10px] text-[#3D3D3D]">- Energia: Física (Nutrição) e Sutil (Sono/Emoção).<br/>- Rotina: Distribuição das 24h.<br/>- Necessidades: Lazer, conexão e propósito.</p>
         </div>
         <div>
-          <p className="font-bold text-xs">Funcao:</p>
-          <p className="text-[10px] text-[#3D3D3D] font-semibold">Garantir combustivel suficiente para a travessia de A para B.</p>
+          <p className="font-bold text-xs">Função:</p>
+          <p className="text-[10px] text-[#3D3D3D] font-semibold">Garantir combustível suficiente para a travessia de A para B.</p>
         </div>
       </div>
     </SlideWrapper>
@@ -1152,22 +1152,22 @@ function SlideManifesto() {
         </div>
 
         <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#F5F0EB]" style={{ fontFamily: "'Playfair Display', serif" }}>
-          Evolucao e Mandatoria.
+          Evolução e Mandatória.
         </h2>
 
         <p className="text-sm text-[#F5F0EB]/70 max-w-md">
-          O que te limita e o que te mantem vivo.<br/>
-          Para ir alem, precisamos da coragem de olhar para o mapa desconhecido.
+          O que te limita é o que te mantém vivo.<br/>
+          Para ir além, precisamos da coragem de olhar para o mapa desconhecido.
         </p>
 
         <div className="border border-[#B8755C]/30 rounded-sm px-6 py-4 max-w-lg">
-          <p className="text-xs text-[#F5F0EB]/60">Onde Estamos: <span className="text-[#F5F0EB]">Em meio a disrupcao.</span></p>
-          <p className="text-xs text-[#F5F0EB]/60 mt-1">O Que Precisamos: <span className="text-[#F5F0EB]">Desbloqueio de potencial atraves da consciencia (Map) e gestao (Manager).</span></p>
-          <p className="text-xs text-[#F5F0EB]/60 mt-1">O Proximo Degrau: <span className="text-[#F5F0EB]">A evolucao do &ldquo;eu&rdquo; e a evolucao do &ldquo;entorno&rdquo;.</span></p>
+          <p className="text-xs text-[#F5F0EB]/60">Onde Estamos: <span className="text-[#F5F0EB]">Em meio a disrupção.</span></p>
+          <p className="text-xs text-[#F5F0EB]/60 mt-1">O Que Precisamos: <span className="text-[#F5F0EB]">Desbloqueio de potencial através da consciência (Map) e gestão (Manager).</span></p>
+          <p className="text-xs text-[#F5F0EB]/60 mt-1">O Próximo Degrau: <span className="text-[#F5F0EB]">A evolução do &ldquo;eu&rdquo; e a evolução do &ldquo;entorno&rdquo;.</span></p>
         </div>
 
         <p className="text-lg italic text-[#B8755C]" style={{ fontFamily: "'Playfair Display', serif" }}>
-          &ldquo;O proximo nivel de performance exige o proximo nivel de humanidade.&rdquo;
+          &ldquo;O próximo nível de performance exige o próximo nível de humanidade.&rdquo;
         </p>
 
         <p className="text-sm font-bold tracking-widest text-[#F5F0EB]/50">Life Map Model</p>
@@ -1181,7 +1181,7 @@ function SlideCasoEstudo() {
   return (
     <SlideWrapper>
       <SlideTag text="Architectural Humanism" />
-      <h2 className="text-lg sm:text-xl font-serif font-bold text-center mb-4">Estudo de Caso: O Ruido da Inseguranca vs. A Realidade</h2>
+      <h2 className="text-lg sm:text-xl font-serif font-bold text-center mb-4">Estudo de Caso: O Ruído da Insegurança vs. A Realidade</h2>
 
       <div className="flex-1 flex items-center justify-center">
         <svg viewBox="0 0 600 250" className="w-full max-w-xl">
@@ -1198,8 +1198,8 @@ function SlideCasoEstudo() {
           <path d="M80,190 C150,185 200,180 250,175 C300,168 350,160 400,150 C450,140 500,130 550,115" fill="none" stroke="#2980B9" strokeWidth="2.5" opacity="0.7"/>
 
           {/* Labels */}
-          <text x="55" y="70" textAnchor="end" className="text-[8px] font-bold" fill="#C0392B">Percepcao Subjetiva</text>
-          <text x="55" y="80" textAnchor="end" className="text-[7px]" fill="#C0392B">(Medo/Inseguranca)</text>
+          <text x="55" y="70" textAnchor="end" className="text-[8px] font-bold" fill="#C0392B">Percepção Subjetiva</text>
+          <text x="55" y="80" textAnchor="end" className="text-[7px]" fill="#C0392B">(Medo/Insegurança)</text>
           <text x="55" y="175" textAnchor="end" className="text-[8px] font-bold" fill="#2980B9">Realidade Objetiva</text>
           <text x="55" y="185" textAnchor="end" className="text-[7px]" fill="#2980B9">(Dados de Venda/</text>
           <text x="55" y="195" textAnchor="end" className="text-[7px]" fill="#2980B9">Performance)</text>
@@ -1208,20 +1208,20 @@ function SlideCasoEstudo() {
 
       <div className="grid grid-cols-4 gap-3 mt-2">
         <div>
-          <p className="font-bold text-[10px]">O Cenario:</p>
-          <p className="text-[9px] text-[#3D3D3D]">Colaboradora sente iminencia de demissao.</p>
+          <p className="font-bold text-[10px]">O Cenário:</p>
+          <p className="text-[9px] text-[#3D3D3D]">Colaboradora sente iminência de demissão.</p>
         </div>
         <div>
           <p className="font-bold text-[10px]">A Realidade:</p>
-          <p className="text-[9px] text-[#3D3D3D]">Metas batidas, empresa saudavel.</p>
+          <p className="text-[9px] text-[#3D3D3D]">Metas batidas, empresa saudável.</p>
         </div>
         <div>
-          <p className="font-bold text-[10px]">O Diagnostico:</p>
-          <p className="text-[9px] text-[#3D3D3D]">Gatilho emocional (historico de abandono) projetado na lideranca.</p>
+          <p className="font-bold text-[10px]">O Diagnóstico:</p>
+          <p className="text-[9px] text-[#3D3D3D]">Gatilho emocional (histórico de abandono) projetado na liderança.</p>
         </div>
         <div>
           <p className="font-bold text-[10px]">Resultado:</p>
-          <p className="text-[9px] text-[#3D3D3D]">Identificacao do ruido economiza semanas de baixa produtividade.</p>
+          <p className="text-[9px] text-[#3D3D3D]">Identificação do ruído economiza semanas de baixa produtividade.</p>
         </div>
       </div>
     </SlideWrapper>
@@ -1234,21 +1234,21 @@ function SlideCasoEstudo() {
 
 const allSlides = [
   { id: 'cover', title: 'Capa: O Modelo Life Map', component: SlideCover },
-  { id: 'disrupcao', title: 'Slide 01: A Disrupcao Transformacional', component: SlideDisrupcao },
-  { id: 'sabotador', title: 'Slide 02: O Sabotador Invisivel', component: SlideSabotador },
+  { id: 'disrupcao', title: 'Slide 01: A Disrupção Transformacional', component: SlideDisrupcao },
+  { id: 'sabotador', title: 'Slide 02: O Sabotador Invisível', component: SlideSabotador },
   { id: 'filosofia', title: 'Slide 03: A Filosofia Life Map', component: SlideFilosofia },
   { id: 'map-fog', title: 'Slide 04: O Componente Map', component: SlideMapFog },
   { id: 'manager', title: 'Slide 05: O Componente Manager', component: SlideManager },
-  { id: 'equacao', title: 'Slide 06: Equacao Tempo x Energia', component: SlideEquacao },
-  { id: 'fisiologia', title: 'Slide 07: Fisiologia do Desperdicio', component: SlideFisiologia },
-  { id: 'corrente', title: 'Slide 08: A Metafora da Corrente', component: SlideCorrente },
+  { id: 'equacao', title: 'Slide 06: Equação Tempo x Energia', component: SlideEquacao },
+  { id: 'fisiologia', title: 'Slide 07: Fisiologia do Desperdício', component: SlideFisiologia },
+  { id: 'corrente', title: 'Slide 08: A Metáfora da Corrente', component: SlideCorrente },
   { id: 'cuidado', title: 'Slide 08: Estrutura de Cuidado Integrado', component: SlideCuidadoIntegrado },
   { id: 'time', title: 'Slide 09: Time de Cuidado', component: SlideTimeCuidado },
-  { id: 'verticais', title: 'Slide 10: As Verticais Simbioticas', component: SlideVerticais },
+  { id: 'verticais', title: 'Slide 10: As Verticais Simbióticas', component: SlideVerticais },
   { id: 'conselho', title: 'Slide 11: Conselho Multidisciplinar', component: SlideConselho },
   { id: 'ecossistema', title: 'Slide 07: Ecossistema Life Map', component: SlideEcossistema },
-  { id: 'performance', title: 'A Equacao da Performance', component: SlidePerformance },
-  { id: 'manager-tatico', title: 'O Manager Tatico', component: SlideManagerTatico },
+  { id: 'performance', title: 'A Equação da Performance', component: SlidePerformance },
+  { id: 'manager-tatico', title: 'O Manager Tático', component: SlideManagerTatico },
   { id: 'caso', title: 'Estudo de Caso', component: SlideCasoEstudo },
   { id: 'ia', title: 'Slide 13: IA vs. Humanidade', component: SlideIA },
   { id: 'manifesto', title: 'Manifesto Final', component: SlideManifesto },
@@ -1266,13 +1266,13 @@ export default function AdminConteudoPage() {
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Conteudo Life Map</h2>
-          <p className="text-[#8C8580]">{allSlides.length} slides — Apresentacao completa do modelo</p>
+          <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Conteúdo Life Map</h2>
+          <p className="text-[#8C8580]">{allSlides.length} slides — Apresentação completa do modelo</p>
         </div>
         <div className="flex gap-2">
           <Button variant={viewMode === 'single' ? 'default' : 'outline'} size="sm" onClick={() => setViewMode('single')}>
             {isFullscreen ? <Minimize2 className="mr-2 h-4 w-4" /> : <Maximize2 className="mr-2 h-4 w-4" />}
-            Apresentacao
+            Apresentação
           </Button>
           <Button variant={viewMode === 'grid' ? 'default' : 'outline'} size="sm" onClick={() => setViewMode('grid')}>
             <Grid3X3 className="mr-2 h-4 w-4" />
@@ -1300,7 +1300,7 @@ export default function AdminConteudoPage() {
               <span className="text-xs text-[#8C8580] hidden sm:inline">— {allSlides[currentSlide].title}</span>
             </div>
             <Button variant="outline" size="sm" disabled={currentSlide === allSlides.length - 1} onClick={() => setCurrentSlide(s => s + 1)}>
-              Proximo <ChevronRight className="ml-1 h-4 w-4" />
+              Próximo <ChevronRight className="ml-1 h-4 w-4" />
             </Button>
           </div>
 

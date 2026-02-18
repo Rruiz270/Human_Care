@@ -46,7 +46,7 @@ import {
 const videos = [
   {
     id: '1',
-    title: 'Introducao ao Mapa da Vida',
+    title: 'Introdução ao Mapa da Vida',
     description: 'Entenda como funciona a metodologia do Mapa da Vida e como ela pode transformar sua jornada de autoconhecimento.',
     duration: '15:30',
     category: 'fundamentos',
@@ -58,7 +58,7 @@ const videos = [
   {
     id: '2',
     title: 'Trabalhando com Traumas do Passado',
-    description: 'Tecnicas terapeuticas para identificar e processar experiencias traumaticas de forma segura.',
+    description: 'Técnicas terapêuticas para identificar e processar experiências traumáticas de forma segura.',
     duration: '28:45',
     category: 'terapia',
     thumbnail: '/api/placeholder/320/180',
@@ -69,7 +69,7 @@ const videos = [
   {
     id: '3',
     title: 'Definindo Metas com OKRs',
-    description: 'Aprenda a usar a metodologia OKR para definir e alcancar seus objetivos pessoais e profissionais.',
+    description: 'Aprenda a usar a metodologia OKR para definir e alcançar seus objetivos pessoais e profissionais.',
     duration: '22:10',
     category: 'coaching',
     thumbnail: '/api/placeholder/320/180',
@@ -80,7 +80,7 @@ const videos = [
   {
     id: '4',
     title: 'Mindfulness para o Dia a Dia',
-    description: 'Praticas simples de mindfulness que voce pode incorporar na sua rotina diaria.',
+    description: 'Práticas simples de mindfulness que você pode incorporar na sua rotina diária.',
     duration: '18:20',
     category: 'autocuidado',
     thumbnail: '/api/placeholder/320/180',
@@ -90,8 +90,8 @@ const videos = [
   },
   {
     id: '5',
-    title: 'Comunicacao Nao-Violenta',
-    description: 'Como melhorar seus relacionamentos atraves da comunicacao empatica e assertiva.',
+    title: 'Comunicação Não-Violenta',
+    description: 'Como melhorar seus relacionamentos através da comunicação empática e assertiva.',
     duration: '35:00',
     category: 'relacionamentos',
     thumbnail: '/api/placeholder/320/180',
@@ -101,8 +101,8 @@ const videos = [
   },
   {
     id: '6',
-    title: 'Gestao do Estresse',
-    description: 'Estrategias praticas para identificar gatilhos de estresse e desenvolver resiliencia.',
+    title: 'Gestão do Estresse',
+    description: 'Estratégias práticas para identificar gatilhos de estresse e desenvolver resiliência.',
     duration: '24:15',
     category: 'autocuidado',
     thumbnail: '/api/placeholder/320/180',
@@ -112,8 +112,8 @@ const videos = [
   },
   {
     id: '7',
-    title: 'Construindo Habitos Saudaveis',
-    description: 'A ciencia por tras da formacao de habitos e como criar rotinas que funcionam.',
+    title: 'Construindo Hábitos Saudáveis',
+    description: 'A ciência por trás da formação de hábitos e como criar rotinas que funcionam.',
     duration: '20:00',
     category: 'coaching',
     thumbnail: '/api/placeholder/320/180',
@@ -123,8 +123,8 @@ const videos = [
   },
   {
     id: '8',
-    title: 'Autocompaixao e Aceitacao',
-    description: 'Aprenda a ser mais gentil consigo mesmo e a aceitar suas imperfeicoes.',
+    title: 'Autocompaixão e Aceitação',
+    description: 'Aprenda a ser mais gentil consigo mesmo e a aceitar suas imperfeições.',
     duration: '19:45',
     category: 'terapia',
     thumbnail: '/api/placeholder/320/180',
@@ -212,26 +212,26 @@ export default function ConteudoPage() {
       {/* Header */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl font-serif font-bold text-[#1A1A1E]">Conteudo e Sessoes</h1>
-          <p className="text-[#8C8580]">Videos educativos e agendamento de sessoes ao vivo</p>
+          <h1 className="text-3xl font-serif font-bold text-[#1A1A1E]">Conteúdo e Sessões</h1>
+          <p className="text-[#8C8580]">Vídeos educativos e agendamento de sessões ao vivo</p>
         </div>
         <Dialog open={isScheduleDialogOpen} onOpenChange={setIsScheduleDialogOpen}>
           <DialogTrigger asChild>
             <Button>
               <CalendarPlus className="mr-2 h-4 w-4" />
-              Agendar Sessao ao Vivo
+              Agendar Sessão ao Vivo
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-lg">
             <DialogHeader>
-              <DialogTitle>Agendar Sessao ao Vivo</DialogTitle>
+              <DialogTitle>Agendar Sessão ao Vivo</DialogTitle>
               <DialogDescription>
-                Escolha um horario disponivel para sua proxima sessao
+                Escolha um horário disponível para sua próxima sessão
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4 py-4">
               <div className="space-y-2">
-                <Label>Horarios Disponiveis</Label>
+                <Label>Horários Disponíveis</Label>
                 <div className="grid gap-2 max-h-60 overflow-y-auto">
                   {availableSlots.map((slot, index) => (
                     <div
@@ -258,10 +258,10 @@ export default function ConteudoPage() {
               </div>
               {selectedSlot && (
                 <div className="space-y-2">
-                  <Label htmlFor="notes">Observacoes para a sessao (opcional)</Label>
+                  <Label htmlFor="notes">Observações para a sessão (opcional)</Label>
                   <Textarea
                     id="notes"
-                    placeholder="Descreva o que gostaria de trabalhar nesta sessao..."
+                    placeholder="Descreva o que gostaria de trabalhar nesta sessão..."
                     value={scheduleNotes}
                     onChange={(e) => setScheduleNotes(e.target.value)}
                     rows={3}
@@ -294,7 +294,7 @@ export default function ConteudoPage() {
               </div>
               <div>
                 <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{videos.length}</p>
-                <p className="text-sm text-[#8C8580]">Videos Disponiveis</p>
+                <p className="text-sm text-[#8C8580]">Vídeos Disponíveis</p>
               </div>
             </div>
           </CardContent>
@@ -333,7 +333,7 @@ export default function ConteudoPage() {
               </div>
               <div>
                 <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{scheduledSessions.length}</p>
-                <p className="text-sm text-[#8C8580]">Sessoes Agendadas</p>
+                <p className="text-sm text-[#8C8580]">Sessões Agendadas</p>
               </div>
             </div>
           </CardContent>
@@ -342,8 +342,8 @@ export default function ConteudoPage() {
 
       <Tabs defaultValue="videos" className="space-y-4">
         <TabsList>
-          <TabsTrigger value="videos">Videos</TabsTrigger>
-          <TabsTrigger value="agendadas">Sessoes Agendadas ({scheduledSessions.length})</TabsTrigger>
+          <TabsTrigger value="videos">Vídeos</TabsTrigger>
+          <TabsTrigger value="agendadas">Sessões Agendadas ({scheduledSessions.length})</TabsTrigger>
         </TabsList>
 
         <TabsContent value="videos" className="space-y-4">
@@ -352,7 +352,7 @@ export default function ConteudoPage() {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#8C8580]" />
               <Input
-                placeholder="Buscar videos..."
+                placeholder="Buscar vídeos..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10"
@@ -442,7 +442,7 @@ export default function ConteudoPage() {
 
           {filteredVideos.length === 0 && (
             <Card className="p-8 text-center">
-              <p className="text-[#8C8580]">Nenhum video encontrado para os filtros selecionados.</p>
+              <p className="text-[#8C8580]">Nenhum vídeo encontrado para os filtros selecionados.</p>
             </Card>
           )}
         </TabsContent>
@@ -463,14 +463,14 @@ export default function ConteudoPage() {
                     </div>
                     <CardTitle className="text-lg">{session.professional}</CardTitle>
                     <CardDescription>
-                      {formatDate(session.date)} as {session.time}
+                      {formatDate(session.date)} às {session.time}
                     </CardDescription>
                   </CardHeader>
                   {session.notes && (
                     <CardContent>
                       <div className="bg-[#F5F0EB] p-3 rounded-md">
                         <p className="text-sm text-[#8C8580]">
-                          <span className="font-medium text-[#1A1A1E]">Suas observacoes:</span><br />
+                          <span className="font-medium text-[#1A1A1E]">Suas observações:</span><br />
                           {session.notes}
                         </p>
                       </div>
@@ -482,15 +482,15 @@ export default function ConteudoPage() {
           ) : (
             <Card className="p-8 text-center">
               <Calendar className="h-12 w-12 text-[#8C8580] mx-auto mb-4" />
-              <h3 className="font-semibold text-[#1A1A1E] mb-2">Nenhuma sessao agendada</h3>
+              <h3 className="font-semibold text-[#1A1A1E] mb-2">Nenhuma sessão agendada</h3>
               <p className="text-[#8C8580] mb-4">
-                Agende uma sessao ao vivo com nossos profissionais para dar continuidade ao seu desenvolvimento.
+                Agende uma sessão ao vivo com nossos profissionais para dar continuidade ao seu desenvolvimento.
               </p>
               <Button
                 onClick={() => setIsScheduleDialogOpen(true)}
               >
                 <CalendarPlus className="mr-2 h-4 w-4" />
-                Agendar Primeira Sessao
+                Agendar Primeira Sessão
               </Button>
             </Card>
           )}
@@ -519,7 +519,7 @@ export default function ConteudoPage() {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-[#1A1A1E] mb-2">Sobre este video</h4>
+                  <h4 className="font-semibold text-[#1A1A1E] mb-2">Sobre este vídeo</h4>
                   <p className="text-[#8C8580]">{selectedVideo.description}</p>
                 </div>
                 <div className="flex items-center gap-2">
@@ -528,7 +528,7 @@ export default function ConteudoPage() {
                   </Badge>
                   {selectedVideo.progress > 0 && (
                     <Badge variant="outline" className="text-[#B8755C] border-[#B8755C]">
-                      {selectedVideo.progress}% concluido
+                      {selectedVideo.progress}% concluído
                     </Badge>
                   )}
                 </div>

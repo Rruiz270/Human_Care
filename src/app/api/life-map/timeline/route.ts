@@ -54,7 +54,7 @@ export async function PUT(request: NextRequest) {
 
     if (!id) {
       return NextResponse.json(
-        { success: false, error: 'ID do evento e obrigatorio' },
+        { success: false, error: 'ID do evento é obrigatório' },
         { status: 400 }
       )
     }
@@ -84,7 +84,7 @@ export async function DELETE(request: NextRequest) {
 
     if (!id) {
       return NextResponse.json(
-        { success: false, error: 'ID do evento e obrigatorio' },
+        { success: false, error: 'ID do evento é obrigatório' },
         { status: 400 }
       )
     }
@@ -93,7 +93,7 @@ export async function DELETE(request: NextRequest) {
       where: { id },
     })
 
-    return NextResponse.json({ success: true, message: 'Evento excluido' })
+    return NextResponse.json({ success: true, message: 'Evento excluído' })
   } catch (error) {
     console.error('Error deleting timeline event:', error)
     return NextResponse.json(

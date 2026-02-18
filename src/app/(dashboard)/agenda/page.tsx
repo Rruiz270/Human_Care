@@ -81,9 +81,9 @@ const availableSlots = [
   { date: '2026-02-13', time: '10:00', professional: 'Carlos Mendes', type: 'COACHING' },
 ]
 
-const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
+const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']
 const monthNames = [
-  'Janeiro', 'Fevereiro', 'Marco', 'Abril', 'Maio', 'Junho',
+  'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
   'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
 ]
 
@@ -217,7 +217,7 @@ export default function AgendaPage() {
       {showSuccess && (
         <div className="fixed top-4 right-4 z-50 bg-[#8B9E7C] text-white px-4 py-3 rounded-md shadow-lg flex items-center gap-2 animate-fade-in">
           <CheckCircle className="h-5 w-5" />
-          <span className="font-medium">Sessao agendada com sucesso!</span>
+          <span className="font-medium">Sessão agendada com sucesso!</span>
         </div>
       )}
 
@@ -226,26 +226,26 @@ export default function AgendaPage() {
         <div>
           <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Agenda</h2>
           <p className="text-[#8C8580]">
-            Visualize e gerencie suas sessoes
+            Visualize e gerencie suas sessões
           </p>
         </div>
         <Dialog open={isScheduleDialogOpen} onOpenChange={setIsScheduleDialogOpen}>
           <DialogTrigger asChild>
             <Button>
               <Plus className="mr-2 h-4 w-4" />
-              Agendar Sessao
+              Agendar Sessão
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-lg">
             <DialogHeader>
-              <DialogTitle>Agendar Nova Sessao</DialogTitle>
+              <DialogTitle>Agendar Nova Sessão</DialogTitle>
               <DialogDescription>
-                Escolha um horario disponivel para sua proxima sessao
+                Escolha um horário disponível para sua próxima sessão
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4 py-4">
               <div className="space-y-2">
-                <Label>Horarios Disponiveis</Label>
+                <Label>Horários Disponíveis</Label>
                 <div className="grid gap-2 max-h-60 overflow-y-auto">
                   {availableSlots.map((slot, index) => (
                     <div
@@ -272,10 +272,10 @@ export default function AgendaPage() {
               </div>
               {selectedSlot && (
                 <div className="space-y-2">
-                  <Label htmlFor="notes">Observacoes para a sessao (opcional)</Label>
+                  <Label htmlFor="notes">Observações para a sessão (opcional)</Label>
                   <Textarea
                     id="notes"
-                    placeholder="Descreva o que gostaria de trabalhar nesta sessao..."
+                    placeholder="Descreva o que gostaria de trabalhar nesta sessão..."
                     value={scheduleNotes}
                     onChange={(e) => setScheduleNotes(e.target.value)}
                     rows={3}
@@ -442,7 +442,7 @@ export default function AgendaPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <Calendar className="h-5 w-5 text-[#B8755C]" />
-              Proximos Eventos
+              Próximos Eventos
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">

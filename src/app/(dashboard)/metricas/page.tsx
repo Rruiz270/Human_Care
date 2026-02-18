@@ -48,10 +48,10 @@ const careRatio = {
 }
 
 const insights = [
-  { type: 'positive', title: 'Melhora no humor', description: 'Seu humor medio melhorou 12% nas ultimas 2 semanas', icon: TrendingUp },
-  { type: 'attention', title: 'Pico de estresse', description: 'Seu nivel de estresse aumenta nas quartas-feiras', icon: Brain },
-  { type: 'positive', title: 'Consistencia nos habitos', description: 'Voce manteve sua sequencia de respiracao consciente por 5 dias', icon: Target },
-  { type: 'neutral', title: 'Padrao de sono', description: 'Media de 6.5h de sono - considere aumentar para 7-8h', icon: Heart },
+  { type: 'positive', title: 'Melhora no humor', description: 'Seu humor médio melhorou 12% nas últimas 2 semanas', icon: TrendingUp },
+  { type: 'attention', title: 'Pico de estresse', description: 'Seu nível de estresse aumenta nas quartas-feiras', icon: Brain },
+  { type: 'positive', title: 'Consistência nos hábitos', description: 'Você manteve sua sequência de respiração consciente por 5 dias', icon: Target },
+  { type: 'neutral', title: 'Padrão de sono', description: 'Média de 6.5h de sono - considere aumentar para 7-8h', icon: Heart },
 ]
 
 export default function MetricasPage() {
@@ -64,7 +64,7 @@ export default function MetricasPage() {
           Status do Avatar
         </h2>
         <p className="text-sm text-[#8C8580] mt-1">
-          A Equacao da Performance
+          A Equação da Performance
         </p>
 
         {/* Performance Equation Display */}
@@ -73,7 +73,7 @@ export default function MetricasPage() {
             <div>
               <Clock className="mx-auto mb-1 h-6 w-6 text-[#B8755C]" />
               <p className="text-2xl font-mono font-bold text-[#1A1A1E]">68%</p>
-              <p className="text-[10px] font-mono uppercase tracking-wider text-[#8C8580]">Tempo Disponivel</p>
+              <p className="text-[10px] font-mono uppercase tracking-wider text-[#8C8580]">Tempo Disponível</p>
             </div>
             <div>
               <p className="text-3xl font-mono font-bold text-[#B8755C]">x</p>
@@ -97,7 +97,7 @@ export default function MetricasPage() {
               </div>
             </div>
             <div className="rounded-md border border-[#B8755C]/30 bg-gradient-to-r from-[#8B5A3E]/10 to-[#B8755C]/10 p-2 text-center">
-              <p className="text-[10px] font-mono uppercase tracking-wider text-[#B8755C]">Baixa Energia = Latao</p>
+              <p className="text-[10px] font-mono uppercase tracking-wider text-[#B8755C]">Baixa Energia = Latão</p>
               <div className="mt-1 rpg-status-bar h-3">
                 <div className="rpg-status-bar-fill bg-gradient-to-r from-[#8B5A3E] via-[#B8755C] to-[#C4956A]" style={{ width: '35%' }} />
               </div>
@@ -124,7 +124,7 @@ export default function MetricasPage() {
 
             {/* Trends */}
             <div className="mt-3 space-y-2">
-              <p className="text-[10px] font-mono uppercase tracking-wider text-[#8C8580]">Tendencias</p>
+              <p className="text-[10px] font-mono uppercase tracking-wider text-[#8C8580]">Tendências</p>
               <div className="grid grid-cols-2 gap-2">
                 <div className="flex items-center gap-2 text-xs">
                   <TrendingUp className="h-3.5 w-3.5 text-[#8B9E7C]" />
@@ -135,7 +135,7 @@ export default function MetricasPage() {
                   <span className="text-[#8B9E7C]">Estresse -1.2</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="text-[#8C8580]">— Energia estavel</span>
+                  <span className="text-[#8C8580]">— Energia estável</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs">
                   <TrendingUp className="h-3.5 w-3.5 text-[#8B9E7C]" />
@@ -151,7 +151,7 @@ export default function MetricasPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <BarChart3 className="h-5 w-5 text-[#B8755C]" />
-              Evolucao Semanal
+              Evolução Semanal
             </CardTitle>
             <CardDescription>Humor, energia e estresse</CardDescription>
           </CardHeader>
@@ -189,9 +189,9 @@ export default function MetricasPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-lg">
             <Shield className="h-5 w-5 text-[#B8755C]" />
-            Balanco da Party
+            Balanço da Party
           </CardTitle>
-          <CardDescription>Contribuicao de cada vetor de cuidado</CardDescription>
+          <CardDescription>Contribuição de cada vetor de cuidado</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col items-center">
@@ -217,7 +217,7 @@ export default function MetricasPage() {
               </div>
               <div className="text-center rounded-md border border-[#8B9E7C]/20 bg-[#8B9E7C]/5 p-2">
                 <p className="text-xl font-mono font-bold text-[#1A1A1E]">{careRatio.artificial}%</p>
-                <p className="text-[10px] font-mono text-[#8B9E7C]">IA / Oraculo</p>
+                <p className="text-[10px] font-mono text-[#8B9E7C]">IA / Oráculo</p>
               </div>
               <div className="text-center rounded-md border border-[#DAA520]/20 bg-[#DAA520]/5 p-2">
                 <p className="text-xl font-mono font-bold text-[#1A1A1E]">{careRatio.selfCare}%</p>
@@ -233,7 +233,7 @@ export default function MetricasPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-lg">
             <Award className="h-5 w-5 text-[#DAA520]" />
-            Conquistas do Mes
+            Conquistas do Mês
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -248,7 +248,7 @@ export default function MetricasPage() {
             </div>
             <div className="rounded-md border border-[var(--border-architectural)] bg-[var(--parchment-light)] p-3 text-center">
               <span className="achievement-seal mb-2 mx-auto block w-fit">{monthlyProgress.missions.completed}</span>
-              <p className="text-xs font-mono font-bold text-[#1A1A1E]">Missoes</p>
+              <p className="text-xs font-mono font-bold text-[#1A1A1E]">Missões</p>
               <p className="text-[10px] font-mono text-[#8C8580]">{monthlyProgress.missions.completed}/{monthlyProgress.missions.total}</p>
               <div className="mt-1.5 rpg-status-bar h-2">
                 <div className="rpg-status-bar-fill bg-gradient-to-r from-[#8B5A3E] via-[#B8755C] to-[#C4956A]" style={{ width: `${(monthlyProgress.missions.completed / monthlyProgress.missions.total) * 100}%` }} />
@@ -282,9 +282,9 @@ export default function MetricasPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-lg">
             <Sparkles className="h-5 w-5 text-[#B8755C]" />
-            Insights do Oraculo
+            Insights do Oráculo
           </CardTitle>
-          <CardDescription>Padroes e tendencias nos seus dados</CardDescription>
+          <CardDescription>Padrões e tendências nos seus dados</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-3 md:grid-cols-2">
@@ -330,7 +330,7 @@ export default function MetricasPage() {
         </CardContent>
       </Card>
 
-      <EditorialQuote text="Os numeros contam historias — aprenda a ouvir a sua." />
+      <EditorialQuote text="Os números contam histórias — aprenda a ouvir a sua." />
     </div>
   )
 }

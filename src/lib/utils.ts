@@ -94,29 +94,29 @@ export const translations = {
   sessionStatus: {
     SCHEDULED: 'Agendada',
     IN_PROGRESS: 'Em Andamento',
-    COMPLETED: 'Concluida',
+    COMPLETED: 'Concluída',
     CANCELLED: 'Cancelada',
-    NO_SHOW: 'Nao Compareceu'
+    NO_SHOW: 'Não Compareceu'
   },
   projectStatus: {
     PLANNING: 'Planejando',
     IN_PROGRESS: 'Em Andamento',
     ON_HOLD: 'Pausado',
-    COMPLETED: 'Concluido',
+    COMPLETED: 'Concluído',
     CANCELLED: 'Cancelado'
   },
   missionStatus: {
     PENDING: 'Pendente',
     IN_PROGRESS: 'Em Andamento',
-    COMPLETED: 'Concluida',
+    COMPLETED: 'Concluída',
     CANCELLED: 'Cancelada'
   },
   missionType: {
-    THERAPY_TASK: 'Tarefa Terapeutica',
+    THERAPY_TASK: 'Tarefa Terapêutica',
     COACHING_TASK: 'Tarefa de Coaching',
-    DAILY_HABIT: 'Habito Diario',
-    REFLECTION: 'Reflexao',
-    ACTION: 'Acao'
+    DAILY_HABIT: 'Hábito Diário',
+    REFLECTION: 'Reflexão',
+    ACTION: 'Ação'
   },
   timelineEventType: {
     ACHIEVEMENT: 'Conquista',
@@ -125,25 +125,25 @@ export const translations = {
     GAIN: 'Ganho',
     MILESTONE: 'Marco',
     RELATIONSHIP: 'Relacionamento',
-    HEALTH: 'Saude',
-    EDUCATION: 'Educacao',
+    HEALTH: 'Saúde',
+    EDUCATION: 'Educação',
     CAREER: 'Carreira',
     OTHER: 'Outro'
   },
   relationType: {
     FATHER: 'Pai',
-    MOTHER: 'Mae',
-    SIBLING: 'Irmao/Irma',
-    SPOUSE: 'Conjuge',
+    MOTHER: 'Mãe',
+    SIBLING: 'Irmão/Irmã',
+    SPOUSE: 'Cônjuge',
     CHILD: 'Filho(a)',
-    GRANDPARENT: 'Avo/Avo',
+    GRANDPARENT: 'Avô/Avó',
     UNCLE_AUNT: 'Tio(a)',
     COUSIN: 'Primo(a)',
     FRIEND: 'Amigo(a)',
     OTHER: 'Outro'
   },
   currentRelationType: {
-    ROMANTIC: 'Romantico',
+    ROMANTIC: 'Romântico',
     FAMILY: 'Familiar',
     PROFESSIONAL: 'Profissional',
     FRIENDSHIP: 'Amizade',

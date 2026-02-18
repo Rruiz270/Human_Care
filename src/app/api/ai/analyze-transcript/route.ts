@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
 
     if (!sessionId || !transcript) {
       return NextResponse.json(
-        { success: false, error: 'sessionId e transcript sao obrigatorios' },
+        { success: false, error: 'sessionId e transcript são obrigatórios' },
         { status: 400 }
       )
     }
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
 
     if (!session) {
       return NextResponse.json(
-        { success: false, error: 'Sessao nao encontrada' },
+        { success: false, error: 'Sessão não encontrada' },
         { status: 404 }
       )
     }
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
     if (session.client.lifeMap) {
       const { purpose, projects } = session.client.lifeMap
       if (purpose) {
-        clientContext += `Proposito: ${purpose.statement}\n`
+        clientContext += `Propósito: ${purpose.statement}\n`
       }
       if (projects.length > 0) {
         clientContext += `Projetos em andamento: ${projects.map((p: { title: string }) => p.title).join(', ')}\n`
@@ -112,13 +112,13 @@ export async function POST(request: NextRequest) {
       success: true,
       data: {
         analysis,
-        message: 'Transcricao analisada com sucesso',
+        message: 'Transcrição analisada com sucesso',
       },
     })
   } catch (error) {
     console.error('Error analyzing transcript:', error)
     return NextResponse.json(
-      { success: false, error: 'Erro ao analisar transcricao' },
+      { success: false, error: 'Erro ao analisar transcrição' },
       { status: 500 }
     )
   }

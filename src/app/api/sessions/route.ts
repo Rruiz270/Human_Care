@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Error fetching sessions:', error)
     return NextResponse.json(
-      { success: false, error: 'Erro ao buscar sessoes' },
+      { success: false, error: 'Erro ao buscar sessões' },
       { status: 500 }
     )
   }
@@ -103,7 +103,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Error creating session:', error)
     return NextResponse.json(
-      { success: false, error: 'Erro ao criar sessao' },
+      { success: false, error: 'Erro ao criar sessão' },
       { status: 500 }
     )
   }

@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Error fetching users:', error)
     return NextResponse.json(
-      { success: false, error: 'Erro ao buscar usuarios' },
+      { success: false, error: 'Erro ao buscar usuários' },
       { status: 500 }
     )
   }
@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
 
     if (!email || !name) {
       return NextResponse.json(
-        { success: false, error: 'Email e nome sao obrigatorios' },
+        { success: false, error: 'Email e nome são obrigatórios' },
         { status: 400 }
       )
     }
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
 
     if (existingUser) {
       return NextResponse.json(
-        { success: false, error: 'Usuario ja existe com este email' },
+        { success: false, error: 'Usuário já existe com este email' },
         { status: 400 }
       )
     }
@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Error creating user:', error)
     return NextResponse.json(
-      { success: false, error: 'Erro ao criar usuario' },
+      { success: false, error: 'Erro ao criar usuário' },
       { status: 500 }
     )
   }

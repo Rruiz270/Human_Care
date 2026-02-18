@@ -34,8 +34,8 @@ import { formatDate } from '@/lib/utils'
 const missions = [
   {
     id: '1',
-    title: 'Praticar respiracao consciente',
-    description: 'Fazer 3 sessoes de respiracao 4-7-8 por dia',
+    title: 'Praticar respiração consciente',
+    description: 'Fazer 3 sessões de respiração 4-7-8 por dia',
     type: 'habit' as const,
     status: 'active' as const,
     dueDate: undefined as Date | undefined,
@@ -45,8 +45,8 @@ const missions = [
   },
   {
     id: '2',
-    title: 'Escrever carta de perdao',
-    description: 'Escrever uma carta de perdao para si mesma sobre os episodios de autocritica excessiva',
+    title: 'Escrever carta de perdão',
+    description: 'Escrever uma carta de perdão para si mesma sobre os episódios de autocrítica excessiva',
     type: 'therapy' as const,
     status: 'pending' as const,
     dueDate: new Date(Date.now() + 86400000 * 3),
@@ -56,7 +56,7 @@ const missions = [
   {
     id: '3',
     title: 'Definir metas do trimestre',
-    description: 'Criar OKRs pessoais para o proximo trimestre alinhados com o proposito',
+    description: 'Criar OKRs pessoais para o próximo trimestre alinhados com o propósito',
     type: 'coaching' as const,
     status: 'pending' as const,
     dueDate: new Date(Date.now() + 86400000 * 7),
@@ -65,8 +65,8 @@ const missions = [
   },
   {
     id: '4',
-    title: 'Reflexao semanal',
-    description: 'Registrar insights da semana e progresso em direcao ao proposito',
+    title: 'Reflexão semanal',
+    description: 'Registrar insights da semana e progresso em direção ao propósito',
     type: 'reflection' as const,
     status: 'active' as const,
     dueDate: new Date(Date.now() + 86400000 * 2),
@@ -86,7 +86,7 @@ const missions = [
   {
     id: '6',
     title: 'Registro de gatilhos',
-    description: 'Identificar e registrar situacoes que desencadeiam estresse no trabalho',
+    description: 'Identificar e registrar situações que desencadeiam estresse no trabalho',
     type: 'therapy' as const,
     status: 'active' as const,
     dueDate: new Date(Date.now() + 86400000 * 5),
@@ -102,8 +102,8 @@ const questTabs: { key: QuestFilter; label: string; icon: React.ElementType }[] 
   { key: 'all', label: 'Todas', icon: Scroll },
   { key: 'therapy', label: 'Terapia', icon: Brain },
   { key: 'coaching', label: 'Coaching', icon: Target },
-  { key: 'habit', label: 'Habitos', icon: Flame },
-  { key: 'reflection', label: 'Reflexao', icon: Sparkles },
+  { key: 'habit', label: 'Hábitos', icon: Flame },
+  { key: 'reflection', label: 'Reflexão', icon: Sparkles },
 ]
 
 export default function MissoesPage() {
@@ -135,31 +135,31 @@ export default function MissoesPage() {
               Quest Log
             </h2>
             <p className="text-[#8C8580] text-sm mt-1">
-              Missoes para sua evolucao pessoal
+              Missões para sua evolução pessoal
             </p>
           </div>
           <Dialog open={showNewMissionDialog} onOpenChange={setShowNewMissionDialog}>
             <DialogTrigger asChild>
               <Button>
                 <Plus className="mr-2 h-4 w-4" />
-                Nova Missao
+                Nova Missão
               </Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Criar Nova Missao</DialogTitle>
+                <DialogTitle>Criar Nova Missão</DialogTitle>
                 <DialogDescription>
                   Adicione uma quest ao seu log
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-4 py-4">
                 <div className="space-y-2">
-                  <Label>Titulo</Label>
+                  <Label>Título</Label>
                   <Input placeholder="Ex: Meditar 10 minutos" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Descricao</Label>
-                  <Textarea placeholder="Descreva a missao..." />
+                  <Label>Descrição</Label>
+                  <Textarea placeholder="Descreva a missão..." />
                 </div>
                 <div className="space-y-2">
                   <Label>Tipo</Label>
@@ -168,11 +168,11 @@ export default function MissoesPage() {
                       <SelectValue placeholder="Selecione o tipo" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="DAILY_HABIT">Habito Diario</SelectItem>
+                      <SelectItem value="DAILY_HABIT">Hábito Diário</SelectItem>
                       <SelectItem value="THERAPY_TASK">Tarefa de Terapia</SelectItem>
                       <SelectItem value="COACHING_TASK">Tarefa de Coaching</SelectItem>
-                      <SelectItem value="REFLECTION">Reflexao</SelectItem>
-                      <SelectItem value="ACTION">Acao</SelectItem>
+                      <SelectItem value="REFLECTION">Reflexão</SelectItem>
+                      <SelectItem value="ACTION">Ação</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -186,7 +186,7 @@ export default function MissoesPage() {
                   Cancelar
                 </Button>
                 <Button onClick={() => setShowNewMissionDialog(false)}>
-                  Criar Missao
+                  Criar Missão
                 </Button>
               </div>
             </DialogContent>
@@ -201,7 +201,7 @@ export default function MissoesPage() {
           <div className="flex items-center gap-3 rounded-md border border-[var(--border-architectural)] bg-[var(--parchment-light)] px-3 py-2">
             <span className="achievement-seal text-[10px]">{stats.completed}</span>
             <div>
-              <p className="text-xs font-mono font-bold text-[#1A1A1E]">Missoes Completadas</p>
+              <p className="text-xs font-mono font-bold text-[#1A1A1E]">Missões Completadas</p>
               <p className="text-[10px] font-mono text-[#8C8580]">{stats.totalXP} XP ganhos</p>
             </div>
           </div>
@@ -258,14 +258,14 @@ export default function MissoesPage() {
           <Card>
             <CardContent className="py-8 text-center">
               <Target className="mx-auto h-12 w-12 text-[#8C8580]/50" />
-              <p className="mt-4 text-[#8C8580]">Nenhuma missao encontrada</p>
+              <p className="mt-4 text-[#8C8580]">Nenhuma missão encontrada</p>
               <Button
                 variant="outline"
                 className="mt-4"
                 onClick={() => setShowNewMissionDialog(true)}
               >
                 <Plus className="mr-2 h-4 w-4" />
-                Criar primeira missao
+                Criar primeira missão
               </Button>
             </CardContent>
           </Card>

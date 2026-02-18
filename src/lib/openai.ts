@@ -28,7 +28,7 @@ export interface TranscriptAnalysis {
   topicsDiscussed: string[]
   progressIndicators: {
     area: string
-    direction: 'melhorando' | 'estavel' | 'piorando'
+    direction: 'melhorando' | 'estável' | 'piorando'
     notes: string
   }[]
   suggestedNextSteps: string[]
@@ -48,42 +48,42 @@ export async function analyzeTranscript(
   sessionType: string,
   clientContext?: string
 ): Promise<TranscriptAnalysis> {
-  const systemPrompt = `Voce e um assistente especializado em analise de sessoes terapeuticas e de coaching.
-Sua tarefa e analisar a transcricao de uma sessao e extrair informacoes relevantes para o acompanhamento do cliente.
+  const systemPrompt = `Você é um assistente especializado em análise de sessões terapêuticas e de coaching.
+Sua tarefa é analisar a transcrição de uma sessão e extrair informações relevantes para o acompanhamento do cliente.
 
-Tipo de sessao: ${sessionType}
+Tipo de sessão: ${sessionType}
 ${clientContext ? `Contexto do cliente: ${clientContext}` : ''}
 
-Analise a transcricao e retorne um JSON com a seguinte estrutura:
+Analise a transcrição e retorne um JSON com a seguinte estrutura:
 {
-  "summary": "Resumo da sessao em 2-3 paragrafos",
-  "keyInsights": ["Lista de insights importantes da sessao"],
+  "summary": "Resumo da sessão em 2-3 parágrafos",
+  "keyInsights": ["Lista de insights importantes da sessão"],
   "emotionalState": {
     "dominant": "Estado emocional dominante",
     "intensity": 7 // 1-10
   },
   "actionItems": [
     {
-      "title": "Titulo da acao",
-      "description": "Descricao detalhada",
+      "title": "Título da ação",
+      "description": "Descrição detalhada",
       "priority": "alta|media|baixa",
       "type": "THERAPY_TASK|COACHING_TASK|DAILY_HABIT|REFLECTION|ACTION"
     }
   ],
-  "topicsDiscussed": ["Lista de topicos discutidos"],
+  "topicsDiscussed": ["Lista de tópicos discutidos"],
   "progressIndicators": [
     {
-      "area": "Area de progresso",
-      "direction": "melhorando|estavel|piorando",
-      "notes": "Observacoes"
+      "area": "Área de progresso",
+      "direction": "melhorando|estável|piorando",
+      "notes": "Observações"
     }
   ],
-  "suggestedNextSteps": ["Proximos passos sugeridos"],
-  "relevantPastConnections": ["Conexoes com eventos passados mencionados"],
+  "suggestedNextSteps": ["Próximos passos sugeridos"],
+  "relevantPastConnections": ["Conexões com eventos passados mencionados"],
   "timelineEvents": [
     {
       "title": "Evento identificado",
-      "description": "Descricao do evento",
+      "description": "Descrição do evento",
       "eventType": "ACHIEVEMENT|TRAUMA|LOSS|GAIN|MILESTONE|RELATIONSHIP|HEALTH|EDUCATION|CAREER|OTHER",
       "isPositive": true,
       "impact": 5, // 1-10
@@ -92,14 +92,14 @@ Analise a transcricao e retorne um JSON com a seguinte estrutura:
   ]
 }
 
-Seja objetivo, empatico e profissional na analise.`
+Seja objetivo, empático e profissional na análise.`
 
   try {
     const response = await getOpenAI().chat.completions.create({
       model: 'gpt-4-turbo-preview',
       messages: [
         { role: 'system', content: systemPrompt },
-        { role: 'user', content: `Transcricao da sessao:\n\n${transcript}` }
+        { role: 'user', content: `Transcrição da sessão:\n\n${transcript}` }
       ],
       response_format: { type: 'json_object' },
       temperature: 0.7,
@@ -131,31 +131,31 @@ export async function chatWithAI(
     currentState?: string
   }
 ): Promise<ChatResponse> {
-  const systemPrompt = `Voce e um assistente de cuidado e desenvolvimento pessoal chamado "Human Care AI".
-Seu papel e apoiar o usuario em sua jornada de autoconhecimento e crescimento pessoal.
+  const systemPrompt = `Você é um assistente de cuidado e desenvolvimento pessoal chamado "Human Care AI".
+Seu papel e apoiar o usuário em sua jornada de autoconhecimento e crescimento pessoal.
 
-Voce tem acesso ao contexto do usuario para personalizar suas respostas:
+Você tem acesso ao contexto do usuário para personalizar suas respostas:
 ${userContext?.lifeMapSummary ? `Resumo do Mapa da Vida: ${userContext.lifeMapSummary}` : ''}
-${userContext?.recentSessions ? `Sessoes Recentes: ${userContext.recentSessions}` : ''}
-${userContext?.currentMissions ? `Missoes Atuais: ${userContext.currentMissions}` : ''}
+${userContext?.recentSessions ? `Sessões Recentes: ${userContext.recentSessions}` : ''}
+${userContext?.currentMissions ? `Missões Atuais: ${userContext.currentMissions}` : ''}
 ${userContext?.currentState ? `Estado Atual: ${userContext.currentState}` : ''}
 
 Diretrizes:
-1. Seja empatico, acolhedor e profissional
-2. Ofereca perspectivas e reflexoes, nao diagnosticos
-3. Incentive o autoconhecimento e a acao
-4. Conecte temas atuais com o contexto historico quando relevante
-5. Sugira proximos passos praticos quando apropriado
-6. Lembre o usuario de suas conquistas e progresso
-7. Nunca substitua aconselhamento profissional de terapeutas ou medicos
-8. Responda sempre em portugues brasileiro
+1. Seja empático, acolhedor e profissional
+2. Ofereca perspectivas e reflexões, não diagnósticos
+3. Incentive o autoconhecimento e a ação
+4. Conecte temas atuais com o contexto histórico quando relevante
+5. Sugira próximos passos práticos quando apropriado
+6. Lembre o usuário de suas conquistas e progresso
+7. Nunca substitua aconselhamento profissional de terapeutas ou médicos
+8. Responda sempre em português brasileiro
 9. Seja conciso mas completo
 
 Retorne um JSON com:
 {
-  "message": "Sua resposta ao usuario",
-  "suggestions": ["Sugestoes de acoes ou reflexoes (opcional)"],
-  "relatedTopics": ["Topicos relacionados que podem ser explorados (opcional)"]
+  "message": "Sua resposta ao usuário",
+  "suggestions": ["Sugestões de ações ou reflexões (opcional)"],
+  "relatedTopics": ["Tópicos relacionados que podem ser explorados (opcional)"]
 }`
 
   try {
@@ -196,20 +196,20 @@ export async function generateInsights(data: {
   recommendations: string[]
   areasOfFocus: string[]
 }> {
-  const systemPrompt = `Voce e um analista de bem-estar e desenvolvimento pessoal.
-Analise os dados fornecidos e gere insights sobre o progresso do usuario.
+  const systemPrompt = `Você é um analista de bem-estar e desenvolvimento pessoal.
+Analise os dados fornecidos e gere insights sobre o progresso do usuário.
 
 Dados:
-- Tracking Diario (ultimos registros): ${JSON.stringify(data.dailyTracking)}
-- Sessoes Recentes: ${JSON.stringify(data.recentSessions)}
-- Missoes: ${JSON.stringify(data.missions)}
+- Tracking Diário (últimos registros): ${JSON.stringify(data.dailyTracking)}
+- Sessões Recentes: ${JSON.stringify(data.recentSessions)}
+- Missões: ${JSON.stringify(data.missions)}
 
 Retorne um JSON com:
 {
-  "overallTrend": "Descricao da tendencia geral",
-  "keyObservations": ["Observacoes importantes"],
-  "recommendations": ["Recomendacoes praticas"],
-  "areasOfFocus": ["Areas que merecem atencao"]
+  "overallTrend": "Descrição da tendência geral",
+  "keyObservations": ["Observações importantes"],
+  "recommendations": ["Recomendações práticas"],
+  "areasOfFocus": ["Áreas que merecem atenção"]
 }`
 
   try {

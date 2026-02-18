@@ -50,17 +50,17 @@ const initialSessions = [
     id: '1',
     type: 'THERAPY',
     status: 'COMPLETED',
-    professional: { name: 'Dra. Ana Costa', role: 'Psicologa' },
+    professional: { name: 'Dra. Ana Costa', role: 'Psicóloga' },
     scheduledAt: new Date(Date.now() - 86400000 * 7),
     duration: 60,
     isOnline: true,
-    aiSummary: 'Sessao focada em trabalhar questoes relacionadas ao estresse no trabalho. Identificamos conexoes com padroes de cobranca internalizados na infancia.',
+    aiSummary: 'Sessão focada em trabalhar questões relacionadas ao estresse no trabalho. Identificamos conexões com padrões de cobrança internalizados na infância.',
     aiActionItems: [
-      { title: 'Praticar auto-compaixao', completed: true },
+      { title: 'Praticar auto-compaixão', completed: true },
       { title: 'Registrar gatilhos de estresse', completed: false },
     ],
-    notes: 'Sessao muito produtiva. Me senti acolhida.',
-    professionalNotes: 'Paciente demonstrou abertura para explorar questoes do passado.',
+    notes: 'Sessão muito produtiva. Me senti acolhida.',
+    professionalNotes: 'Paciente demonstrou abertura para explorar questões do passado.',
   },
   {
     id: '2',
@@ -70,7 +70,7 @@ const initialSessions = [
     scheduledAt: new Date(Date.now() - 86400000 * 3),
     duration: 45,
     isOnline: true,
-    aiSummary: 'Definimos metas para o proximo trimestre e revisamos o progresso do mestrado. Alinhamento com o proposito de vida esta forte.',
+    aiSummary: 'Definimos metas para o próximo trimestre e revisamos o progresso do mestrado. Alinhamento com o propósito de vida está forte.',
     aiActionItems: [
       { title: 'Criar cronograma semanal', completed: true },
       { title: 'Pesquisar oportunidades de networking', completed: false },
@@ -82,7 +82,7 @@ const initialSessions = [
     id: '3',
     type: 'THERAPY',
     status: 'SCHEDULED',
-    professional: { name: 'Dra. Ana Costa', role: 'Psicologa' },
+    professional: { name: 'Dra. Ana Costa', role: 'Psicóloga' },
     scheduledAt: new Date(Date.now() + 86400000),
     duration: 60,
     isOnline: true,
@@ -162,7 +162,7 @@ export default function SessoesPage() {
       setIsAnalyzing(false)
       setShowUploadDialog(false)
       setTranscriptText('')
-      setSuccessMessage('Transcricao analisada com sucesso!')
+      setSuccessMessage('Transcrição analisada com sucesso!')
       setShowSuccess(true)
       setTimeout(() => setShowSuccess(false), 3000)
     }, 2000)
@@ -202,14 +202,14 @@ export default function SessoesPage() {
               <DialogTrigger asChild>
                 <Button variant="outline" size="sm">
                   <Upload className="mr-2 h-4 w-4" />
-                  Upload Transcricao
+                  Upload Transcrição
                 </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Upload de Transcricao</DialogTitle>
+                  <DialogTitle>Upload de Transcrição</DialogTitle>
                   <DialogDescription>
-                    Envie a transcricao para relatorio de inteligencia da IA
+                    Envie a transcrição para relatório de inteligência da IA
                   </DialogDescription>
                 </DialogHeader>
                 <div className="space-y-4 py-4">
@@ -240,7 +240,7 @@ export default function SessoesPage() {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label>Ou cole a transcricao</Label>
+                    <Label>Ou cole a transcrição</Label>
                     <Textarea
                       placeholder="Cole o texto aqui..."
                       className="min-h-[100px]"
@@ -297,14 +297,14 @@ export default function SessoesPage() {
                     <Select>
                       <SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="1">Dra. Ana Costa - Psicologa</SelectItem>
+                        <SelectItem value="1">Dra. Ana Costa - Psicóloga</SelectItem>
                         <SelectItem value="2">Carlos Mendes - Coach</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2"><Label>Data</Label><Input type="date" /></div>
-                    <div className="space-y-2"><Label>Horario</Label><Input type="time" /></div>
+                    <div className="space-y-2"><Label>Horário</Label><Input type="time" /></div>
                   </div>
                   <div className="space-y-2">
                     <Label>Formato</Label>
@@ -317,7 +317,7 @@ export default function SessoesPage() {
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label>Preparacao para o encontro (opcional)</Label>
+                    <Label>Preparação para o encontro (opcional)</Label>
                     <Textarea placeholder="Temas que gostaria de abordar..." />
                   </div>
                 </div>
@@ -340,7 +340,7 @@ export default function SessoesPage() {
               roleLabel="Terapeuta ↓ DOWN"
               avatarInitials="AC"
               lastSession="10 Jan"
-              nextSession="Amanha"
+              nextSession="Amanhã"
             />
             <CarePartyMember
               name="Carlos Mendes"
@@ -357,7 +357,7 @@ export default function SessoesPage() {
               avatarInitials="HC"
             />
             <CarePartyMember
-              name="Voce"
+              name="Você"
               role="self"
               roleLabel="Self ● CENTER"
               avatarInitials="EU"
@@ -379,7 +379,7 @@ export default function SessoesPage() {
           <CheckCircle className="h-5 w-5 text-[#B8755C]" />
           <div>
             <p className="text-xl font-mono font-bold text-[#1A1A1E]">{sessions.filter(s => s.status === 'COMPLETED').length}</p>
-            <p className="text-[10px] font-mono text-[#8C8580]">Concluidos</p>
+            <p className="text-[10px] font-mono text-[#8C8580]">Concluídos</p>
           </div>
         </div>
         <div className="inventory-item flex items-center gap-3">
@@ -405,7 +405,7 @@ export default function SessoesPage() {
             <TabsList>
               <TabsTrigger value="todas">Todos</TabsTrigger>
               <TabsTrigger value="agendadas">Agendados</TabsTrigger>
-              <TabsTrigger value="concluidas">Relatorios</TabsTrigger>
+              <TabsTrigger value="concluidas">Relatórios</TabsTrigger>
             </TabsList>
           </Tabs>
         </CardHeader>
@@ -436,7 +436,7 @@ export default function SessoesPage() {
                           className="text-[10px]"
                         >
                           {session.status === 'SCHEDULED' && 'Agendado'}
-                          {session.status === 'COMPLETED' && 'Relatorio Pronto'}
+                          {session.status === 'COMPLETED' && 'Relatório Pronto'}
                           {session.status === 'CANCELLED' && 'Cancelado'}
                         </Badge>
                       </div>
@@ -466,7 +466,7 @@ export default function SessoesPage() {
                     )}
                     <Button variant="outline" size="sm" onClick={() => handleViewDetails(session)}>
                       <Scroll className="mr-1.5 h-3.5 w-3.5" />
-                      {session.status === 'COMPLETED' ? 'Relatorio' : 'Notas'}
+                      {session.status === 'COMPLETED' ? 'Relatório' : 'Notas'}
                     </Button>
                   </div>
                 </div>
@@ -477,7 +477,7 @@ export default function SessoesPage() {
                     <div className="flex items-center gap-2 mb-1.5">
                       <Sparkles className="h-3.5 w-3.5 text-[#B8755C]" />
                       <span className="text-[10px] font-mono uppercase tracking-wider text-[#B8755C]">
-                        Relatorio de Inteligencia
+                        Relatório de Inteligência
                       </span>
                     </div>
                     <p className="text-xs text-[#8C8580]">{session.aiSummary}</p>
@@ -543,12 +543,12 @@ export default function SessoesPage() {
                   <div className="w-16 h-16 bg-[#B8755C]/20 rounded-full flex items-center justify-center mx-auto mb-2">
                     <Users className="h-8 w-8 text-[#B8755C]" />
                   </div>
-                  <p className="text-[#1A1A1E] font-medium text-sm">Voce</p>
+                  <p className="text-[#1A1A1E] font-medium text-sm">Você</p>
                 </div>
               ) : (
                 <div className="text-center">
                   <VideoOff className="h-10 w-10 text-[#8C8580] mx-auto mb-1" />
-                  <p className="text-[#8C8580] text-xs">Camera desligada</p>
+                  <p className="text-[#8C8580] text-xs">Câmera desligada</p>
                 </div>
               )}
               {isMuted && (
@@ -576,7 +576,7 @@ export default function SessoesPage() {
       <Dialog open={showDetailsDialog} onOpenChange={setShowDetailsDialog}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Relatorio do Encontro</DialogTitle>
+            <DialogTitle>Relatório do Encontro</DialogTitle>
             <DialogDescription>
               {selectedSession?.type === 'THERAPY' ? 'Terapia' : 'Coaching'} com {selectedSession?.professional.name}
               {' - '}{selectedSession && formatDateTime(selectedSession.scheduledAt)}
@@ -587,7 +587,7 @@ export default function SessoesPage() {
               <div className="oracle-message p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Sparkles className="h-4 w-4 text-[#B8755C]" />
-                  <span className="text-xs font-mono uppercase tracking-wider text-[#B8755C]">Relatorio de Inteligencia</span>
+                  <span className="text-xs font-mono uppercase tracking-wider text-[#B8755C]">Relatório de Inteligência</span>
                 </div>
                 <p className="text-sm text-[#8C8580]">{selectedSession.aiSummary}</p>
               </div>
@@ -604,11 +604,11 @@ export default function SessoesPage() {
             <div className="space-y-2">
               <Label htmlFor="session-notes" className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider">
                 <MessageSquare className="h-4 w-4 text-[#8C8580]" />
-                Diario do Aventureiro
+                Diário do Aventureiro
               </Label>
               <Textarea
                 id="session-notes"
-                placeholder="Suas anotacoes sobre este encontro..."
+                placeholder="Suas anotações sobre este encontro..."
                 value={sessionNotes}
                 onChange={(e) => setSessionNotes(e.target.value)}
                 className="min-h-[100px]"

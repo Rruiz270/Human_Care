@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
 
     if (!userId || !message) {
       return NextResponse.json(
-        { success: false, error: 'userId e message sao obrigatorios' },
+        { success: false, error: 'userId e message são obrigatórios' },
         { status: 400 }
       )
     }
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
 
     if (!user) {
       return NextResponse.json(
-        { success: false, error: 'Usuario nao encontrado' },
+        { success: false, error: 'Usuário não encontrado' },
         { status: 404 }
       )
     }
@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
     if (user.lifeMap) {
       // Purpose summary
       if (user.lifeMap.purpose) {
-        userContext.lifeMapSummary = `Proposito: ${user.lifeMap.purpose.statement}`
+        userContext.lifeMapSummary = `Propósito: ${user.lifeMap.purpose.statement}`
       }
 
       // Recent mood/state
@@ -153,7 +153,7 @@ export async function GET(request: NextRequest) {
 
     if (!userId) {
       return NextResponse.json(
-        { success: false, error: 'userId e obrigatorio' },
+        { success: false, error: 'userId é obrigatório' },
         { status: 400 }
       )
     }
@@ -171,7 +171,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Error fetching chat history:', error)
     return NextResponse.json(
-      { success: false, error: 'Erro ao buscar historico' },
+      { success: false, error: 'Erro ao buscar histórico' },
       { status: 500 }
     )
   }

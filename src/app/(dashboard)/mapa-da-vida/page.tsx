@@ -42,18 +42,18 @@ import {
 
 // Demo data for timeline
 const timelineEvents = [
-  { id: '1', title: 'Nascimento', eventType: 'MILESTONE', ageAtEvent: 0, isPositive: true, impact: 10, description: 'Nasceu em Sao Paulo' },
-  { id: '2', title: 'Inicio da escola', eventType: 'EDUCATION', ageAtEvent: 6, isPositive: true, impact: 7, description: 'Primeiro dia na escola primaria' },
-  { id: '3', title: 'Perda do avo', eventType: 'LOSS', ageAtEvent: 12, isPositive: false, impact: 8, description: 'Falecimento do avo paterno' },
-  { id: '4', title: 'Formatura pedagogia', eventType: 'ACHIEVEMENT', ageAtEvent: 23, isPositive: true, impact: 9, description: 'Conclusao da graduacao em Pedagogia' },
-  { id: '5', title: 'Primeiro emprego como professor', eventType: 'CAREER', ageAtEvent: 24, isPositive: true, impact: 8, description: 'Inicio da carreira docente' },
-  { id: '6', title: 'Burnout', eventType: 'HEALTH', ageAtEvent: 30, isPositive: false, impact: 7, description: 'Episodio de esgotamento profissional' },
+  { id: '1', title: 'Nascimento', eventType: 'MILESTONE', ageAtEvent: 0, isPositive: true, impact: 10, description: 'Nasceu em São Paulo' },
+  { id: '2', title: 'Início da escola', eventType: 'EDUCATION', ageAtEvent: 6, isPositive: true, impact: 7, description: 'Primeiro dia na escola primária' },
+  { id: '3', title: 'Perda do avô', eventType: 'LOSS', ageAtEvent: 12, isPositive: false, impact: 8, description: 'Falecimento do avô paterno' },
+  { id: '4', title: 'Formatura pedagogia', eventType: 'ACHIEVEMENT', ageAtEvent: 23, isPositive: true, impact: 9, description: 'Conclusão da graduação em Pedagogia' },
+  { id: '5', title: 'Primeiro emprego como professor', eventType: 'CAREER', ageAtEvent: 24, isPositive: true, impact: 8, description: 'Início da carreira docente' },
+  { id: '6', title: 'Burnout', eventType: 'HEALTH', ageAtEvent: 30, isPositive: false, impact: 7, description: 'Episódio de esgotamento profissional' },
 ]
 
 const familyRelations = [
-  { id: '1', name: 'Jose (Pai)', relationType: 'FATHER', quality: 6, isAlive: true },
-  { id: '2', name: 'Maria (Mae)', relationType: 'MOTHER', quality: 8, isAlive: true },
-  { id: '3', name: 'Pedro (Irmao)', relationType: 'SIBLING', quality: 7, isAlive: true },
+  { id: '1', name: 'José (Pai)', relationType: 'FATHER', quality: 6, isAlive: true },
+  { id: '2', name: 'Maria (Mãe)', relationType: 'MOTHER', quality: 8, isAlive: true },
+  { id: '3', name: 'Pedro (Irmão)', relationType: 'SIBLING', quality: 7, isAlive: true },
   { id: '4', name: 'Carlos (Marido)', relationType: 'SPOUSE', quality: 8, isAlive: true },
   { id: '5', name: 'Ana (Filha)', relationType: 'CHILD', quality: 10, isAlive: true },
 ]
@@ -72,18 +72,18 @@ const mindStateData = {
   workHoursPerDay: 8,
   stressLevel: 7,
   screenTimeHours: 4,
-  mainWorries: ['Pressao no trabalho', 'Falta de tempo', 'Preocupacoes financeiras'],
+  mainWorries: ['Pressão no trabalho', 'Falta de tempo', 'Preocupações financeiras'],
 }
 
 const purposeData = {
-  statement: 'Transformar vidas atraves da educacao, inspirando alunos a descobrirem seu potencial.',
-  dreams: ['Escrever um livro sobre educacao', 'Abrir uma escola inovadora', 'Viajar para 20 paises'],
-  legacy: 'Ser lembrada como uma professora que fez diferenca na vida de seus alunos.',
+  statement: 'Transformar vidas através da educação, inspirando alunos a descobrirem seu potencial.',
+  dreams: ['Escrever um livro sobre educação', 'Abrir uma escola inovadora', 'Viajar para 20 países'],
+  legacy: 'Ser lembrada como uma professora que fez diferença na vida de seus alunos.',
 }
 
 const projects = [
-  { id: '1', title: 'Mestrado em Educacao', status: 'IN_PROGRESS', progress: 45, category: 'Carreira' },
-  { id: '2', title: 'Curso de ingles', status: 'IN_PROGRESS', progress: 30, category: 'Desenvolvimento' },
+  { id: '1', title: 'Mestrado em Educação', status: 'IN_PROGRESS', progress: 45, category: 'Carreira' },
+  { id: '2', title: 'Curso de inglês', status: 'IN_PROGRESS', progress: 30, category: 'Desenvolvimento' },
   { id: '3', title: 'Reforma da casa', status: 'PLANNING', progress: 10, category: 'Pessoal' },
 ]
 
@@ -107,7 +107,7 @@ export default function MapaDaVidaPage() {
         <div>
           <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Mapa do Mundo</h2>
           <p className="text-[#8C8580]">
-            Navegue pelo territorio da sua vida — Ponto 0 ao Ponto B
+            Navegue pelo território da sua vida — Ponto 0 ao Ponto B
           </p>
         </div>
         <div className="flex gap-2">
@@ -127,7 +127,7 @@ export default function MapaDaVidaPage() {
               </DialogHeader>
               <div className="space-y-4 py-4">
                 <div className="space-y-2">
-                  <Label htmlFor="title">Titulo</Label>
+                  <Label htmlFor="title">Título</Label>
                   <Input id="title" placeholder="Ex: Formatura, Casamento, etc" />
                 </div>
                 <div className="space-y-2">
@@ -143,8 +143,8 @@ export default function MapaDaVidaPage() {
                       <SelectItem value="GAIN">Ganho</SelectItem>
                       <SelectItem value="MILESTONE">Marco</SelectItem>
                       <SelectItem value="RELATIONSHIP">Relacionamento</SelectItem>
-                      <SelectItem value="HEALTH">Saude</SelectItem>
-                      <SelectItem value="EDUCATION">Educacao</SelectItem>
+                      <SelectItem value="HEALTH">Saúde</SelectItem>
+                      <SelectItem value="EDUCATION">Educação</SelectItem>
                       <SelectItem value="CAREER">Carreira</SelectItem>
                     </SelectContent>
                   </Select>
@@ -160,7 +160,7 @@ export default function MapaDaVidaPage() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="description">Descricao</Label>
+                  <Label htmlFor="description">Descrição</Label>
                   <Textarea id="description" placeholder="Descreva o evento..." />
                 </div>
                 <div className="flex items-center gap-2">
@@ -187,10 +187,10 @@ export default function MapaDaVidaPage() {
       {/* Zone Navigation */}
       <div className="flex items-center gap-2 overflow-x-auto pb-2">
         {[
-          { key: 'overview' as MapZone, label: 'Visao Geral', icon: Eye },
-          { key: 'past' as MapZone, label: 'Territorio Conhecido', icon: Clock },
+          { key: 'overview' as MapZone, label: 'Visão Geral', icon: Eye },
+          { key: 'past' as MapZone, label: 'Território Conhecido', icon: Clock },
           { key: 'present' as MapZone, label: 'Base Operacional', icon: Shield },
-          { key: 'future' as MapZone, label: 'Territorio Desconhecido', icon: Sparkles },
+          { key: 'future' as MapZone, label: 'Território Desconhecido', icon: Sparkles },
         ].map((zone) => (
           <Button
             key={zone.key}
@@ -205,12 +205,12 @@ export default function MapaDaVidaPage() {
         ))}
       </div>
 
-      {/* ═══ TERRITORY: PAST (Territorio Conhecido) ═══ */}
+      {/* ═══ TERRITORY: PAST (Território Conhecido) ═══ */}
       {(activeZone === 'overview' || activeZone === 'past') && (
         <div className="space-y-6">
           <h3 className="text-xs font-mono uppercase tracking-widest text-[#8B9E7C] flex items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-[#8B9E7C]" />
-            Territorio Conhecido — Passado
+            Território Conhecido — Passado
           </h3>
 
           {/* Timeline as Map Markers */}
@@ -221,7 +221,7 @@ export default function MapaDaVidaPage() {
                 Marcadores no Mapa
               </CardTitle>
               <CardDescription>
-                Eventos plotados no territorio da sua historia
+                Eventos plotados no território da sua história
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -259,7 +259,7 @@ export default function MapaDaVidaPage() {
                                 {event.eventType === 'TRAUMA' && 'Bloqueio'}
                                 {event.eventType === 'LOSS' && 'Perda'}
                                 {event.eventType === 'MILESTONE' && 'Marco'}
-                                {event.eventType === 'EDUCATION' && 'Educacao'}
+                                {event.eventType === 'EDUCATION' && 'Educação'}
                                 {event.eventType === 'CAREER' && 'Carreira'}
                                 {event.eventType === 'HEALTH' && 'Debuff'}
                               </Badge>
@@ -288,7 +288,7 @@ export default function MapaDaVidaPage() {
                 <Users className="h-5 w-5 text-[#B8755C]" />
                 Companheiros de Jornada
               </CardTitle>
-              <CardDescription>NPCs que moldaram sua historia</CardDescription>
+              <CardDescription>NPCs que moldaram sua história</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -299,9 +299,9 @@ export default function MapaDaVidaPage() {
                         <h4 className="text-sm font-medium text-[#1A1A1E]">{relation.name}</h4>
                         <p className="text-[10px] font-mono text-[#8C8580]">
                           {relation.relationType === 'FATHER' && 'Pai'}
-                          {relation.relationType === 'MOTHER' && 'Mae'}
-                          {relation.relationType === 'SIBLING' && 'Irmao(a)'}
-                          {relation.relationType === 'SPOUSE' && 'Conjuge'}
+                          {relation.relationType === 'MOTHER' && 'Mãe'}
+                          {relation.relationType === 'SIBLING' && 'Irmão(a)'}
+                          {relation.relationType === 'SPOUSE' && 'Cônjuge'}
                           {relation.relationType === 'CHILD' && 'Filho(a)'}
                         </p>
                       </div>
@@ -340,11 +340,11 @@ export default function MapaDaVidaPage() {
                   <Heart className="h-5 w-5 text-red-500" />
                   Corpo (HP)
                 </CardTitle>
-                <CardDescription>Status fisico do avatar</CardDescription>
+                <CardDescription>Status físico do avatar</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
                 <AvatarStatusBar label="Sono" value={Math.round(bodyHealthData.sleepQuality * 10)} color="sage" icon={Clock} />
-                <AvatarStatusBar label="Energia Fisica" value={bodyHealthData.energyLevel * 10} color="copper" icon={Zap} />
+                <AvatarStatusBar label="Energia Física" value={bodyHealthData.energyLevel * 10} color="copper" icon={Zap} />
 
                 <div className="grid grid-cols-2 gap-3">
                   <div className="inventory-item">
@@ -358,7 +358,7 @@ export default function MapaDaVidaPage() {
                 </div>
 
                 <div className="inventory-item">
-                  <p className="text-[10px] font-mono text-[#8C8580]">Exercicios</p>
+                  <p className="text-[10px] font-mono text-[#8C8580]">Exercícios</p>
                   <p className="text-sm font-medium text-[#1A1A1E]">{bodyHealthData.exerciseFrequency}</p>
                 </div>
               </CardContent>
@@ -371,7 +371,7 @@ export default function MapaDaVidaPage() {
                   <Brain className="h-5 w-5 text-[#8B9E7C]" />
                   Mente (MP)
                 </CardTitle>
-                <CardDescription>Status mental e exposicao</CardDescription>
+                <CardDescription>Status mental e exposição</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
                 <AvatarStatusBar
@@ -413,20 +413,20 @@ export default function MapaDaVidaPage() {
           <div className="grid gap-4 lg:grid-cols-2">
             <InventoryPanel timeAvailable={68} energyQuality={55} />
             <GameplayPhase missions={[
-              { title: 'Respiracao 4-7-8', phase: 'morning' },
-              { title: 'Revisao de metas', phase: 'afternoon' },
+              { title: 'Respiração 4-7-8', phase: 'morning' },
+              { title: 'Revisão de metas', phase: 'afternoon' },
               { title: 'Journaling', phase: 'night' },
             ]} />
           </div>
         </div>
       )}
 
-      {/* ═══ TERRITORY: FUTURE (Territorio Desconhecido) ═══ */}
+      {/* ═══ TERRITORY: FUTURE (Território Desconhecido) ═══ */}
       {(activeZone === 'overview' || activeZone === 'future') && (
         <div className="space-y-6">
           <h3 className="text-xs font-mono uppercase tracking-widest text-[#DAA520] flex items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-[#DAA520] glow-beacon" />
-            Territorio Desconhecido — Fog of War
+            Território Desconhecido — Fog of War
           </h3>
 
           {/* Purpose as distant beacon */}
@@ -436,9 +436,9 @@ export default function MapaDaVidaPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Sparkles className="h-5 w-5 text-[#DAA520]" />
-                Proposito — Ponto B
+                Propósito — Ponto B
               </CardTitle>
-              <CardDescription>O farol no fim da nevoa</CardDescription>
+              <CardDescription>O farol no fim da névoa</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="rounded-lg bg-white/80 p-4 shadow-sm border border-[#DAA520]/20">
@@ -450,7 +450,7 @@ export default function MapaDaVidaPage() {
               {/* Dreams as constellations */}
               <div>
                 <p className="mb-2 text-[10px] font-mono uppercase tracking-wider text-[#8C8580]">
-                  Constelacoes (Sonhos)
+                  Constelações (Sonhos)
                 </p>
                 <div className="space-y-2">
                   {purposeData.dreams.map((dream, index) => (
@@ -477,7 +477,7 @@ export default function MapaDaVidaPage() {
                 <div>
                   <CardTitle className="flex items-center gap-2 text-lg">
                     <Target className="h-5 w-5 text-[#8B9E7C]" />
-                    Caminhos na Nevoa
+                    Caminhos na Névoa
                   </CardTitle>
                   <CardDescription>Projetos sendo explorados</CardDescription>
                 </div>
@@ -548,7 +548,7 @@ export default function MapaDaVidaPage() {
       </Dialog>
 
       {/* Editorial Quote */}
-      <EditorialQuote text="O mapa nao e o territorio, mas sem mapa nao ha jornada." />
+      <EditorialQuote text="O mapa não é o território, mas sem mapa não há jornada." />
     </div>
   )
 }

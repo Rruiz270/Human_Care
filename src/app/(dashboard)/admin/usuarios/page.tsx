@@ -47,7 +47,7 @@ const users = [
   },
   {
     id: '2',
-    name: 'Joao Santos',
+    name: 'João Santos',
     email: 'joao.santos@escola.com',
     role: 'PROFESSOR',
     isActive: true,
@@ -77,7 +77,7 @@ const users = [
   },
   {
     id: '5',
-    name: 'Patricia Lima',
+    name: 'Patrícia Lima',
     email: 'patricia.lima@escola.com',
     role: 'PROFESSOR',
     isActive: false,
@@ -140,7 +140,7 @@ export default function AdminUsuariosPage() {
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Gestao de Usuarios</h2>
+          <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Gestão de Usuários</h2>
           <p className="text-[#8C8580]">
             Administre professores e profissionais da plataforma
           </p>
@@ -149,14 +149,14 @@ export default function AdminUsuariosPage() {
           <DialogTrigger asChild>
             <Button>
               <Plus className="mr-2 h-4 w-4" />
-              Convidar Usuario
+              Convidar Usuário
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Convidar Novo Usuario</DialogTitle>
+              <DialogTitle>Convidar Novo Usuário</DialogTitle>
               <DialogDescription>
-                Envie um convite por email para um novo usuario
+                Envie um convite por email para um novo usuário
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4 py-4">
@@ -169,10 +169,10 @@ export default function AdminUsuariosPage() {
                 <Input type="email" placeholder="email@exemplo.com" />
               </div>
               <div className="space-y-2">
-                <Label>Funcao</Label>
+                <Label>Função</Label>
                 <Select>
                   <SelectTrigger>
-                    <SelectValue placeholder="Selecione a funcao" />
+                    <SelectValue placeholder="Selecione a função" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="PROFESSOR">Professor</SelectItem>
@@ -207,7 +207,7 @@ export default function AdminUsuariosPage() {
               </div>
               <div>
                 <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{stats.total}</p>
-                <p className="text-sm text-[#8C8580]">Total de usuarios</p>
+                <p className="text-sm text-[#8C8580]">Total de usuários</p>
               </div>
             </div>
           </CardContent>
@@ -218,7 +218,7 @@ export default function AdminUsuariosPage() {
               <IconBadge icon={UserCheck} variant="sage" />
               <div>
                 <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{stats.active}</p>
-                <p className="text-sm text-[#8C8580]">Usuarios ativos</p>
+                <p className="text-sm text-[#8C8580]">Usuários ativos</p>
               </div>
             </div>
           </CardContent>
@@ -264,10 +264,10 @@ export default function AdminUsuariosPage() {
             </div>
             <Select value={roleFilter} onValueChange={setRoleFilter}>
               <SelectTrigger className="w-full sm:w-48">
-                <SelectValue placeholder="Filtrar por funcao" />
+                <SelectValue placeholder="Filtrar por função" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Todas as funcoes</SelectItem>
+                <SelectItem value="all">Todas as funções</SelectItem>
                 <SelectItem value="PROFESSOR">Professores</SelectItem>
                 <SelectItem value="TERAPEUTA">Terapeutas</SelectItem>
                 <SelectItem value="COACH">Coaches</SelectItem>
@@ -282,7 +282,7 @@ export default function AdminUsuariosPage() {
       {/* Users List */}
       <Card>
         <CardHeader>
-          <CardTitle>Usuarios ({filteredUsers.length})</CardTitle>
+          <CardTitle>Usuários ({filteredUsers.length})</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -316,9 +316,9 @@ export default function AdminUsuariosPage() {
                         <RoleIcon className="mr-1 h-3 w-3" />
                         {translations.userRole[user.role as keyof typeof translations.userRole]}
                       </Badge>
-                      <span>{user.sessionsCount} sessoes</span>
+                      <span>{user.sessionsCount} sessões</span>
                       <span>
-                        Ultima atividade:{' '}
+                        Última atividade:{' '}
                         {user.lastActive.toLocaleDateString('pt-BR')}
                       </span>
                     </div>
@@ -346,7 +346,7 @@ export default function AdminUsuariosPage() {
             {filteredUsers.length === 0 && (
               <div className="py-8 text-center">
                 <Users className="mx-auto h-12 w-12 text-[#8C8580]/50" />
-                <p className="mt-4 text-[#8C8580]">Nenhum usuario encontrado</p>
+                <p className="mt-4 text-[#8C8580]">Nenhum usuário encontrado</p>
               </div>
             )}
           </div>
@@ -357,9 +357,9 @@ export default function AdminUsuariosPage() {
       <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Editar Usuario</DialogTitle>
+            <DialogTitle>Editar Usuário</DialogTitle>
             <DialogDescription>
-              Altere as informacoes do usuario
+              Altere as informações do usuário
             </DialogDescription>
           </DialogHeader>
           {selectedUser && (
@@ -373,7 +373,7 @@ export default function AdminUsuariosPage() {
                 <Input type="email" defaultValue={selectedUser.email} />
               </div>
               <div className="space-y-2">
-                <Label>Funcao</Label>
+                <Label>Função</Label>
                 <Select defaultValue={selectedUser.role}>
                   <SelectTrigger>
                     <SelectValue />
@@ -406,7 +406,7 @@ export default function AdminUsuariosPage() {
               Cancelar
             </Button>
             <Button onClick={() => setShowEditDialog(false)}>
-              Salvar Alteracoes
+              Salvar Alterações
             </Button>
           </div>
         </DialogContent>

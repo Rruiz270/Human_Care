@@ -29,9 +29,9 @@ export default function ConfiguracoesPage() {
     <div className="space-y-8 animate-fade-in">
       {/* Header */}
       <div>
-        <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Configuracoes</h2>
+        <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Configurações</h2>
         <p className="text-[#8C8580]">
-          Gerencie suas preferencias e informacoes pessoais
+          Gerencie suas preferências e informações pessoais
         </p>
       </div>
 
@@ -43,7 +43,7 @@ export default function ConfiguracoesPage() {
           </TabsTrigger>
           <TabsTrigger value="notificacoes" className="flex items-center gap-2">
             <Bell className="h-4 w-4" />
-            Notificacoes
+            Notificações
           </TabsTrigger>
           <TabsTrigger value="privacidade" className="flex items-center gap-2">
             <Shield className="h-4 w-4" />
@@ -55,9 +55,9 @@ export default function ConfiguracoesPage() {
         <TabsContent value="perfil" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Informacoes Pessoais</CardTitle>
+              <CardTitle>Informações Pessoais</CardTitle>
               <CardDescription>
-                Atualize suas informacoes de perfil
+                Atualize suas informações de perfil
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -95,7 +95,7 @@ export default function ConfiguracoesPage() {
                   <Input id="phone" defaultValue={currentUser?.phone || ''} />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="role">Funcao</Label>
+                  <Label htmlFor="role">Função</Label>
                   <Input
                     id="role"
                     value={
@@ -112,14 +112,14 @@ export default function ConfiguracoesPage() {
                 <Label htmlFor="bio">Sobre mim</Label>
                 <Textarea
                   id="bio"
-                  placeholder="Conte um pouco sobre voce..."
+                  placeholder="Conte um pouco sobre você..."
                   className="min-h-[100px]"
                 />
               </div>
 
               <Button>
                 <Save className="mr-2 h-4 w-4" />
-                Salvar Alteracoes
+                Salvar Alterações
               </Button>
             </CardContent>
           </Card>
@@ -158,17 +158,17 @@ export default function ConfiguracoesPage() {
         <TabsContent value="notificacoes" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Preferencias de Notificacao</CardTitle>
+              <CardTitle>Preferências de Notificação</CardTitle>
               <CardDescription>
-                Escolha como deseja receber notificacoes
+                Escolha como deseja receber notificações
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-[#1A1A1E]">Lembretes de Sessao</p>
+                  <p className="font-medium text-[#1A1A1E]">Lembretes de Sessão</p>
                   <p className="text-sm text-[#8C8580]">
-                    Receber lembretes antes das sessoes agendadas
+                    Receber lembretes antes das sessões agendadas
                   </p>
                 </div>
                 <Switch defaultChecked />
@@ -176,9 +176,9 @@ export default function ConfiguracoesPage() {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-[#1A1A1E]">Missoes Pendentes</p>
+                  <p className="font-medium text-[#1A1A1E]">Missões Pendentes</p>
                   <p className="text-sm text-[#8C8580]">
-                    Notificacoes sobre missoes proximas do prazo
+                    Notificações sobre missões próximas do prazo
                   </p>
                 </div>
                 <Switch defaultChecked />
@@ -188,7 +188,7 @@ export default function ConfiguracoesPage() {
                 <div>
                   <p className="font-medium text-[#1A1A1E]">Insights da IA</p>
                   <p className="text-sm text-[#8C8580]">
-                    Receber insights e analises personalizadas
+                    Receber insights e análises personalizadas
                   </p>
                 </div>
                 <Switch defaultChecked />
@@ -196,7 +196,7 @@ export default function ConfiguracoesPage() {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-[#1A1A1E]">Lembrete Diario</p>
+                  <p className="font-medium text-[#1A1A1E]">Lembrete Diário</p>
                   <p className="text-sm text-[#8C8580]">
                     Lembrete para registro de pensamentos e sentimentos
                   </p>
@@ -208,7 +208,7 @@ export default function ConfiguracoesPage() {
                 <div>
                   <p className="font-medium text-[#1A1A1E]">Emails de Marketing</p>
                   <p className="text-sm text-[#8C8580]">
-                    Novidades e atualizacoes da plataforma
+                    Novidades e atualizações da plataforma
                   </p>
                 </div>
                 <Switch />
@@ -221,9 +221,9 @@ export default function ConfiguracoesPage() {
         <TabsContent value="privacidade" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Seguranca dos Dados</CardTitle>
+              <CardTitle>Segurança dos Dados</CardTitle>
               <CardDescription>
-                Informacoes sobre como protegemos seus dados
+                Informações sobre como protegemos seus dados
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -235,7 +235,7 @@ export default function ConfiguracoesPage() {
                       Criptografia AES-256
                     </p>
                     <p className="text-sm text-[#8C8580]">
-                      Todos os seus dados sao criptografados em repouso e em transito
+                      Todos os seus dados são criptografados em repouso e em transito
                     </p>
                   </div>
                 </div>
@@ -261,7 +261,7 @@ export default function ConfiguracoesPage() {
             <CardHeader>
               <CardTitle>Compartilhamento de Dados</CardTitle>
               <CardDescription>
-                Controle quem pode ver suas informacoes
+                Controle quem pode ver suas informações
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -289,7 +289,7 @@ export default function ConfiguracoesPage() {
                 <div>
                   <p className="font-medium text-[#1A1A1E]">Time de Cuidado</p>
                   <p className="text-sm text-[#8C8580]">
-                    Permitir acesso ao acompanhamento diario
+                    Permitir acesso ao acompanhamento diário
                   </p>
                 </div>
                 <Switch defaultChecked />
@@ -297,9 +297,9 @@ export default function ConfiguracoesPage() {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-[#1A1A1E]">Analise Anonimizada</p>
+                  <p className="font-medium text-[#1A1A1E]">Análise Anonimizada</p>
                   <p className="text-sm text-[#8C8580]">
-                    Contribuir para pesquisas de forma anonima
+                    Contribuir para pesquisas de forma anônima
                   </p>
                 </div>
                 <Switch />
@@ -311,15 +311,15 @@ export default function ConfiguracoesPage() {
             <CardHeader>
               <CardTitle>Exportar Dados</CardTitle>
               <CardDescription>
-                Baixe uma copia de todos os seus dados
+                Baixe uma cópia de todos os seus dados
               </CardDescription>
             </CardHeader>
             <CardContent>
               <Button variant="outline">
-                Solicitar Exportacao
+                Solicitar Exportação
               </Button>
               <p className="mt-2 text-sm text-[#8C8580]">
-                Voce recebera um email com o link para download em ate 48 horas
+                Você receberá um email com o link para download em ate 48 horas
               </p>
             </CardContent>
           </Card>
@@ -328,7 +328,7 @@ export default function ConfiguracoesPage() {
             <CardHeader>
               <CardTitle className="text-red-600">Zona de Perigo</CardTitle>
               <CardDescription>
-                Acoes irreversiveis
+                Ações irreversíveis
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -336,7 +336,7 @@ export default function ConfiguracoesPage() {
                 Excluir Minha Conta
               </Button>
               <p className="mt-2 text-sm text-[#8C8580]">
-                Esta acao excluira permanentemente todos os seus dados
+                Esta ação excluirá permanentemente todos os seus dados
               </p>
             </CardContent>
           </Card>

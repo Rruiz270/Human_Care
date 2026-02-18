@@ -24,18 +24,22 @@ import {
   Video,
   Heart,
   BookOpen,
+  ListTodo,
+  FolderKanban,
 } from 'lucide-react'
 import { useState } from 'react'
 
 const navigation = [
-  { name: 'Quartel General', href: '/', icon: LayoutDashboard },
+  { name: 'Player', href: '/', icon: LayoutDashboard },
   { name: 'Mapa do Mundo', href: '/mapa-da-vida', icon: Compass },
-  { name: 'Biblioteca', href: '/conteudo', icon: Video },
-  { name: 'Calendário', href: '/agenda', icon: Calendar },
+  { name: 'Rotina', href: '/rotina', icon: Calendar },
+  { name: 'Atividades', href: '/atividades', icon: ListTodo },
+  { name: 'Projetos', href: '/projetos', icon: FolderKanban },
   { name: 'Encontros', href: '/sessoes', icon: Heart },
   { name: 'Missões', href: '/missoes', icon: Target },
   { name: 'O Oráculo', href: '/chat-ai', icon: MessageSquare },
   { name: 'Status do Avatar', href: '/metricas', icon: BarChart3 },
+  { name: 'Biblioteca', href: '/conteudo', icon: Video },
 ]
 
 const adminNavigation = [

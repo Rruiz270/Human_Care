@@ -9,9 +9,11 @@ import { useUserStore } from '@/store/user-store'
 import { getInitials } from '@/lib/utils'
 
 const pageTitles: Record<string, string> = {
-  '/': 'Quartel General',
+  '/': 'Player',
   '/mapa-da-vida': 'Mapa do Mundo',
-  '/agenda': 'Calendário',
+  '/rotina': 'Rotina',
+  '/atividades': 'Atividades',
+  '/projetos': 'Projetos',
   '/sessoes': 'Encontros',
   '/missoes': 'Missões',
   '/chat-ai': 'O Oráculo',

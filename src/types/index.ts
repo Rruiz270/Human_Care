@@ -348,6 +348,94 @@ export interface CareMetrics {
   createdAt: Date
 }
 
+// ═══ NEW FEATURE TYPES ═══
+
+// Time Block for routine structure
+export interface TimeBlock {
+  id: string
+  dayOfWeek: number // 0=Sun, 1=Mon, ..., 6=Sat
+  startTime: string // "HH:mm"
+  endTime: string // "HH:mm"
+  label: string
+  category: 'morning_routine' | 'focused_work' | 'therapy' | 'coaching' | 'project_time' | 'exercise' | 'meals' | 'free_time' | 'rest' | 'study'
+  color: string
+  activityId?: string | null
+}
+
+export interface RoutineStructure {
+  id: string
+  activeDays: number[] // [1,2,3,4,5] = Mon-Fri
+  wakeUpTime: string // "06:30"
+  bedTime: string // "22:30"
+  timeBlocks: TimeBlock[]
+  version: number
+}
+
+// Activity types
+export type ActivityStatus = 'PENDING' | 'IN_PROGRESS' | 'COMPLETED' | 'OVERDUE' | 'BLOCKED'
+export type ActivitySource = 'project' | 'routine' | 'therapy' | 'coaching' | 'free' | 'manual'
+
+export interface Activity {
+  id: string
+  title: string
+  description?: string | null
+  status: ActivityStatus
+  source: ActivitySource
+  priority: 'low' | 'medium' | 'high' | 'urgent'
+  projectId?: string | null
+  timeBlockId?: string | null
+  missionId?: string | null
+  scheduledDate?: Date | null
+  dueDate?: Date | null
+  estimatedMinutes?: number | null
+  dependsOn: string[]
+  tags: string[]
+  completedAt?: Date | null
+  createdAt: Date
+}
+
+// Enhanced Project types
+export interface ProjectMilestone {
+  id: string
+  projectId: string
+  title: string
+  dueDate?: Date | null
+  isCompleted: boolean
+}
+
+export interface ProjectEnhanced extends Project {
+  scope: 'personal' | 'professional'
+  activities: Activity[]
+  milestones: ProjectMilestone[]
+  linkedMissionIds: string[]
+  weeklyTimeInvested: number // minutes
+  tags: string[]
+}
+
+// Feelings & Thoughts (Status do Avatar expansion)
+export interface FeelingEntry {
+  id: string
+  feeling: string
+  intensity: number // 1-5
+  trigger?: string | null
+  linkedEventId?: string | null
+  bodyLocation?: string | null
+  notes?: string | null
+  timestamp: Date
+}
+
+export type ThoughtCategory = 'automatic' | 'reflective' | 'limiting' | 'empowering'
+
+export interface ThoughtEntry {
+  id: string
+  thought: string
+  category: ThoughtCategory
+  linkedFeelingId?: string | null
+  challengeResponse?: string | null
+  notes?: string | null
+  timestamp: Date
+}
+
 // API Response types
 export interface ApiResponse<T> {
   success: boolean

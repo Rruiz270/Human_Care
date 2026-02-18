@@ -16,8 +16,15 @@ import {
   User,
   MapPin,
   Target,
+  FolderKanban,
+  ListTodo,
+  CheckCircle2,
+  Circle,
+  AlertCircle,
+  Link2,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import type { TimeBlock, Activity, FeelingEntry, ThoughtEntry, ProjectEnhanced } from '@/types'
 
 /* ───────────────────────────────────────────────
    1. AvatarStatusBar
@@ -738,6 +745,483 @@ export function CarePartyDiagram() {
         <line x1="100" y1="122" x2="100" y2="148" stroke="#8B9E7C" strokeWidth="1" />
         <line x1="78" y1="100" x2="52" y2="100" stroke="#DAA520" strokeWidth="1" />
       </svg>
+    </div>
+  )
+}
+
+/* ───────────────────────────────────────────────
+   11. TimeBlockCard
+   Colored time block with category, time range, linked activity
+   ─────────────────────────────────────────────── */
+export function TimeBlockCard({
+  block,
+  isActive = false,
+  linkedActivity,
+  onClick,
+}: {
+  block: TimeBlock
+  isActive?: boolean
+  linkedActivity?: string
+  onClick?: () => void
+}) {
+  const categoryLabels: Record<string, string> = {
+    morning_routine: 'Rotina Matinal',
+    focused_work: 'Trabalho Focado',
+    therapy: 'Terapia',
+    coaching: 'Coaching',
+    project_time: 'Tempo de Projeto',
+    exercise: 'Exercício',
+    meals: 'Refeição',
+    free_time: 'Tempo Livre',
+    rest: 'Descanso',
+    study: 'Estudo',
+  }
+
+  return (
+    <div
+      onClick={onClick}
+      className={`rounded-md border p-3 cursor-pointer transition-all ${
+        isActive
+          ? 'border-[#B8755C] bg-[#B8755C]/10 shadow-sm ring-1 ring-[#B8755C]/30'
+          : 'border-[#B8755C]/15 bg-white hover:border-[#B8755C]/30'
+      }`}
+    >
+      <div className="flex items-center gap-3">
+        <div
+          className="h-10 w-1.5 rounded-full"
+          style={{ backgroundColor: block.color }}
+        />
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center justify-between">
+            <p className="text-sm font-semibold text-[#1A1A1E] truncate">{block.label}</p>
+            {isActive && (
+              <span className="ml-2 inline-block h-2 w-2 rounded-full bg-[#B8755C] animate-pulse" />
+            )}
+          </div>
+          <div className="flex items-center gap-2 mt-0.5">
+            <span className="text-[10px] font-mono text-[#8C8580]">
+              {block.startTime} - {block.endTime}
+            </span>
+            <span
+              className="text-[9px] font-mono px-1.5 py-0.5 rounded-sm"
+              style={{ backgroundColor: `${block.color}20`, color: block.color }}
+            >
+              {categoryLabels[block.category] || block.category}
+            </span>
+          </div>
+          {linkedActivity && (
+            <p className="mt-1 text-[10px] text-[#8C8580] flex items-center gap-1">
+              <Link2 className="h-3 w-3" />
+              {linkedActivity}
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ───────────────────────────────────────────────
+   12. ActivityCard
+   Activity with source badge, priority indicator, status, project link
+   ─────────────────────────────────────────────── */
+export function ActivityCard({
+  activity,
+  projectName,
+  timeBlockLabel,
+  dependencyName,
+  onStart,
+  onComplete,
+  onClick,
+}: {
+  activity: Activity
+  projectName?: string
+  timeBlockLabel?: string
+  dependencyName?: string
+  onStart?: () => void
+  onComplete?: () => void
+  onClick?: () => void
+}) {
+  const sourceConfig: Record<string, { label: string; color: string; bg: string }> = {
+    project: { label: 'Projeto', color: 'text-[#B8755C]', bg: 'bg-[#B8755C]/10' },
+    routine: { label: 'Rotina', color: 'text-[#8B9E7C]', bg: 'bg-[#8B9E7C]/10' },
+    therapy: { label: 'Terapia', color: 'text-purple-600', bg: 'bg-purple-600/10' },
+    coaching: { label: 'Coaching', color: 'text-[#DAA520]', bg: 'bg-[#DAA520]/10' },
+    free: { label: 'Tempo Livre', color: 'text-sky-600', bg: 'bg-sky-600/10' },
+    manual: { label: 'Manual', color: 'text-[#8C8580]', bg: 'bg-[#8C8580]/10' },
+  }
+
+  const priorityColors: Record<string, string> = {
+    low: '#8B9E7C',
+    medium: '#DAA520',
+    high: '#B8755C',
+    urgent: '#DC143C',
+  }
+
+  const statusConfig: Record<string, { label: string; icon: typeof CheckCircle2; color: string }> = {
+    PENDING: { label: 'Pendente', icon: Circle, color: 'text-[#8C8580]' },
+    IN_PROGRESS: { label: 'Em Andamento', icon: Clock, color: 'text-[#B8755C]' },
+    COMPLETED: { label: 'Concluída', icon: CheckCircle2, color: 'text-[#8B9E7C]' },
+    OVERDUE: { label: 'Atrasada', icon: AlertCircle, color: 'text-[#DC143C]' },
+    BLOCKED: { label: 'Bloqueada', icon: Shield, color: 'text-[#8C8580]' },
+  }
+
+  const src = sourceConfig[activity.source] || sourceConfig.manual
+  const st = statusConfig[activity.status] || statusConfig.PENDING
+  const StatusIcon = st.icon
+
+  return (
+    <div
+      onClick={onClick}
+      className={`rounded-lg border bg-white p-4 transition-all cursor-pointer hover:shadow-sm ${
+        activity.status === 'COMPLETED' ? 'opacity-60' : ''
+      }`}
+      style={{ borderLeftColor: priorityColors[activity.priority], borderLeftWidth: '3px' }}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className={`inline-flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-[10px] font-mono ${src.bg} ${src.color}`}>
+              {src.label}
+            </span>
+            <span className={`inline-flex items-center gap-1 text-[10px] font-mono ${st.color}`}>
+              <StatusIcon className="h-3 w-3" />
+              {st.label}
+            </span>
+          </div>
+          <h4 className={`mt-1.5 text-sm font-semibold ${
+            activity.status === 'COMPLETED' ? 'text-[#8C8580] line-through' : 'text-[#1A1A1E]'
+          }`}>
+            {activity.title}
+          </h4>
+          {activity.description && (
+            <p className="mt-0.5 text-xs text-[#8C8580] line-clamp-2">{activity.description}</p>
+          )}
+          <div className="mt-2 flex flex-wrap items-center gap-2">
+            {projectName && (
+              <span className="text-[10px] font-mono text-[#B8755C] bg-[#B8755C]/5 px-1.5 py-0.5 rounded-sm flex items-center gap-1">
+                <FolderKanban className="h-3 w-3" />
+                {projectName}
+              </span>
+            )}
+            {timeBlockLabel && (
+              <span className="text-[10px] font-mono text-[#8B9E7C] bg-[#8B9E7C]/5 px-1.5 py-0.5 rounded-sm flex items-center gap-1">
+                <Clock className="h-3 w-3" />
+                {timeBlockLabel}
+              </span>
+            )}
+            {activity.dueDate && (
+              <span className="text-[10px] font-mono text-[#8C8580]">
+                Prazo: {new Date(activity.dueDate).toLocaleDateString('pt-BR', { day: 'numeric', month: 'short' })}
+              </span>
+            )}
+            {activity.estimatedMinutes && (
+              <span className="text-[10px] font-mono text-[#8C8580]">
+                ~{activity.estimatedMinutes}min
+              </span>
+            )}
+          </div>
+          {dependencyName && (
+            <p className="mt-1.5 text-[10px] font-mono text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded-sm inline-block">
+              Depende de: {dependencyName}
+            </p>
+          )}
+        </div>
+        {activity.status !== 'COMPLETED' && activity.status !== 'BLOCKED' && (
+          <div className="flex flex-col gap-1.5">
+            {activity.status === 'PENDING' && onStart && (
+              <button
+                onClick={(e) => { e.stopPropagation(); onStart() }}
+                className="rounded-sm border border-[#B8755C]/30 bg-[#B8755C]/5 px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-[#B8755C] hover:bg-[#B8755C]/10"
+              >
+                Iniciar
+              </button>
+            )}
+            {onComplete && (
+              <button
+                onClick={(e) => { e.stopPropagation(); onComplete() }}
+                className="rounded-sm border border-[#8B9E7C]/30 bg-[#8B9E7C]/5 px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-[#8B9E7C] hover:bg-[#8B9E7C]/10"
+              >
+                Concluir
+              </button>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+/* ───────────────────────────────────────────────
+   13. ProjectCard
+   Project overview with progress ring SVG, milestones, time invested
+   ─────────────────────────────────────────────── */
+export function ProjectCard({
+  project,
+  onClick,
+}: {
+  project: ProjectEnhanced
+  onClick?: () => void
+}) {
+  const statusColors: Record<string, { label: string; color: string; bg: string }> = {
+    PLANNING: { label: 'Planejamento', color: 'text-sky-600', bg: 'bg-sky-600/10' },
+    IN_PROGRESS: { label: 'Em Andamento', color: 'text-[#B8755C]', bg: 'bg-[#B8755C]/10' },
+    ON_HOLD: { label: 'Pausado', color: 'text-amber-600', bg: 'bg-amber-600/10' },
+    COMPLETED: { label: 'Concluído', color: 'text-[#8B9E7C]', bg: 'bg-[#8B9E7C]/10' },
+    CANCELLED: { label: 'Cancelado', color: 'text-[#8C8580]', bg: 'bg-[#8C8580]/10' },
+  }
+
+  const scopeConfig: Record<string, { label: string; color: string }> = {
+    personal: { label: 'Pessoal', color: 'text-purple-600 bg-purple-600/10' },
+    professional: { label: 'Profissional', color: 'text-[#B8755C] bg-[#B8755C]/10' },
+  }
+
+  const st = statusColors[project.status] || statusColors.PLANNING
+  const sc = scopeConfig[project.scope] || scopeConfig.personal
+  const completedMilestones = project.milestones.filter(m => m.isCompleted).length
+  const circumference = 2 * Math.PI * 28
+  const dashOffset = circumference - (project.progress / 100) * circumference
+
+  return (
+    <div
+      onClick={onClick}
+      className="rounded-lg border border-[#B8755C]/15 bg-white p-4 cursor-pointer transition-all hover:shadow-md hover:border-[#B8755C]/30"
+    >
+      <div className="flex items-start gap-4">
+        {/* Progress Ring */}
+        <div className="relative flex-shrink-0">
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="28" fill="none" stroke="#F5F0EB" strokeWidth="4" />
+            <circle
+              cx="32" cy="32" r="28" fill="none"
+              stroke="#B8755C" strokeWidth="4" strokeLinecap="round"
+              strokeDasharray={circumference}
+              strokeDashoffset={dashOffset}
+              transform="rotate(-90 32 32)"
+            />
+          </svg>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-sm font-mono font-bold text-[#1A1A1E]">{project.progress}%</span>
+          </div>
+        </div>
+
+        <div className="flex-1 min-w-0">
+          <h4 className="text-sm font-semibold text-[#1A1A1E] truncate">{project.title}</h4>
+          <div className="mt-1 flex flex-wrap items-center gap-1.5">
+            {project.category && (
+              <span className="text-[9px] font-mono px-1.5 py-0.5 rounded-sm bg-[#8C8580]/10 text-[#8C8580]">
+                {project.category}
+              </span>
+            )}
+            <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded-sm ${sc.color}`}>
+              {sc.label}
+            </span>
+            <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded-sm ${st.bg} ${st.color}`}>
+              {st.label}
+            </span>
+          </div>
+          <div className="mt-2 flex items-center gap-3 text-[10px] font-mono text-[#8C8580]">
+            <span>{completedMilestones}/{project.milestones.length} marcos</span>
+            <span>{Math.round(project.weeklyTimeInvested / 60)}h esta semana</span>
+          </div>
+          {project.targetDate && (
+            <p className="mt-1 text-[10px] font-mono text-[#8C8580]">
+              Meta: {new Date(project.targetDate).toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' })}
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ───────────────────────────────────────────────
+   14. FeelingBubble
+   Circular feeling indicator with intensity ring (1-5 color gradient)
+   ─────────────────────────────────────────────── */
+export function FeelingBubble({
+  entry,
+  onClick,
+}: {
+  entry: FeelingEntry
+  onClick?: () => void
+}) {
+  const intensityColors = ['#8B9E7C', '#8B9E7C', '#DAA520', '#B8755C', '#DC143C']
+  const color = intensityColors[Math.min(entry.intensity - 1, 4)]
+  const circumference = 2 * Math.PI * 24
+  const dashOffset = circumference - (entry.intensity / 5) * circumference
+
+  return (
+    <div
+      onClick={onClick}
+      className="flex items-center gap-3 rounded-lg border border-[#B8755C]/15 bg-white p-3 cursor-pointer hover:shadow-sm transition-all"
+    >
+      <div className="relative flex-shrink-0">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="24" fill="none" stroke="#F5F0EB" strokeWidth="3" />
+          <circle
+            cx="28" cy="28" r="24" fill="none"
+            stroke={color} strokeWidth="3" strokeLinecap="round"
+            strokeDasharray={circumference}
+            strokeDashoffset={dashOffset}
+            transform="rotate(-90 28 28)"
+          />
+        </svg>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="text-xs font-mono font-bold" style={{ color }}>{entry.intensity}</span>
+        </div>
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-semibold text-[#1A1A1E]">{entry.feeling}</p>
+        {entry.trigger && (
+          <p className="text-[10px] text-[#8C8580] mt-0.5 truncate">Gatilho: {entry.trigger}</p>
+        )}
+        {entry.bodyLocation && (
+          <p className="text-[10px] text-[#8C8580] truncate">Corpo: {entry.bodyLocation}</p>
+        )}
+        <p className="text-[10px] font-mono text-[#8C8580] mt-0.5">
+          {new Date(entry.timestamp).toLocaleString('pt-BR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+/* ───────────────────────────────────────────────
+   15. ThoughtCard
+   Journal-entry styled card for thought records
+   ─────────────────────────────────────────────── */
+export function ThoughtCard({
+  entry,
+  linkedFeeling,
+  onClick,
+}: {
+  entry: ThoughtEntry
+  linkedFeeling?: string
+  onClick?: () => void
+}) {
+  const categoryConfig: Record<string, { label: string; color: string; bg: string }> = {
+    automatic: { label: 'Automático', color: 'text-amber-600', bg: 'bg-amber-600/10' },
+    reflective: { label: 'Reflexivo', color: 'text-[#8B9E7C]', bg: 'bg-[#8B9E7C]/10' },
+    limiting: { label: 'Limitante', color: 'text-[#DC143C]', bg: 'bg-[#DC143C]/10' },
+    empowering: { label: 'Fortalecedor', color: 'text-[#DAA520]', bg: 'bg-[#DAA520]/10' },
+  }
+
+  const cat = categoryConfig[entry.category] || categoryConfig.automatic
+
+  return (
+    <div
+      onClick={onClick}
+      className="rounded-lg border border-[#B8755C]/15 bg-white p-4 cursor-pointer hover:shadow-sm transition-all"
+    >
+      <div className="flex items-start justify-between gap-2 mb-2">
+        <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded-sm ${cat.bg} ${cat.color}`}>
+          {cat.label}
+        </span>
+        <span className="text-[10px] font-mono text-[#8C8580]">
+          {new Date(entry.timestamp).toLocaleString('pt-BR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
+        </span>
+      </div>
+      <p className="text-sm text-[#1A1A1E] italic" style={{ fontFamily: "'Playfair Display', serif" }}>
+        &ldquo;{entry.thought}&rdquo;
+      </p>
+      {linkedFeeling && (
+        <p className="mt-2 text-[10px] font-mono text-purple-600 bg-purple-600/5 px-1.5 py-0.5 rounded-sm inline-block">
+          Sentimento: {linkedFeeling}
+        </p>
+      )}
+      {entry.challengeResponse && (
+        <div className="mt-2 rounded-md border border-[#8B9E7C]/20 bg-[#8B9E7C]/5 p-2">
+          <p className="text-[10px] font-mono uppercase tracking-wider text-[#8B9E7C] mb-0.5">Desafio / Resposta</p>
+          <p className="text-xs text-[#1A1A1E]">{entry.challengeResponse}</p>
+        </div>
+      )}
+    </div>
+  )
+}
+
+/* ───────────────────────────────────────────────
+   16. RoutineTimeline
+   Vertical timeline of today's time blocks with current time indicator
+   ─────────────────────────────────────────────── */
+export function RoutineTimeline({
+  blocks,
+  wakeUpTime = '06:30',
+  bedTime = '22:30',
+  onBlockClick,
+}: {
+  blocks: TimeBlock[]
+  wakeUpTime?: string
+  bedTime?: string
+  onBlockClick?: (block: TimeBlock) => void
+}) {
+  const timeToMinutes = (time: string) => {
+    const [h, m] = time.split(':').map(Number)
+    return h * 60 + m
+  }
+
+  const wakeMin = timeToMinutes(wakeUpTime)
+  const bedMin = timeToMinutes(bedTime)
+  const totalMin = bedMin - wakeMin
+
+  const now = new Date()
+  const currentMin = now.getHours() * 60 + now.getMinutes()
+  const currentPct = Math.max(0, Math.min(100, ((currentMin - wakeMin) / totalMin) * 100))
+  const isWithinDay = currentMin >= wakeMin && currentMin <= bedMin
+
+  const sortedBlocks = [...blocks].sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime))
+
+  return (
+    <div className="relative">
+      {/* Time labels */}
+      <div className="flex justify-between text-[10px] font-mono text-[#8C8580] mb-2">
+        <span>{wakeUpTime}</span>
+        <span>{bedTime}</span>
+      </div>
+
+      {/* Timeline track */}
+      <div className="relative h-auto min-h-[300px] border-l-2 border-[#B8755C]/20 ml-3">
+        {/* Current time indicator */}
+        {isWithinDay && (
+          <div
+            className="absolute -left-[5px] z-10 flex items-center"
+            style={{ top: `${currentPct}%` }}
+          >
+            <div className="h-2 w-2 rounded-full bg-[#DC143C] animate-pulse" />
+            <div className="ml-1 h-[1px] w-full bg-[#DC143C]/40" />
+          </div>
+        )}
+
+        {/* Blocks */}
+        <div className="space-y-1 pl-5 py-2">
+          {sortedBlocks.map((block) => {
+            const blockStart = timeToMinutes(block.startTime)
+            const isCurrent = isWithinDay && currentMin >= blockStart && currentMin < timeToMinutes(block.endTime)
+            return (
+              <div
+                key={block.id}
+                onClick={() => onBlockClick?.(block)}
+                className={`rounded-md border p-2.5 cursor-pointer transition-all ${
+                  isCurrent
+                    ? 'border-[#B8755C] bg-[#B8755C]/10 shadow-sm'
+                    : 'border-[#B8755C]/10 hover:border-[#B8755C]/25'
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="h-6 w-1 rounded-full" style={{ backgroundColor: block.color }} />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-semibold text-[#1A1A1E] truncate">{block.label}</p>
+                    <p className="text-[10px] font-mono text-[#8C8580]">{block.startTime} - {block.endTime}</p>
+                  </div>
+                  {isCurrent && (
+                    <span className="h-2 w-2 rounded-full bg-[#B8755C] animate-pulse flex-shrink-0" />
+                  )}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
     </div>
   )
 }

@@ -5,17 +5,17 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import {
   LayoutDashboard,
-  Compass,
   Calendar,
+  ListTodo,
+  FolderKanban,
   MessageSquare,
-  Target,
 } from 'lucide-react'
 
 const navigation = [
-  { name: 'QG', href: '/', icon: LayoutDashboard },
-  { name: 'Mapa', href: '/mapa-da-vida', icon: Compass },
-  { name: 'Agenda', href: '/agenda', icon: Calendar },
-  { name: 'Missões', href: '/missoes', icon: Target },
+  { name: 'Player', href: '/', icon: LayoutDashboard },
+  { name: 'Rotina', href: '/rotina', icon: Calendar },
+  { name: 'Atividades', href: '/atividades', icon: ListTodo },
+  { name: 'Projetos', href: '/projetos', icon: FolderKanban },
   { name: 'Oráculo', href: '/chat-ai', icon: MessageSquare },
 ]
 

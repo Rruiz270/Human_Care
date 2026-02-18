@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Progress } from '@/components/ui/progress'
 import {
   Dialog,
@@ -23,74 +22,32 @@ import {
   Heart,
   Brain,
   Users,
-  Home,
   Target,
   Star,
   AlertCircle,
   Plus,
-  ChevronRight,
   Sparkles,
-  TrendingUp,
+  MapPin,
+  Shield,
+  Zap,
+  Eye,
 } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
-import { LifeMapDiagram, FlowingLines, EditorialQuote, IconBadge, SectionDivider } from '@/components/ui/decorative-elements'
+import { EditorialQuote } from '@/components/ui/decorative-elements'
+import {
+  AvatarStatusBar,
+  InventoryPanel,
+  GameplayPhase,
+  TopographicMap,
+} from '@/components/ui/rpg-components'
 
 // Demo data for timeline
 const timelineEvents = [
-  {
-    id: '1',
-    title: 'Nascimento',
-    eventType: 'MILESTONE',
-    ageAtEvent: 0,
-    isPositive: true,
-    impact: 10,
-    description: 'Nasceu em Sao Paulo',
-  },
-  {
-    id: '2',
-    title: 'Inicio da escola',
-    eventType: 'EDUCATION',
-    ageAtEvent: 6,
-    isPositive: true,
-    impact: 7,
-    description: 'Primeiro dia na escola primaria',
-  },
-  {
-    id: '3',
-    title: 'Perda do avo',
-    eventType: 'LOSS',
-    ageAtEvent: 12,
-    isPositive: false,
-    impact: 8,
-    description: 'Falecimento do avo paterno',
-  },
-  {
-    id: '4',
-    title: 'Formatura pedagogia',
-    eventType: 'ACHIEVEMENT',
-    ageAtEvent: 23,
-    isPositive: true,
-    impact: 9,
-    description: 'Conclusao da graduacao em Pedagogia',
-  },
-  {
-    id: '5',
-    title: 'Primeiro emprego como professor',
-    eventType: 'CAREER',
-    ageAtEvent: 24,
-    isPositive: true,
-    impact: 8,
-    description: 'Inicio da carreira docente',
-  },
-  {
-    id: '6',
-    title: 'Burnout',
-    eventType: 'HEALTH',
-    ageAtEvent: 30,
-    isPositive: false,
-    impact: 7,
-    description: 'Episodio de esgotamento profissional',
-  },
+  { id: '1', title: 'Nascimento', eventType: 'MILESTONE', ageAtEvent: 0, isPositive: true, impact: 10, description: 'Nasceu em Sao Paulo' },
+  { id: '2', title: 'Inicio da escola', eventType: 'EDUCATION', ageAtEvent: 6, isPositive: true, impact: 7, description: 'Primeiro dia na escola primaria' },
+  { id: '3', title: 'Perda do avo', eventType: 'LOSS', ageAtEvent: 12, isPositive: false, impact: 8, description: 'Falecimento do avo paterno' },
+  { id: '4', title: 'Formatura pedagogia', eventType: 'ACHIEVEMENT', ageAtEvent: 23, isPositive: true, impact: 9, description: 'Conclusao da graduacao em Pedagogia' },
+  { id: '5', title: 'Primeiro emprego como professor', eventType: 'CAREER', ageAtEvent: 24, isPositive: true, impact: 8, description: 'Inicio da carreira docente' },
+  { id: '6', title: 'Burnout', eventType: 'HEALTH', ageAtEvent: 30, isPositive: false, impact: 7, description: 'Episodio de esgotamento profissional' },
 ]
 
 const familyRelations = [
@@ -130,179 +87,190 @@ const projects = [
   { id: '3', title: 'Reforma da casa', status: 'PLANNING', progress: 10, category: 'Pessoal' },
 ]
 
+type MapZone = 'overview' | 'past' | 'present' | 'future'
+
 export default function MapaDaVidaPage() {
-  const [activeTab, setActiveTab] = useState('passado')
   const [showAddEventDialog, setShowAddEventDialog] = useState(false)
+  const [activeZone, setActiveZone] = useState<MapZone>('overview')
+  const [selectedEvent, setSelectedEvent] = useState<typeof timelineEvents[0] | null>(null)
+
+  const handleWaypointClick = (point: 'ponto0' | 'pontoA' | 'pontoB') => {
+    if (point === 'ponto0') setActiveZone('past')
+    else if (point === 'pontoA') setActiveZone('present')
+    else setActiveZone('future')
+  }
 
   return (
-    <div className="space-y-8 animate-fade-in">
+    <div className="space-y-6 animate-fade-in">
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Mapa da Vida</h2>
+          <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Mapa do Mundo</h2>
           <p className="text-[#8C8580]">
-            Visualize sua jornada completa - passado, presente e futuro
+            Navegue pelo territorio da sua vida — Ponto 0 ao Ponto B
           </p>
         </div>
-        <Dialog open={showAddEventDialog} onOpenChange={setShowAddEventDialog}>
-          <DialogTrigger asChild>
-            <Button>
-              <Plus className="mr-2 h-4 w-4" />
-              Adicionar Evento
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-md">
-            <DialogHeader>
-              <DialogTitle>Adicionar Evento na Timeline</DialogTitle>
-              <DialogDescription>
-                Registre um momento importante da sua vida
-              </DialogDescription>
-            </DialogHeader>
-            <div className="space-y-4 py-4">
-              <div className="space-y-2">
-                <Label htmlFor="title">Titulo</Label>
-                <Input id="title" placeholder="Ex: Formatura, Casamento, etc" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="type">Tipo de Evento</Label>
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Selecione o tipo" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="ACHIEVEMENT">Conquista</SelectItem>
-                    <SelectItem value="TRAUMA">Trauma</SelectItem>
-                    <SelectItem value="LOSS">Perda</SelectItem>
-                    <SelectItem value="GAIN">Ganho</SelectItem>
-                    <SelectItem value="MILESTONE">Marco</SelectItem>
-                    <SelectItem value="RELATIONSHIP">Relacionamento</SelectItem>
-                    <SelectItem value="HEALTH">Saude</SelectItem>
-                    <SelectItem value="EDUCATION">Educacao</SelectItem>
-                    <SelectItem value="CAREER">Carreira</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
+        <div className="flex gap-2">
+          <Dialog open={showAddEventDialog} onOpenChange={setShowAddEventDialog}>
+            <DialogTrigger asChild>
+              <Button variant="outline">
+                <MapPin className="mr-2 h-4 w-4" />
+                Novo Marcador
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-md">
+              <DialogHeader>
+                <DialogTitle>Adicionar Marcador no Mapa</DialogTitle>
+                <DialogDescription>
+                  Registre um momento importante da sua vida
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 py-4">
                 <div className="space-y-2">
-                  <Label htmlFor="age">Idade</Label>
-                  <Input id="age" type="number" placeholder="Ex: 25" />
+                  <Label htmlFor="title">Titulo</Label>
+                  <Input id="title" placeholder="Ex: Formatura, Casamento, etc" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="impact">Impacto (1-10)</Label>
-                  <Input id="impact" type="number" min="1" max="10" placeholder="Ex: 8" />
+                  <Label htmlFor="type">Tipo de Evento</Label>
+                  <Select>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione o tipo" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="ACHIEVEMENT">Conquista</SelectItem>
+                      <SelectItem value="TRAUMA">Trauma / Bloqueio</SelectItem>
+                      <SelectItem value="LOSS">Perda</SelectItem>
+                      <SelectItem value="GAIN">Ganho</SelectItem>
+                      <SelectItem value="MILESTONE">Marco</SelectItem>
+                      <SelectItem value="RELATIONSHIP">Relacionamento</SelectItem>
+                      <SelectItem value="HEALTH">Saude</SelectItem>
+                      <SelectItem value="EDUCATION">Educacao</SelectItem>
+                      <SelectItem value="CAREER">Carreira</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="age">Idade</Label>
+                    <Input id="age" type="number" placeholder="Ex: 25" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="impact">Impacto (1-10)</Label>
+                    <Input id="impact" type="number" min="1" max="10" placeholder="Ex: 8" />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="description">Descricao</Label>
+                  <Textarea id="description" placeholder="Descreva o evento..." />
+                </div>
+                <div className="flex items-center gap-2">
+                  <input type="checkbox" id="isPositive" className="rounded" />
+                  <Label htmlFor="isPositive">Este foi um evento positivo</Label>
                 </div>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="description">Descricao</Label>
-                <Textarea id="description" placeholder="Descreva o evento..." />
+              <div className="flex justify-end gap-3">
+                <Button variant="outline" onClick={() => setShowAddEventDialog(false)}>
+                  Cancelar
+                </Button>
+                <Button onClick={() => setShowAddEventDialog(false)}>
+                  Salvar Marcador
+                </Button>
               </div>
-              <div className="flex items-center gap-2">
-                <input type="checkbox" id="isPositive" className="rounded" />
-                <Label htmlFor="isPositive">Este foi um evento positivo</Label>
-              </div>
-            </div>
-            <div className="flex justify-end gap-3">
-              <Button variant="outline" onClick={() => setShowAddEventDialog(false)}>
-                Cancelar
-              </Button>
-              <Button onClick={() => setShowAddEventDialog(false)}>
-                Salvar Evento
-              </Button>
-            </div>
-          </DialogContent>
-        </Dialog>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
 
-      {/* Life Map Diagram */}
-      <LifeMapDiagram />
+      {/* ═══ FULL-WIDTH TOPOGRAPHIC MAP ═══ */}
+      <TopographicMap compact={false} onWaypointClick={handleWaypointClick} />
 
-      {/* Main Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="passado" className="flex items-center gap-2">
-            <Clock className="h-4 w-4" />
-            Passado
-          </TabsTrigger>
-          <TabsTrigger value="presente" className="flex items-center gap-2">
-            <Heart className="h-4 w-4" />
-            Presente
-          </TabsTrigger>
-          <TabsTrigger value="futuro" className="flex items-center gap-2">
-            <Target className="h-4 w-4" />
-            Futuro
-          </TabsTrigger>
-        </TabsList>
+      {/* Zone Navigation */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-2">
+        {[
+          { key: 'overview' as MapZone, label: 'Visao Geral', icon: Eye },
+          { key: 'past' as MapZone, label: 'Territorio Conhecido', icon: Clock },
+          { key: 'present' as MapZone, label: 'Base Operacional', icon: Shield },
+          { key: 'future' as MapZone, label: 'Territorio Desconhecido', icon: Sparkles },
+        ].map((zone) => (
+          <Button
+            key={zone.key}
+            variant={activeZone === zone.key ? 'default' : 'outline'}
+            size="sm"
+            onClick={() => setActiveZone(zone.key)}
+            className="text-xs"
+          >
+            <zone.icon className="mr-1.5 h-3.5 w-3.5" />
+            {zone.label}
+          </Button>
+        ))}
+      </div>
 
-        {/* PASSADO TAB */}
-        <TabsContent value="passado" className="space-y-8">
-          {/* Timeline Visual */}
+      {/* ═══ TERRITORY: PAST (Territorio Conhecido) ═══ */}
+      {(activeZone === 'overview' || activeZone === 'past') && (
+        <div className="space-y-6">
+          <h3 className="text-xs font-mono uppercase tracking-widest text-[#8B9E7C] flex items-center gap-2">
+            <div className="h-2 w-2 rounded-full bg-[#8B9E7C]" />
+            Territorio Conhecido — Passado
+          </h3>
+
+          {/* Timeline as Map Markers */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-[#8B9E7C]" />
-                Linha do Tempo
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <MapPin className="h-5 w-5 text-[#8B9E7C]" />
+                Marcadores no Mapa
               </CardTitle>
               <CardDescription>
-                Eventos importantes da sua historia
+                Eventos plotados no territorio da sua historia
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="relative">
-                {/* Timeline line */}
                 <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[#8C8580]/20" />
-
-                {/* Events */}
-                <div className="space-y-6">
-                  {timelineEvents.map((event, index) => (
+                <div className="space-y-4">
+                  {timelineEvents.map((event) => (
                     <div key={event.id} className="relative pl-10">
-                      {/* Event dot */}
                       <div
                         className={`absolute left-2 top-2 h-5 w-5 rounded-full border-4 ${
                           event.isPositive
                             ? 'border-[#8B9E7C] bg-white'
-                            : 'border-red-500 bg-white'
+                            : 'border-[#B8755C] bg-white'
                         }`}
                       />
-
                       <div
-                        className={`rounded-lg border p-4 ${
+                        className={`rounded-lg border p-3 cursor-pointer transition-colors hover:shadow-sm ${
                           event.isPositive
-                            ? 'border-[#8B9E7C]/30 bg-[#8B9E7C]/5'
-                            : 'border-red-500/30 bg-red-500/5'
+                            ? 'border-[#8B9E7C]/30 bg-[#8B9E7C]/5 hover:bg-[#8B9E7C]/10'
+                            : 'border-[#B8755C]/30 bg-[#B8755C]/5 hover:bg-[#B8755C]/10'
                         }`}
+                        onClick={() => setSelectedEvent(event)}
                       >
-                        <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-start justify-between gap-3">
                           <div>
                             <div className="flex items-center gap-2">
-                              <h4 className="font-semibold text-[#1A1A1E]">
-                                {event.title}
-                              </h4>
-                              <Badge
-                                variant={event.isPositive ? 'secondary' : 'destructive'}
-                              >
+                              <h4 className="font-semibold text-[#1A1A1E] text-sm">{event.title}</h4>
+                              <Badge variant={event.isPositive ? 'secondary' : 'destructive'} className="text-[10px]">
+                                {event.isPositive ? (
+                                  <Star className="mr-1 h-2.5 w-2.5" />
+                                ) : (
+                                  <AlertCircle className="mr-1 h-2.5 w-2.5" />
+                                )}
                                 {event.eventType === 'ACHIEVEMENT' && 'Conquista'}
-                                {event.eventType === 'TRAUMA' && 'Trauma'}
+                                {event.eventType === 'TRAUMA' && 'Bloqueio'}
                                 {event.eventType === 'LOSS' && 'Perda'}
                                 {event.eventType === 'MILESTONE' && 'Marco'}
                                 {event.eventType === 'EDUCATION' && 'Educacao'}
                                 {event.eventType === 'CAREER' && 'Carreira'}
-                                {event.eventType === 'HEALTH' && 'Saude'}
+                                {event.eventType === 'HEALTH' && 'Debuff'}
                               </Badge>
                             </div>
-                            <p className="mt-1 text-sm text-[#8C8580]">
-                              {event.description}
-                            </p>
+                            <p className="mt-0.5 text-xs text-[#8C8580]">{event.description}</p>
                           </div>
                           <div className="text-right">
-                            <span className="text-lg font-bold text-[#1A1A1E]">
-                              {event.ageAtEvent} anos
+                            <span className="text-lg font-mono font-bold text-[#1A1A1E]">
+                              {event.ageAtEvent}
                             </span>
-                            <div className="mt-1 flex items-center gap-1 text-xs text-[#8C8580]">
-                              Impacto:
-                              <span className="font-semibold text-[#1A1A1E]">
-                                {event.impact}/10
-                              </span>
-                            </div>
+                            <p className="text-[10px] font-mono text-[#8C8580]">anos</p>
                           </div>
                         </div>
                       </div>
@@ -316,25 +284,20 @@ export default function MapaDaVidaPage() {
           {/* Family Relations */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-lg">
                 <Users className="h-5 w-5 text-[#B8755C]" />
-                Relacoes Familiares
+                Companheiros de Jornada
               </CardTitle>
-              <CardDescription>
-                Mapeamento das relacoes que moldaram sua historia
-              </CardDescription>
+              <CardDescription>NPCs que moldaram sua historia</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
                 {familyRelations.map((relation) => (
-                  <div
-                    key={relation.id}
-                    className="rounded-lg border border-[#8C8580]/20 p-4"
-                  >
+                  <div key={relation.id} className="encounter-card rounded-lg border border-[#8C8580]/20 p-3">
                     <div className="flex items-center justify-between">
                       <div>
-                        <h4 className="font-medium text-[#1A1A1E]">{relation.name}</h4>
-                        <p className="text-sm text-[#8C8580]">
+                        <h4 className="text-sm font-medium text-[#1A1A1E]">{relation.name}</h4>
+                        <p className="text-[10px] font-mono text-[#8C8580]">
                           {relation.relationType === 'FATHER' && 'Pai'}
                           {relation.relationType === 'MOTHER' && 'Mae'}
                           {relation.relationType === 'SIBLING' && 'Irmao(a)'}
@@ -343,124 +306,100 @@ export default function MapaDaVidaPage() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-[#1A1A1E]">
-                          {relation.quality}
-                        </div>
-                        <p className="text-xs text-[#8C8580]">Qualidade</p>
+                        <span className="text-xl font-mono font-bold text-[#1A1A1E]">{relation.quality}</span>
+                        <p className="text-[10px] font-mono text-[#8C8580]">/10</p>
                       </div>
                     </div>
-                    <Progress value={relation.quality * 10} className="mt-3 h-2" />
+                    <div className="mt-2 rpg-status-bar h-2">
+                      <div
+                        className="rpg-status-bar-fill bg-gradient-to-r from-[#6E8160] via-[#8B9E7C] to-[#A3B596]"
+                        style={{ width: `${relation.quality * 10}%` }}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
             </CardContent>
           </Card>
-        </TabsContent>
+        </div>
+      )}
 
-        {/* PRESENTE TAB */}
-        <TabsContent value="presente" className="space-y-8">
-          <div className="grid gap-6 lg:grid-cols-2">
-            {/* Body Health */}
+      {/* ═══ TERRITORY: PRESENT (Base Operacional) ═══ */}
+      {(activeZone === 'overview' || activeZone === 'present') && (
+        <div className="space-y-6">
+          <h3 className="text-xs font-mono uppercase tracking-widest text-[#B8755C] flex items-center gap-2">
+            <div className="h-2 w-2 rounded-full bg-[#B8755C] animate-pulse" />
+            Base Operacional — Status do Avatar
+          </h3>
+
+          <div className="grid gap-4 lg:grid-cols-2">
+            {/* Body Status */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
                   <Heart className="h-5 w-5 text-red-500" />
-                  Corpo
+                  Corpo (HP)
                 </CardTitle>
-                <CardDescription>Estado fisico atual</CardDescription>
+                <CardDescription>Status fisico do avatar</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="rounded-lg bg-[#8C8580]/5 p-3">
-                    <p className="text-sm text-[#8C8580]">Peso</p>
-                    <p className="text-xl font-bold text-[#1A1A1E]">
-                      {bodyHealthData.weight} kg
-                    </p>
+              <CardContent className="space-y-3">
+                <AvatarStatusBar label="Sono" value={Math.round(bodyHealthData.sleepQuality * 10)} color="sage" icon={Clock} />
+                <AvatarStatusBar label="Energia Fisica" value={bodyHealthData.energyLevel * 10} color="copper" icon={Zap} />
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="inventory-item">
+                    <p className="text-[10px] font-mono text-[#8C8580]">Peso</p>
+                    <p className="text-lg font-mono font-bold text-[#1A1A1E]">{bodyHealthData.weight} kg</p>
                   </div>
-                  <div className="rounded-lg bg-[#8C8580]/5 p-3">
-                    <p className="text-sm text-[#8C8580]">Altura</p>
-                    <p className="text-xl font-bold text-[#1A1A1E]">
-                      {bodyHealthData.height} m
-                    </p>
+                  <div className="inventory-item">
+                    <p className="text-[10px] font-mono text-[#8C8580]">Altura</p>
+                    <p className="text-lg font-mono font-bold text-[#1A1A1E]">{bodyHealthData.height} m</p>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-[#8C8580]">Horas de sono</span>
-                    <span className="font-semibold">{bodyHealthData.sleepHours}h</span>
-                  </div>
-                  <Progress value={bodyHealthData.sleepHours * 12.5} className="h-2" />
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-[#8C8580]">Qualidade do sono</span>
-                    <span className="font-semibold">{bodyHealthData.sleepQuality}/10</span>
-                  </div>
-                  <Progress value={bodyHealthData.sleepQuality * 10} className="h-2" />
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-[#8C8580]">Nivel de energia</span>
-                    <span className="font-semibold">{bodyHealthData.energyLevel}/10</span>
-                  </div>
-                  <Progress value={bodyHealthData.energyLevel * 10} className="h-2" />
-                </div>
-                <div className="rounded-lg border border-[#8C8580]/20 p-3">
-                  <p className="text-sm text-[#8C8580]">Frequencia de exercicios</p>
-                  <p className="font-medium text-[#1A1A1E]">
-                    {bodyHealthData.exerciseFrequency}
-                  </p>
+
+                <div className="inventory-item">
+                  <p className="text-[10px] font-mono text-[#8C8580]">Exercicios</p>
+                  <p className="text-sm font-medium text-[#1A1A1E]">{bodyHealthData.exerciseFrequency}</p>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Mind State */}
+            {/* Mind Status */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
                   <Brain className="h-5 w-5 text-[#8B9E7C]" />
-                  Mente
+                  Mente (MP)
                 </CardTitle>
-                <CardDescription>Estado mental e exposicao diaria</CardDescription>
+                <CardDescription>Status mental e exposicao</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="rounded-lg border border-[#8C8580]/20 p-3">
-                  <p className="text-sm text-[#8C8580]">Trabalho</p>
-                  <p className="font-medium text-[#1A1A1E]">
-                    {mindStateData.workDescription}
-                  </p>
-                  <p className="mt-1 text-sm text-[#8C8580]">
-                    {mindStateData.workHoursPerDay}h por dia
-                  </p>
+              <CardContent className="space-y-3">
+                <AvatarStatusBar
+                  label="Estresse"
+                  value={mindStateData.stressLevel * 10}
+                  color="danger"
+                  icon={AlertCircle}
+                />
+
+                <div className="inventory-item">
+                  <p className="text-[10px] font-mono text-[#8C8580]">Trabalho</p>
+                  <p className="text-sm font-medium text-[#1A1A1E]">{mindStateData.workDescription}</p>
+                  <p className="text-xs text-[#8C8580]">{mindStateData.workHoursPerDay}h por dia</p>
                 </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-[#8C8580]">Nivel de estresse</span>
-                    <span className="font-semibold text-amber-600">
-                      {mindStateData.stressLevel}/10
-                    </span>
-                  </div>
-                  <div className="h-2 w-full overflow-hidden rounded-full bg-[#8C8580]/20">
-                    <div
-                      className="h-full bg-amber-500"
-                      style={{ width: `${mindStateData.stressLevel * 10}%` }}
-                    />
-                  </div>
+
+                <div className="inventory-item">
+                  <p className="text-[10px] font-mono text-[#8C8580]">Tempo de Tela</p>
+                  <p className="text-lg font-mono font-bold text-[#1A1A1E]">{mindStateData.screenTimeHours}h/dia</p>
                 </div>
-                <div className="rounded-lg bg-[#8C8580]/5 p-3">
-                  <p className="text-sm text-[#8C8580]">Tempo de tela</p>
-                  <p className="text-xl font-bold text-[#1A1A1E]">
-                    {mindStateData.screenTimeHours}h/dia
-                  </p>
-                </div>
+
                 <div>
-                  <p className="mb-2 text-sm font-medium text-[#8C8580]">
-                    Principais preocupacoes
+                  <p className="mb-1.5 text-[10px] font-mono uppercase tracking-wider text-[#8C8580]">
+                    Gatilhos / Debuffs
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     {mindStateData.mainWorries.map((worry, index) => (
-                      <Badge key={index} variant="outline">
-                        <AlertCircle className="mr-1 h-3 w-3" />
+                      <Badge key={index} variant="outline" className="text-[10px] border-[#B8755C]/30 text-[#B8755C]">
+                        <Shield className="mr-1 h-2.5 w-2.5" />
                         {worry}
                       </Badge>
                     ))}
@@ -469,104 +408,144 @@ export default function MapaDaVidaPage() {
               </CardContent>
             </Card>
           </div>
-        </TabsContent>
 
-        {/* FUTURO TAB */}
-        <TabsContent value="futuro" className="space-y-8">
-          {/* Purpose */}
-          <Card className="border-[#B8755C]/30 bg-gradient-to-br from-[#B8755C]/5 to-transparent">
+          {/* Inventory section */}
+          <div className="grid gap-4 lg:grid-cols-2">
+            <InventoryPanel timeAvailable={68} energyQuality={55} />
+            <GameplayPhase missions={[
+              { title: 'Respiracao 4-7-8', phase: 'morning' },
+              { title: 'Revisao de metas', phase: 'afternoon' },
+              { title: 'Journaling', phase: 'night' },
+            ]} />
+          </div>
+        </div>
+      )}
+
+      {/* ═══ TERRITORY: FUTURE (Territorio Desconhecido) ═══ */}
+      {(activeZone === 'overview' || activeZone === 'future') && (
+        <div className="space-y-6">
+          <h3 className="text-xs font-mono uppercase tracking-widest text-[#DAA520] flex items-center gap-2">
+            <div className="h-2 w-2 rounded-full bg-[#DAA520] glow-beacon" />
+            Territorio Desconhecido — Fog of War
+          </h3>
+
+          {/* Purpose as distant beacon */}
+          <Card className="border-[#DAA520]/30 bg-gradient-to-br from-[#DAA520]/5 to-transparent relative overflow-hidden">
+            {/* Fog overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#2C2C2C]/10 pointer-events-none" />
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-[#B8755C]" />
-                Proposito
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Sparkles className="h-5 w-5 text-[#DAA520]" />
+                Proposito — Ponto B
               </CardTitle>
-              <CardDescription>Sua razao de ser</CardDescription>
+              <CardDescription>O farol no fim da nevoa</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="rounded-lg bg-white p-4 shadow-sm">
-                <p className="text-lg font-medium text-[#1A1A1E]">
+              <div className="rounded-lg bg-white/80 p-4 shadow-sm border border-[#DAA520]/20">
+                <p className="text-lg font-serif font-medium text-[#1A1A1E]">
                   &quot;{purposeData.statement}&quot;
                 </p>
               </div>
+
+              {/* Dreams as constellations */}
               <div>
-                <p className="mb-2 text-sm font-medium text-[#8C8580]">Sonhos</p>
+                <p className="mb-2 text-[10px] font-mono uppercase tracking-wider text-[#8C8580]">
+                  Constelacoes (Sonhos)
+                </p>
                 <div className="space-y-2">
                   {purposeData.dreams.map((dream, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-2 rounded-lg border border-[#8C8580]/20 p-3"
-                    >
-                      <Star className="h-4 w-4 text-[#B8755C]" />
-                      <span className="text-[#1A1A1E]">{dream}</span>
+                    <div key={index} className="flex items-center gap-2 rounded-md border border-[#DAA520]/20 bg-[#DAA520]/5 p-2.5">
+                      <Star className="h-4 w-4 text-[#DAA520]" />
+                      <span className="text-sm text-[#1A1A1E]">{dream}</span>
                     </div>
                   ))}
                 </div>
               </div>
+
+              {/* Legacy */}
               <div className="rounded-lg bg-[#1A1A1E] p-4 text-white">
-                <p className="text-sm text-gray-400">Legado</p>
-                <p className="mt-1">{purposeData.legacy}</p>
+                <p className="text-[10px] font-mono uppercase tracking-wider text-gray-400 mb-1">Legado</p>
+                <p className="text-sm">{purposeData.legacy}</p>
               </div>
             </CardContent>
           </Card>
 
-          {/* Projects */}
+          {/* Projects as paths through fog */}
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="flex items-center gap-2 text-lg">
                     <Target className="h-5 w-5 text-[#8B9E7C]" />
-                    Projetos
+                    Caminhos na Nevoa
                   </CardTitle>
-                  <CardDescription>Iniciativas em andamento</CardDescription>
+                  <CardDescription>Projetos sendo explorados</CardDescription>
                 </div>
                 <Button variant="outline" size="sm">
                   <Plus className="mr-2 h-4 w-4" />
-                  Novo Projeto
+                  Novo Caminho
                 </Button>
               </div>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {projects.map((project) => (
-                  <div
-                    key={project.id}
-                    className="rounded-lg border border-[#8C8580]/20 p-4"
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2">
-                          <h4 className="font-semibold text-[#1A1A1E]">
-                            {project.title}
-                          </h4>
-                          <Badge
-                            variant={
-                              project.status === 'IN_PROGRESS'
-                                ? 'default'
-                                : 'outline'
-                            }
-                          >
-                            {project.status === 'IN_PROGRESS'
-                              ? 'Em andamento'
-                              : 'Planejando'}
-                          </Badge>
+                  <div key={project.id} className="quest-scroll">
+                    <div className="quest-scroll-border" />
+                    <div className="p-3">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2">
+                            <h4 className="text-sm font-semibold text-[#1A1A1E]">{project.title}</h4>
+                            <Badge variant={project.status === 'IN_PROGRESS' ? 'default' : 'outline'} className="text-[10px]">
+                              {project.status === 'IN_PROGRESS' ? 'Explorando' : 'Planejando Rota'}
+                            </Badge>
+                          </div>
+                          <p className="text-[10px] font-mono text-[#8C8580]">{project.category}</p>
                         </div>
-                        <p className="text-sm text-[#8C8580]">{project.category}</p>
+                        <span className="text-lg font-mono font-bold text-[#1A1A1E]">{project.progress}%</span>
                       </div>
-                      <div className="text-right">
-                        <span className="text-2xl font-bold text-[#1A1A1E]">
-                          {project.progress}%
-                        </span>
+                      <div className="mt-2 rpg-status-bar h-2">
+                        <div
+                          className="rpg-status-bar-fill bg-gradient-to-r from-[#6E8160] via-[#8B9E7C] to-[#A3B596]"
+                          style={{ width: `${project.progress}%` }}
+                        />
                       </div>
                     </div>
-                    <Progress value={project.progress} className="mt-3 h-2" />
                   </div>
                 ))}
               </div>
             </CardContent>
           </Card>
-        </TabsContent>
-      </Tabs>
+        </div>
+      )}
+
+      {/* Event Detail Dialog */}
+      <Dialog open={!!selectedEvent} onOpenChange={() => setSelectedEvent(null)}>
+        <DialogContent className="max-w-md">
+          {selectedEvent && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <MapPin className={`h-5 w-5 ${selectedEvent.isPositive ? 'text-[#8B9E7C]' : 'text-[#B8755C]'}`} />
+                  {selectedEvent.title}
+                </DialogTitle>
+                <DialogDescription>
+                  Idade: {selectedEvent.ageAtEvent} anos — Impacto: {selectedEvent.impact}/10
+                </DialogDescription>
+              </DialogHeader>
+              <div className="py-4">
+                <p className="text-sm text-[#1A1A1E]">{selectedEvent.description}</p>
+                <div className="mt-3">
+                  <Badge variant={selectedEvent.isPositive ? 'secondary' : 'destructive'}>
+                    {selectedEvent.isPositive ? 'Evento Positivo' : 'Bloqueio / Debuff'}
+                  </Badge>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* Editorial Quote */}
       <EditorialQuote text="O mapa nao e o territorio, mas sem mapa nao ha jornada." />

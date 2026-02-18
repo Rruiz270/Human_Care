@@ -9,14 +9,14 @@ import { useUserStore } from '@/store/user-store'
 import { getInitials } from '@/lib/utils'
 
 const pageTitles: Record<string, string> = {
-  '/': 'Dashboard',
-  '/mapa-da-vida': 'Mapa da Vida',
-  '/agenda': 'Agenda',
-  '/sessoes': 'Sessoes',
+  '/': 'Quartel General',
+  '/mapa-da-vida': 'Mapa do Mundo',
+  '/agenda': 'Calendario',
+  '/sessoes': 'Encontros',
   '/missoes': 'Missoes',
-  '/chat-ai': 'Chat AI',
-  '/metricas': 'Metricas',
-  '/conteudo': 'Conteudo',
+  '/chat-ai': 'O Oraculo',
+  '/metricas': 'Status do Avatar',
+  '/conteudo': 'Biblioteca',
   '/configuracoes': 'Configuracoes',
   '/admin/usuarios': 'Gestao de Usuarios',
 }

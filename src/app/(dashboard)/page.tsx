@@ -1,15 +1,23 @@
 'use client'
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Progress } from '@/components/ui/progress'
 import { useUserStore } from '@/store/user-store'
-import { FlowingLines, EditorialQuote, IconBadge, SectionDivider } from '@/components/ui/decorative-elements'
+import { FlowingLines, EditorialQuote } from '@/components/ui/decorative-elements'
+import {
+  AvatarStatusBar,
+  InventoryPanel,
+  GameplayPhase,
+  TopographicMap,
+  QuestCard,
+  CarePartyMember,
+  XPProgressBar,
+  CompassRose,
+} from '@/components/ui/rpg-components'
 import {
   Calendar,
   Target,
-  TrendingUp,
   Heart,
   Brain,
   Zap,
@@ -17,6 +25,7 @@ import {
   Clock,
   ChevronRight,
   Sparkles,
+  Shield,
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -42,27 +51,36 @@ const pendingMissions = [
   {
     id: '1',
     title: 'Praticar respiracao consciente',
-    type: 'DAILY_HABIT',
-    dueDate: new Date(),
+    type: 'habit' as const,
+    status: 'active' as const,
+    xp: 30,
+    streak: 5,
+    fromNpc: 'Dra. Ana Costa',
   },
   {
     id: '2',
     title: 'Escrever carta de perdao',
-    type: 'THERAPY_TASK',
+    type: 'therapy' as const,
+    status: 'active' as const,
+    xp: 80,
     dueDate: new Date(Date.now() + 259200000),
+    fromNpc: 'Dra. Ana Costa',
   },
   {
     id: '3',
     title: 'Definir metas do trimestre',
-    type: 'COACHING_TASK',
+    type: 'coaching' as const,
+    status: 'pending' as const,
+    xp: 100,
     dueDate: new Date(Date.now() + 604800000),
+    fromNpc: 'Carlos Mendes',
   },
 ]
 
-const recentInsights = [
-  'Padrao de estresse identificado nas segundas-feiras',
-  'Melhora significativa na qualidade do sono',
-  'Progresso nas metas de carreira',
+const dailyMissions = [
+  { title: 'Respiracao 4-7-8', phase: 'morning' as const },
+  { title: 'Revisao de metas', phase: 'afternoon' as const },
+  { title: 'Journaling noturno', phase: 'night' as const },
 ]
 
 export default function DashboardPage() {
@@ -76,296 +94,222 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="relative space-y-8 animate-fade-in">
+    <div className="relative space-y-6 animate-fade-in">
       {/* Flowing Lines Background Decoration */}
       <FlowingLines className="pointer-events-none absolute inset-0 z-0 opacity-50" />
 
-      {/* Welcome Section */}
-      <div className="relative z-10 rounded-2xl border border-[#B8755C]/15 bg-white p-6 lg:p-8">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">
-              {greeting()}, {currentUser?.name?.split(' ')[0]}!
-            </h2>
-            <p className="mt-2 text-[#8C8580]">
-              Continue sua jornada de autoconhecimento e crescimento pessoal.
-            </p>
+      {/* ═══ TOP SECTION: Character HUD ═══ */}
+      <div className="relative z-10 rounded-lg border border-[#B8755C]/15 bg-white p-4 lg:p-6">
+        <div className="grid gap-4 lg:grid-cols-[1fr_2fr_auto]">
+          {/* Left: Avatar + Level + XP */}
+          <div className="flex flex-col items-center gap-3">
+            <div className="relative">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-[#B8755C] bg-[#B8755C]/10 text-2xl font-serif font-bold text-[#B8755C]">
+                {currentUser?.name?.charAt(0) || 'A'}
+              </div>
+              <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#DAA520] text-[10px] font-bold text-white">
+                7
+              </span>
+            </div>
+            <div className="text-center">
+              <p className="text-sm font-serif font-bold text-[#1A1A1E]">
+                {greeting()}, {currentUser?.name?.split(' ')[0]}!
+              </p>
+              <p className="text-[10px] font-mono uppercase tracking-wider text-[#8C8580]">
+                Aventureiro
+              </p>
+            </div>
+            <div className="w-full max-w-[180px]">
+              <XPProgressBar currentXP={780} levelXP={1000} level={7} />
+            </div>
           </div>
-          <div className="flex gap-3">
-            <Link href="/chat-ai">
-              <Button className="bg-[#B8755C] text-white hover:bg-[#A0634D]">
-                <MessageSquare className="mr-2 h-4 w-4" />
-                Conversar com IA
+
+          {/* Center: Three Status Bars */}
+          <div className="space-y-2.5">
+            <AvatarStatusBar
+              label="Energia Fisica"
+              value={70}
+              maxValue={100}
+              color="copper"
+              icon={Heart}
+            />
+            <AvatarStatusBar
+              label="Energia Emocional"
+              value={40}
+              maxValue={100}
+              color="sage"
+              icon={Brain}
+            />
+            <AvatarStatusBar
+              label="Recursos / Rotina"
+              value={80}
+              maxValue={100}
+              color="gold"
+              icon={Clock}
+            />
+          </div>
+
+          {/* Right: Compass Rose */}
+          <div className="flex flex-col items-center justify-center">
+            <CompassRose alignment={78} size={80} />
+          </div>
+        </div>
+
+        {/* Quote */}
+        <div className="mt-3 border-t border-[#B8755C]/10 pt-2">
+          <p className="text-center text-[11px] italic text-[#8C8580]" style={{ fontFamily: "'Playfair Display', serif" }}>
+            &ldquo;O que te limita e o que esta te limitando.&rdquo;
+          </p>
+        </div>
+      </div>
+
+      {/* ═══ MIDDLE SECTION: Three-Column Game Layout ═══ */}
+      <div className="relative z-10 grid gap-4 lg:grid-cols-3">
+        {/* Left: Mini Topographic Map */}
+        <div>
+          <h3 className="mb-2 text-xs font-mono uppercase tracking-widest text-[#8C8580]">
+            Mapa Resumo
+          </h3>
+          <Link href="/mapa-da-vida">
+            <TopographicMap compact />
+          </Link>
+        </div>
+
+        {/* Center: Inventory Panel */}
+        <div>
+          <h3 className="mb-2 text-xs font-mono uppercase tracking-widest text-[#8C8580]">
+            Inventario
+          </h3>
+          <InventoryPanel timeAvailable={68} energyQuality={55} />
+        </div>
+
+        {/* Right: Gameplay Phase */}
+        <div>
+          <h3 className="mb-2 text-xs font-mono uppercase tracking-widest text-[#8C8580]">
+            Gameplay
+          </h3>
+          <GameplayPhase missions={dailyMissions} />
+        </div>
+      </div>
+
+      {/* ═══ BOTTOM SECTION: Active Quests + Party ═══ */}
+      <div className="relative z-10 grid gap-6 lg:grid-cols-3">
+        {/* Active Quests */}
+        <div className="lg:col-span-2">
+          <div className="mb-3 flex items-center justify-between">
+            <h3 className="text-xs font-mono uppercase tracking-widest text-[#8C8580]">
+              Missoes Ativas
+            </h3>
+            <Link href="/missoes">
+              <Button variant="ghost" size="sm" className="text-xs">
+                Quest Log <ChevronRight className="ml-1 h-3 w-3" />
               </Button>
             </Link>
-            <Link href="/mapa-da-vida">
-              <Button variant="outline" className="border-[#B8755C]/30 text-[#1A1A1E] hover:bg-[#B8755C]/5">
-                Ver Mapa da Vida
+          </div>
+          <div className="space-y-3">
+            {pendingMissions.map((mission) => (
+              <QuestCard
+                key={mission.id}
+                title={mission.title}
+                type={mission.type}
+                status={mission.status}
+                xpReward={mission.xp}
+                streak={mission.streak}
+                fromNpc={mission.fromNpc}
+                dueDate={mission.dueDate}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Care Party + Upcoming Encounters */}
+        <div className="space-y-4">
+          <div>
+            <h3 className="mb-3 text-xs font-mono uppercase tracking-widest text-[#8C8580]">
+              Equipe de Cuidado
+            </h3>
+            <div className="space-y-2">
+              <CarePartyMember
+                name="Dra. Ana Costa"
+                role="therapist"
+                roleLabel="Terapeuta ↓ DOWN"
+                avatarInitials="AC"
+                lastSession="10 Jan"
+                nextSession="Amanha"
+              />
+              <CarePartyMember
+                name="Carlos Mendes"
+                role="coach"
+                roleLabel="Coach ↑ UP"
+                avatarInitials="CM"
+                lastSession="14 Jan"
+                nextSession="Em 4 dias"
+              />
+              <CarePartyMember
+                name="Equipe HC"
+                role="care_team"
+                roleLabel="Care Team ↔"
+                avatarInitials="HC"
+              />
+            </div>
+          </div>
+
+          {/* Upcoming Encounters */}
+          <div>
+            <h3 className="mb-3 text-xs font-mono uppercase tracking-widest text-[#8C8580]">
+              Proximos Encontros
+            </h3>
+            <div className="space-y-2">
+              {upcomingSessions.map((session) => (
+                <div
+                  key={session.id}
+                  className="encounter-card rounded-md border border-[var(--border-architectural)] bg-[var(--parchment-light)] p-3"
+                  style={{
+                    borderLeftColor: session.type === 'THERAPY' ? 'var(--sage)' : 'var(--copper)',
+                  }}
+                >
+                  <div className="flex items-center gap-2">
+                    {session.type === 'THERAPY' ? (
+                      <Brain className="h-4 w-4 text-[#8B9E7C]" />
+                    ) : (
+                      <Target className="h-4 w-4 text-[#B8755C]" />
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-[#1A1A1E] truncate">
+                        {session.type === 'THERAPY' ? 'Terapia' : 'Coaching'}
+                      </p>
+                      <p className="text-[10px] font-mono text-[#8C8580]">{session.professional}</p>
+                    </div>
+                    <span className="text-[10px] font-mono text-[#8C8580]">
+                      {session.scheduledAt.toLocaleDateString('pt-BR', {
+                        weekday: 'short',
+                        day: 'numeric',
+                        month: 'short',
+                      })}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Quick Actions */}
+          <div className="flex gap-2">
+            <Link href="/chat-ai" className="flex-1">
+              <Button className="w-full bg-[#B8755C] text-white hover:bg-[#A0634D] text-xs">
+                <MessageSquare className="mr-1.5 h-3.5 w-3.5" />
+                O Oraculo
+              </Button>
+            </Link>
+            <Link href="/mapa-da-vida" className="flex-1">
+              <Button variant="outline" className="w-full border-[#B8755C]/30 text-xs">
+                <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+                Mapa do Mundo
               </Button>
             </Link>
           </div>
         </div>
       </div>
-
-      {/* Stats Grid */}
-      <div className="relative z-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="card-hover">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-[#8C8580]">
-              Humor Medio
-            </CardTitle>
-            <IconBadge icon={Heart} variant="copper" />
-          </CardHeader>
-          <CardContent className="p-6 pt-0">
-            <div className="text-2xl font-bold text-[#1A1A1E]">7.5/10</div>
-            <p className="text-xs text-[#B8755C]">
-              <TrendingUp className="mr-1 inline h-3 w-3" />
-              +0.5 vs semana passada
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="card-hover">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-[#8C8580]">
-              Energia
-            </CardTitle>
-            <IconBadge icon={Zap} variant="copper" />
-          </CardHeader>
-          <CardContent className="p-6 pt-0">
-            <div className="text-2xl font-bold text-[#1A1A1E]">6.8/10</div>
-            <p className="text-xs text-[#8C8580]">
-              Estavel esta semana
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="card-hover">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-[#8C8580]">
-              Sessoes do Mes
-            </CardTitle>
-            <IconBadge icon={Calendar} variant="sage" />
-          </CardHeader>
-          <CardContent className="p-6 pt-0">
-            <div className="text-2xl font-bold text-[#1A1A1E]">3/4</div>
-            <Progress value={75} className="mt-2 h-2" />
-          </CardContent>
-        </Card>
-
-        <Card className="card-hover">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-[#8C8580]">
-              Missoes Concluidas
-            </CardTitle>
-            <IconBadge icon={Target} variant="copper" />
-          </CardHeader>
-          <CardContent className="p-6 pt-0">
-            <div className="text-2xl font-bold text-[#1A1A1E]">12/15</div>
-            <Progress value={80} className="mt-2 h-2" />
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Main Content Grid */}
-      <div className="relative z-10 grid gap-6 lg:grid-cols-3">
-        {/* Upcoming Sessions */}
-        <Card className="lg:col-span-1">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-3xl font-serif font-bold text-[#1A1A1E]">Proximas Sessoes</CardTitle>
-              <Link href="/agenda">
-                <Button variant="ghost" size="sm">
-                  Ver todas
-                  <ChevronRight className="ml-1 h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {upcomingSessions.map((session) => (
-              <div
-                key={session.id}
-                className="flex items-center gap-4 rounded-lg border border-[#8C8580]/20 p-6"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#8B9E7C]/10">
-                  {session.type === 'THERAPY' ? (
-                    <Brain className="h-6 w-6 text-[#8B9E7C]" />
-                  ) : (
-                    <Target className="h-6 w-6 text-[#B8755C]" />
-                  )}
-                </div>
-                <div className="flex-1">
-                  <p className="font-medium text-[#1A1A1E]">
-                    {session.type === 'THERAPY' ? 'Terapia' : 'Coaching'}
-                  </p>
-                  <p className="text-sm text-[#8C8580]">{session.professional}</p>
-                  <div className="mt-1 flex items-center gap-2 text-xs text-[#8C8580]">
-                    <Clock className="h-3 w-3" />
-                    {session.scheduledAt.toLocaleDateString('pt-BR', {
-                      weekday: 'short',
-                      day: 'numeric',
-                      month: 'short',
-                      hour: '2-digit',
-                      minute: '2-digit',
-                    })}
-                  </div>
-                </div>
-                {session.isOnline && (
-                  <Badge variant="secondary">Online</Badge>
-                )}
-              </div>
-            ))}
-            {upcomingSessions.length === 0 && (
-              <p className="text-center text-sm text-[#8C8580]">
-                Nenhuma sessao agendada
-              </p>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Pending Missions */}
-        <Card className="lg:col-span-1">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-3xl font-serif font-bold text-[#1A1A1E]">Missoes Pendentes</CardTitle>
-              <Link href="/missoes">
-                <Button variant="ghost" size="sm">
-                  Ver todas
-                  <ChevronRight className="ml-1 h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {pendingMissions.map((mission) => (
-              <div
-                key={mission.id}
-                className="flex items-start gap-3 rounded-lg border border-[#8C8580]/20 p-6"
-              >
-                <div
-                  className={`mt-0.5 h-4 w-4 rounded-full border-2 ${
-                    mission.type === 'DAILY_HABIT'
-                      ? 'border-[#B8755C]'
-                      : mission.type === 'THERAPY_TASK'
-                      ? 'border-[#8B9E7C]'
-                      : 'border-[#8C8580]'
-                  }`}
-                />
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-[#1A1A1E]">
-                    {mission.title}
-                  </p>
-                  <p className="text-xs text-[#8C8580]">
-                    Vence em{' '}
-                    {mission.dueDate.toLocaleDateString('pt-BR', {
-                      day: 'numeric',
-                      month: 'short',
-                    })}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-
-        {/* AI Insights */}
-        <Card className="lg:col-span-1">
-          <CardHeader>
-            <div className="flex items-center gap-2">
-              <Sparkles className="h-5 w-5 text-[#B8755C]" />
-              <CardTitle className="text-3xl font-serif font-bold text-[#1A1A1E]">Insights da IA</CardTitle>
-            </div>
-            <CardDescription>
-              Analises baseadas nos seus dados
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {recentInsights.map((insight, index) => (
-              <div
-                key={index}
-                className="flex items-start gap-3 rounded-lg bg-[#8C8580]/5 p-6"
-              >
-                <div className="mt-0.5 h-2 w-2 rounded-full bg-[#B8755C]" />
-                <p className="text-sm text-[#1A1A1E]">{insight}</p>
-              </div>
-            ))}
-            <Link href="/chat-ai">
-              <Button variant="outline" className="mt-2 w-full">
-                <MessageSquare className="mr-2 h-4 w-4" />
-                Explorar mais com IA
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Care Ratio */}
-      <Card className="relative z-10">
-        <CardHeader>
-          <CardTitle className="text-3xl font-serif font-bold text-[#1A1A1E]">Ratio de Cuidado</CardTitle>
-          <CardDescription>
-            Equilibrio entre cuidado profissional, artificial e autocuidado
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-6 md:grid-cols-3">
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-[#1A1A1E]">
-                  Cuidado Profissional
-                </span>
-                <span className="text-sm font-bold text-[#8B9E7C]">35%</span>
-              </div>
-              <div className="h-3 w-full overflow-hidden rounded-full bg-[#8C8580]/20">
-                <div
-                  className="h-full bg-[#8B9E7C]"
-                  style={{ width: '35%' }}
-                />
-              </div>
-              <p className="text-xs text-[#8C8580]">
-                Sessoes com terapeutas e coaches
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-[#1A1A1E]">
-                  Cuidado Artificial
-                </span>
-                <span className="text-sm font-bold text-[#B8755C]">25%</span>
-              </div>
-              <div className="h-3 w-full overflow-hidden rounded-full bg-[#8C8580]/20">
-                <div
-                  className="h-full bg-[#B8755C]"
-                  style={{ width: '25%' }}
-                />
-              </div>
-              <p className="text-xs text-[#8C8580]">
-                Interacoes com a IA
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-[#1A1A1E]">
-                  Autocuidado
-                </span>
-                <span className="text-sm font-bold text-[#1A1A1E]">40%</span>
-              </div>
-              <div className="h-3 w-full overflow-hidden rounded-full bg-[#8C8580]/20">
-                <div
-                  className="h-full bg-[#1A1A1E]"
-                  style={{ width: '40%' }}
-                />
-              </div>
-              <p className="text-xs text-[#8C8580]">
-                Praticas e reflexoes pessoais
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
 
       {/* Editorial Quote */}
       <div className="relative z-10">

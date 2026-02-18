@@ -18,6 +18,8 @@ import {
   RefreshCw,
   Copy,
   Check,
+  Compass,
+  Scroll,
 } from 'lucide-react'
 
 interface Message {
@@ -55,15 +57,15 @@ const initialMessages: Message[] = [
   {
     id: '1',
     role: 'assistant',
-    content: `Ola! Sou seu assistente de cuidado pessoal. Estou aqui para ajudar voce na sua jornada de autoconhecimento e desenvolvimento.
+    content: `Saudacoes, aventureiro. Eu sou o Oraculo — guardiao do conhecimento do seu Mapa da Vida.
 
-Tenho acesso ao seu Mapa da Vida e posso:
-- Ajudar voce a refletir sobre seus sentimentos e pensamentos
-- Analisar padroes no seu bem-estar
-- Sugerir acoes praticas baseadas no seu contexto
-- Acompanhar seu progresso em relacao ao seu proposito
+Tenho visao sobre sua jornada e posso:
+- Revelar padroes ocultos nos seus sentimentos e pensamentos
+- Analisar as trilhas do seu progresso
+- Sugerir caminhos baseados no seu contexto
+- Acompanhar seu avanco em direcao ao Ponto B
 
-Como posso ajudar voce hoje?`,
+Que sabedoria busca hoje?`,
     suggestions: [
       'Quero falar sobre como me sinto hoje',
       'Analise meu progresso recente',
@@ -104,7 +106,6 @@ export default function ChatAIPage() {
     setInput('')
     setIsLoading(true)
 
-    // Simulate AI response
     setTimeout(() => {
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
@@ -126,67 +127,67 @@ export default function ChatAIPage() {
     const lowerInput = input.toLowerCase()
 
     if (lowerInput.includes('sentindo') || lowerInput.includes('sinto')) {
-      return `Entendo que voce quer explorar seus sentimentos. Baseado nos seus registros recentes, percebi que:
+      return `Entendo que voce quer explorar seus sentimentos. Consultando os registros do seu Mapa...
 
 **Padroes observados:**
 - Seu humor tem oscilado entre 6 e 8 nos ultimos dias
 - O nivel de estresse aumentou levemente no inicio da semana
 - Sua energia esta estavel, mas poderia ser melhor
 
-**Reflexao:**
-Como voce se sente em relacao ao trabalho ultimamente? Seus registros mostram que os picos de estresse coincidem com os dias de maior carga de trabalho.
+**Reflexao do Oraculo:**
+Como voce se sente em relacao ao trabalho ultimamente? Seus registros mostram que os picos de estresse coincidem com os dias de maior carga.
 
-Quer explorar mais esse assunto ou prefere falar sobre estrategias para lidar com isso?`
+Quer explorar mais esse territorio ou prefere falar sobre estrategias de combate?`
     }
 
     if (lowerInput.includes('progresso') || lowerInput.includes('metas')) {
-      return `Vamos analisar seu progresso:
+      return `Consultando o Quest Log...
 
-**Missoes Concluidas:** 12 de 15 (80%)
-**OKRs do Trimestre:** 45% concluido
+**Missoes Completadas:** 12 de 15 (80%) — +720 XP
+**Alinhamento com Ponto B:** 78%
 
-**Destaques positivos:**
-- Voce tem mantido consistencia nas praticas de autocuidado
-- O projeto do mestrado esta avancando conforme planejado
-- Suas sessoes de terapia estao trazendo insights valiosos
+**Conquistas desbloqueadas:**
+- Consistencia nas praticas de autocuidado
+- O projeto do mestrado avanca conforme o mapa
+- Encontros de terapia trazendo insights valiosos
 
-**Areas de atencao:**
-- A missao "Definir metas do trimestre" ainda esta pendente
-- O exercicio fisico pode ser intensificado
+**Atencao do Oraculo:**
+- A quest "Definir metas do trimestre" ainda esta pendente
+- O atributo "Exercicio Fisico" pode ser fortalecido
 
-Gostaria de revisar algum objetivo especifico ou definir novas metas?`
+Gostaria de revisar algum objetivo especifico?`
     }
 
     if (lowerInput.includes('estresse') || lowerInput.includes('ansiedade')) {
-      return `Percebi que o estresse e uma preocupacao sua. Vamos trabalhar nisso juntos.
+      return `O Oraculo percebe tensao nos seus registros. Vamos trabalhar nisso.
 
-**Analise do seu contexto:**
-- Nivel de estresse atual: 7/10 (acima do ideal)
-- Principais gatilhos identificados: pressao no trabalho, falta de tempo
-- Horas de sono: 6.5h (recomendado: 7-8h)
+**Diagnostico:**
+- Estresse atual: 7/10 (debuff ativo)
+- Gatilhos identificados: pressao no trabalho, falta de tempo
+- Sono: 6.5h (abaixo do recomendado)
 
-**Sugestoes praticas para hoje:**
-1. **Respiracao 4-7-8**: Pratique 3 vezes ao longo do dia
-2. **Pausa consciente**: 5 minutos sem tela a cada 2 horas
-3. **Caminhada**: Mesmo que curta, movimento ajuda a liberar tensao
+**Pergaminhos de cura sugeridos:**
+1. **Respiracao 4-7-8**: 3 vezes ao longo do dia (+15 HP)
+2. **Pausa consciente**: 5 min sem tela a cada 2h (+10 MP)
+3. **Caminhada**: Movimento libera tensao (+20 Energia)
 
-**Reflexao:**
-O que costuma te ajudar mais quando voce sente estresse? Podemos criar um plano personalizado.`
+**Sabedoria antiga:**
+O que costuma restaurar sua energia quando o estresse ataca? Podemos criar um plano personalizado de defesa.`
     }
 
-    return `Obrigado por compartilhar isso comigo. Baseado no seu Mapa da Vida e historico:
+    return `O Oraculo ouviu sua mensagem. Consultando o Mapa da Vida...
 
-**O que observo:**
+**Visao revelada:**
 - Voce esta em uma fase de transformacao importante
-- Ha conexoes entre o que voce esta vivendo e alguns padroes do passado
-- Seu proposito de "transformar vidas atraves da educacao" continua sendo sua bussola
+- Ha conexoes entre o que vive agora e padroes do territorio passado
+- Seu proposito de "transformar vidas atraves da educacao" continua como bussola apontando para o Ponto B
 
-**Minhas sugestoes:**
-1. Continue registrando seus pensamentos e sentimentos diariamente
-2. Explore essa questao na proxima sessao com seu terapeuta
-3. Lembre-se das suas conquistas recentes
+**Caminhos sugeridos:**
+1. Continue registrando pensamentos e sentimentos (Quest Diaria)
+2. Explore essa questao no proximo encontro com seu terapeuta
+3. Lembre-se das conquistas recentes no seu Quest Log
 
-Quer que eu aprofunde em algum aspecto especifico?`
+Deseja que eu aprofunde em algum territorio especifico?`
   }
 
   const copyToClipboard = (text: string, id: string) => {
@@ -197,28 +198,33 @@ Quer que eu aprofunde em algum aspecto especifico?`
 
   return (
     <div className="mx-auto max-w-4xl animate-fade-in">
-      <div className="mb-8">
-        <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Chat com IA</h2>
-        <p className="text-[#8C8580]">
-          Seu assistente de cuidado e desenvolvimento pessoal 24/7
+      <div className="mb-6">
+        <h2 className="text-3xl font-serif font-bold text-[#1A1A1E] flex items-center gap-2">
+          <Compass className="h-7 w-7 text-[#B8755C]" />
+          O Oraculo
+        </h2>
+        <p className="text-sm text-[#8C8580]">
+          Guardiao do conhecimento — Disponivel 24/7
         </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-4">
+      <div className="grid gap-4 lg:grid-cols-4">
         {/* Suggested Prompts - Sidebar */}
         <div className="lg:col-span-1">
           <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium">Sugestoes</CardTitle>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-xs font-mono uppercase tracking-wider text-[#8C8580]">
+                Caminhos a explorar
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               {suggestedPrompts.map((prompt, index) => (
                 <button
                   key={index}
                   onClick={() => handleSend(prompt.prompt)}
-                  className="flex w-full items-center gap-2 rounded-md border border-[#8C8580]/20 p-3 text-left text-sm transition-colors hover:bg-[#8C8580]/5"
+                  className="flex w-full items-center gap-2 rounded-md border border-[#8C8580]/20 p-2.5 text-left text-xs transition-colors hover:bg-[#B8755C]/5 hover:border-[#B8755C]/30"
                 >
-                  <prompt.icon className="h-4 w-4 text-[#8B9E7C]" />
+                  <prompt.icon className="h-3.5 w-3.5 text-[#B8755C]" />
                   <span className="text-[#1A1A1E]">{prompt.title}</span>
                 </button>
               ))}
@@ -228,16 +234,14 @@ Quer que eu aprofunde em algum aspecto especifico?`
 
         {/* Chat Area */}
         <div className="lg:col-span-3">
-          <Card className="flex h-[600px] flex-col">
+          <Card className="flex h-[600px] flex-col topo-bg">
             {/* Messages */}
             <CardContent className="flex-1 overflow-y-auto p-4">
               <div className="space-y-4">
                 {messages.map((message) => (
                   <div
                     key={message.id}
-                    className={`flex gap-3 ${
-                      message.role === 'user' ? 'flex-row-reverse' : ''
-                    }`}
+                    className={`flex gap-3 ${message.role === 'user' ? 'flex-row-reverse' : ''}`}
                   >
                     <Avatar className="h-8 w-8 flex-shrink-0">
                       <AvatarFallback
@@ -260,11 +264,16 @@ Quer que eu aprofunde em algum aspecto especifico?`
                         message.role === 'user' ? 'items-end' : 'items-start'
                       }`}
                     >
+                      {/* Message label */}
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#8C8580]">
+                        {message.role === 'assistant' ? 'Oraculo' : 'Diario do Aventureiro'}
+                      </span>
+
                       <div
-                        className={`rounded-2xl px-4 py-3 ${
+                        className={`px-4 py-3 ${
                           message.role === 'user'
-                            ? 'bg-[#8C8580]/20 text-[#1A1A1E]'
-                            : 'border-l-3 border-l-[#B8755C] bg-[#F5F0EB] text-[#1A1A1E]'
+                            ? 'journal-entry rounded-2xl text-[#1A1A1E]'
+                            : 'oracle-message'
                         }`}
                       >
                         <div className="whitespace-pre-wrap text-sm">
@@ -277,33 +286,28 @@ Quer que eu aprofunde em algum aspecto especifico?`
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => copyToClipboard(message.content, message.id)}
-                            className="flex items-center gap-1 text-xs text-[#8C8580] hover:text-[#1A1A1E]"
+                            className="flex items-center gap-1 text-[10px] font-mono text-[#8C8580] hover:text-[#1A1A1E]"
                           >
                             {copiedId === message.id ? (
-                              <>
-                                <Check className="h-3 w-3" />
-                                Copiado
-                              </>
+                              <><Check className="h-3 w-3" /> Copiado</>
                             ) : (
-                              <>
-                                <Copy className="h-3 w-3" />
-                                Copiar
-                              </>
+                              <><Copy className="h-3 w-3" /> Copiar</>
                             )}
                           </button>
                         </div>
                       )}
 
-                      {/* Suggestions */}
+                      {/* Suggestions as paths */}
                       {message.suggestions && message.role === 'assistant' && (
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-1.5">
                           {message.suggestions.map((suggestion, idx) => (
                             <Badge
                               key={idx}
                               variant="outline"
-                              className="cursor-pointer border-[#8B9E7C]/40 text-[#8B9E7C] hover:bg-[#8B9E7C]/10"
+                              className="cursor-pointer border-[#B8755C]/30 text-[#B8755C] hover:bg-[#B8755C]/10 text-[10px]"
                               onClick={() => handleSend(suggestion)}
                             >
+                              <Scroll className="mr-1 h-2.5 w-2.5" />
                               {suggestion}
                             </Badge>
                           ))}
@@ -320,9 +324,9 @@ Quer que eu aprofunde em algum aspecto especifico?`
                         <Sparkles className="h-4 w-4" />
                       </AvatarFallback>
                     </Avatar>
-                    <div className="flex items-center gap-2 rounded-2xl bg-[#8C8580]/10 px-4 py-3">
-                      <RefreshCw className="h-4 w-4 animate-spin text-[#8C8580]" />
-                      <span className="text-sm text-[#8C8580]">Pensando...</span>
+                    <div className="flex items-center gap-2 oracle-message px-4 py-3">
+                      <RefreshCw className="h-4 w-4 animate-spin text-[#B8755C]" />
+                      <span className="text-xs font-mono text-[#8C8580]">O Oraculo consulta o mapa...</span>
                     </div>
                   </div>
                 )}
@@ -332,12 +336,12 @@ Quer que eu aprofunde em algum aspecto especifico?`
             </CardContent>
 
             {/* Input Area */}
-            <div className="border-t border-[#8C8580]/20 p-4">
+            <div className="border-t border-[#B8755C]/15 bg-[var(--parchment-light)] p-4">
               <div className="flex gap-3">
                 <Textarea
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Digite sua mensagem..."
+                  placeholder="Escreva no seu diario..."
                   className="min-h-[44px] resize-none"
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && !e.shiftKey) {
@@ -354,8 +358,8 @@ Quer que eu aprofunde em algum aspecto especifico?`
                   <Send className="h-5 w-5" />
                 </Button>
               </div>
-              <p className="mt-2 text-center text-xs text-[#8C8580]">
-                A IA tem acesso ao seu Mapa da Vida para oferecer respostas personalizadas
+              <p className="mt-2 text-center text-[10px] font-mono text-[#8C8580]">
+                O Oraculo tem acesso ao seu Mapa da Vida para oferecer visoes personalizadas
               </p>
             </div>
           </Card>

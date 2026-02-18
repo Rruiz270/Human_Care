@@ -27,14 +27,14 @@ import {
 import { useState } from 'react'
 
 const navigation = [
-  { name: 'Dashboard', href: '/', icon: LayoutDashboard },
-  { name: 'Mapa da Vida', href: '/mapa-da-vida', icon: Compass },
-  { name: 'Conteudo', href: '/conteudo', icon: Video },
-  { name: 'Agenda', href: '/agenda', icon: Calendar },
-  { name: 'Sessoes', href: '/sessoes', icon: Heart },
+  { name: 'Quartel General', href: '/', icon: LayoutDashboard },
+  { name: 'Mapa do Mundo', href: '/mapa-da-vida', icon: Compass },
+  { name: 'Biblioteca', href: '/conteudo', icon: Video },
+  { name: 'Calendario', href: '/agenda', icon: Calendar },
+  { name: 'Encontros', href: '/sessoes', icon: Heart },
   { name: 'Missoes', href: '/missoes', icon: Target },
-  { name: 'Chat AI', href: '/chat-ai', icon: MessageSquare },
-  { name: 'Metricas', href: '/metricas', icon: BarChart3 },
+  { name: 'O Oraculo', href: '/chat-ai', icon: MessageSquare },
+  { name: 'Status do Avatar', href: '/metricas', icon: BarChart3 },
 ]
 
 const adminNavigation = [

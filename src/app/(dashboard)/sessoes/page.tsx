@@ -29,10 +29,8 @@ import {
   Target,
   Sparkles,
   Plus,
-  ChevronRight,
   Play,
   CheckCircle,
-  XCircle,
   MessageSquare,
   Send,
   Mic,
@@ -40,9 +38,11 @@ import {
   VideoOff,
   PhoneOff,
   Users,
-  X,
+  Scroll,
+  Swords,
 } from 'lucide-react'
 import { formatDateTime } from '@/lib/utils'
+import { CarePartyDiagram, CarePartyMember } from '@/components/ui/rpg-components'
 
 // Demo data
 const initialSessions = [
@@ -115,8 +115,6 @@ export default function SessoesPage() {
   const [transcriptText, setTranscriptText] = useState('')
   const [showSuccess, setShowSuccess] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
-
-  // Video call state
   const [isMuted, setIsMuted] = useState(false)
   const [isVideoOn, setIsVideoOn] = useState(true)
 
@@ -148,9 +146,7 @@ export default function SessoesPage() {
   const handleSaveNotes = () => {
     if (selectedSession) {
       setSessions(sessions.map(s =>
-        s.id === selectedSession.id
-          ? { ...s, notes: sessionNotes }
-          : s
+        s.id === selectedSession.id ? { ...s, notes: sessionNotes } : s
       ))
       setShowDetailsDialog(false)
       setSuccessMessage('Notas salvas com sucesso!')
@@ -161,9 +157,7 @@ export default function SessoesPage() {
 
   const handleAnalyzeTranscript = () => {
     if (!transcriptText.trim()) return
-
     setIsAnalyzing(true)
-    // Simulate AI analysis
     setTimeout(() => {
       setIsAnalyzing(false)
       setShowUploadDialog(false)
@@ -176,347 +170,287 @@ export default function SessoesPage() {
 
   const handleScheduleSession = () => {
     setShowNewSessionDialog(false)
-    setSuccessMessage('Sessao agendada com sucesso!')
+    setSuccessMessage('Encontro agendado com sucesso!')
     setShowSuccess(true)
     setTimeout(() => setShowSuccess(false), 3000)
   }
 
   return (
-    <div className="space-y-8 animate-fade-in">
+    <div className="space-y-6 animate-fade-in">
       {/* Success notification */}
       {showSuccess && (
-        <div className="fixed top-4 right-4 z-50 bg-[#B8755C] text-[#1A1A1E] px-4 py-3 rounded-lg shadow-lg flex items-center gap-2 animate-fade-in">
+        <div className="fixed top-4 right-4 z-50 bg-[#B8755C] text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-2 animate-fade-in">
           <CheckCircle className="h-5 w-5" />
-          <span className="font-medium">{successMessage}</span>
+          <span className="font-medium text-sm">{successMessage}</span>
         </div>
       )}
 
-      {/* Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Sessoes</h2>
-          <p className="text-[#8C8580]">
-            Gerencie suas sessoes de terapia, coaching e acompanhamento
-          </p>
-        </div>
-        <div className="flex gap-3">
-          <Dialog open={showUploadDialog} onOpenChange={setShowUploadDialog}>
-            <DialogTrigger asChild>
-              <Button variant="outline">
-                <Upload className="mr-2 h-4 w-4" />
-                Upload Transcricao
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Upload de Transcricao</DialogTitle>
-                <DialogDescription>
-                  Envie a transcricao de uma sessao para analise automatica da IA
-                </DialogDescription>
-              </DialogHeader>
-              <div className="space-y-4 py-4">
-                <div className="space-y-2">
-                  <Label>Sessao</Label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione a sessao" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {sessions.filter(s => s.status === 'COMPLETED').map((session) => (
-                        <SelectItem key={session.id} value={session.id}>
-                          {session.type === 'THERAPY' ? 'Terapia' : 'Coaching'} - {formatDateTime(session.scheduledAt)}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <Label>Arquivo de Transcricao</Label>
-                  <div className="flex items-center justify-center w-full">
-                    <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-[#8C8580]/30 border-dashed rounded-lg cursor-pointer hover:bg-[#8C8580]/5">
-                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                        <Upload className="h-8 w-8 text-[#8C8580] mb-2" />
-                        <p className="text-sm text-[#8C8580]">
-                          Clique para enviar ou arraste o arquivo
-                        </p>
-                        <p className="text-xs text-[#8C8580]">
-                          TXT, DOC, PDF (max 10MB)
-                        </p>
-                      </div>
-                      <input type="file" className="hidden" accept=".txt,.doc,.docx,.pdf" />
-                    </label>
+      {/* ═══ PARTY OVERVIEW ═══ */}
+      <div className="rounded-lg border border-[var(--border-architectural)] bg-white p-4 lg:p-6">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <h2 className="text-2xl font-serif font-bold text-[#1A1A1E] flex items-center gap-2">
+              <Swords className="h-6 w-6 text-[#B8755C]" />
+              Encontros
+            </h2>
+            <p className="text-sm text-[#8C8580] mt-1">
+              Conselho Multidisciplinar — Vetores de Cuidado
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <Dialog open={showUploadDialog} onOpenChange={setShowUploadDialog}>
+              <DialogTrigger asChild>
+                <Button variant="outline" size="sm">
+                  <Upload className="mr-2 h-4 w-4" />
+                  Upload Transcricao
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Upload de Transcricao</DialogTitle>
+                  <DialogDescription>
+                    Envie a transcricao para relatorio de inteligencia da IA
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4 py-4">
+                  <div className="space-y-2">
+                    <Label>Encontro</Label>
+                    <Select>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Selecione o encontro" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {sessions.filter(s => s.status === 'COMPLETED').map((session) => (
+                          <SelectItem key={session.id} value={session.id}>
+                            {session.type === 'THERAPY' ? 'Terapia' : 'Coaching'} - {formatDateTime(session.scheduledAt)}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Arquivo</Label>
+                    <div className="flex items-center justify-center w-full">
+                      <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-[#8C8580]/30 border-dashed rounded-lg cursor-pointer hover:bg-[#8C8580]/5">
+                        <Upload className="h-6 w-6 text-[#8C8580] mb-1" />
+                        <p className="text-xs text-[#8C8580]">Arraste ou clique</p>
+                        <p className="text-[10px] text-[#8C8580]">TXT, DOC, PDF (max 10MB)</p>
+                        <input type="file" className="hidden" accept=".txt,.doc,.docx,.pdf" />
+                      </label>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Ou cole a transcricao</Label>
+                    <Textarea
+                      placeholder="Cole o texto aqui..."
+                      className="min-h-[100px]"
+                      value={transcriptText}
+                      onChange={(e) => setTranscriptText(e.target.value)}
+                    />
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <Label>Ou cole a transcricao</Label>
-                  <Textarea
-                    placeholder="Cole o texto da transcricao aqui..."
-                    className="min-h-[120px]"
-                    value={transcriptText}
-                    onChange={(e) => setTranscriptText(e.target.value)}
-                  />
-                </div>
-              </div>
-              <DialogFooter>
-                <Button variant="outline" onClick={() => setShowUploadDialog(false)}>
-                  Cancelar
-                </Button>
-                <Button
-                  onClick={handleAnalyzeTranscript}
-                  disabled={isAnalyzing || !transcriptText.trim()}
-                  className="bg-[#B8755C] text-[#1A1A1E] hover:bg-[#93c800]"
-                >
-                  {isAnalyzing ? (
-                    <>
-                      <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-[#1A1A1E] border-t-transparent" />
-                      Analisando...
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles className="mr-2 h-4 w-4" />
-                      Analisar com IA
-                    </>
-                  )}
-                </Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+                <DialogFooter>
+                  <Button variant="outline" onClick={() => setShowUploadDialog(false)}>Cancelar</Button>
+                  <Button onClick={handleAnalyzeTranscript} disabled={isAnalyzing || !transcriptText.trim()}>
+                    {isAnalyzing ? (
+                      <>
+                        <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                        Analisando...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="mr-2 h-4 w-4" />
+                        Analisar
+                      </>
+                    )}
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
 
-          <Dialog open={showNewSessionDialog} onOpenChange={setShowNewSessionDialog}>
-            <DialogTrigger asChild>
-              <Button className="bg-[#B8755C] text-[#1A1A1E] hover:bg-[#93c800]">
-                <Plus className="mr-2 h-4 w-4" />
-                Agendar Sessao
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Agendar Nova Sessao</DialogTitle>
-                <DialogDescription>
-                  Agende uma sessao com seu terapeuta ou coach
-                </DialogDescription>
-              </DialogHeader>
-              <div className="space-y-4 py-4">
-                <div className="space-y-2">
-                  <Label>Tipo de Sessao</Label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione o tipo" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="THERAPY">Terapia</SelectItem>
-                      <SelectItem value="COACHING">Coaching</SelectItem>
-                      <SelectItem value="CARE_TEAM_CHECKIN">Check-in Time de Cuidado</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <Label>Profissional</Label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione o profissional" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="1">Dra. Ana Costa - Psicologa</SelectItem>
-                      <SelectItem value="2">Carlos Mendes - Coach</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
+            <Dialog open={showNewSessionDialog} onOpenChange={setShowNewSessionDialog}>
+              <DialogTrigger asChild>
+                <Button size="sm">
+                  <Plus className="mr-2 h-4 w-4" />
+                  Agendar Encontro
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Agendar Novo Encontro</DialogTitle>
+                  <DialogDescription>Agende com seu terapeuta ou coach</DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4 py-4">
                   <div className="space-y-2">
-                    <Label>Data</Label>
-                    <Input type="date" />
+                    <Label>Tipo</Label>
+                    <Select>
+                      <SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="THERAPY">Terapia</SelectItem>
+                        <SelectItem value="COACHING">Coaching</SelectItem>
+                        <SelectItem value="CARE_TEAM_CHECKIN">Check-in Care Team</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label>Horario</Label>
-                    <Input type="time" />
+                    <Label>Profissional</Label>
+                    <Select>
+                      <SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="1">Dra. Ana Costa - Psicologa</SelectItem>
+                        <SelectItem value="2">Carlos Mendes - Coach</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2"><Label>Data</Label><Input type="date" /></div>
+                    <div className="space-y-2"><Label>Horario</Label><Input type="time" /></div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Formato</Label>
+                    <Select defaultValue="online">
+                      <SelectTrigger><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="online">Online (Video)</SelectItem>
+                        <SelectItem value="presencial">Presencial</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Preparacao para o encontro (opcional)</Label>
+                    <Textarea placeholder="Temas que gostaria de abordar..." />
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <Label>Formato</Label>
-                  <Select defaultValue="online">
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="online">Online (Video)</SelectItem>
-                      <SelectItem value="presencial">Presencial</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <Label>Observacoes (opcional)</Label>
-                  <Textarea placeholder="Algo que gostaria de abordar na sessao..." />
-                </div>
-              </div>
-              <DialogFooter>
-                <Button variant="outline" onClick={() => setShowNewSessionDialog(false)}>
-                  Cancelar
-                </Button>
-                <Button
-                  onClick={handleScheduleSession}
-                  className="bg-[#B8755C] text-[#1A1A1E] hover:bg-[#93c800]"
-                >
-                  Agendar
-                </Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+                <DialogFooter>
+                  <Button variant="outline" onClick={() => setShowNewSessionDialog(false)}>Cancelar</Button>
+                  <Button onClick={handleScheduleSession}>Agendar</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </div>
+        </div>
+
+        {/* Care Party Cross Diagram */}
+        <div className="mt-4 grid gap-4 lg:grid-cols-[200px_1fr]">
+          <CarePartyDiagram />
+          <div className="grid gap-2 sm:grid-cols-2">
+            <CarePartyMember
+              name="Dra. Ana Costa"
+              role="therapist"
+              roleLabel="Terapeuta ↓ DOWN"
+              avatarInitials="AC"
+              lastSession="10 Jan"
+              nextSession="Amanha"
+            />
+            <CarePartyMember
+              name="Carlos Mendes"
+              role="coach"
+              roleLabel="Coach ↑ UP"
+              avatarInitials="CM"
+              lastSession="14 Jan"
+              nextSession="Em 4 dias"
+            />
+            <CarePartyMember
+              name="Equipe HC"
+              role="care_team"
+              roleLabel="Care Team ↔ HORIZONTAL"
+              avatarInitials="HC"
+            />
+            <CarePartyMember
+              name="Voce"
+              role="self"
+              roleLabel="Self ● CENTER"
+              avatarInitials="EU"
+            />
+          </div>
         </div>
       </div>
 
-      {/* Stats */}
-      <div className="grid gap-4 md:grid-cols-4">
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#8B9E7C]/10">
-                <Calendar className="h-6 w-6 text-[#8B9E7C]" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-[#1A1A1E]">
-                  {sessions.filter(s => s.status === 'SCHEDULED').length}
-                </p>
-                <p className="text-sm text-[#8C8580]">Sessoes agendadas</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#B8755C]/10">
-                <CheckCircle className="h-6 w-6 text-[#B8755C]" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-[#1A1A1E]">
-                  {sessions.filter(s => s.status === 'COMPLETED').length}
-                </p>
-                <p className="text-sm text-[#8C8580]">Sessoes concluidas</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1A1A1E]/10">
-                <Brain className="h-6 w-6 text-[#1A1A1E]" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-[#1A1A1E]">
-                  {sessions.filter(s => s.type === 'THERAPY').length}
-                </p>
-                <p className="text-sm text-[#8C8580]">Terapia</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#8C8580]/10">
-                <Target className="h-6 w-6 text-[#8C8580]" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-[#1A1A1E]">
-                  {sessions.filter(s => s.type === 'COACHING').length}
-                </p>
-                <p className="text-sm text-[#8C8580]">Coaching</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+      {/* ═══ ENCOUNTER STATS ═══ */}
+      <div className="grid gap-3 md:grid-cols-4">
+        <div className="inventory-item flex items-center gap-3">
+          <Calendar className="h-5 w-5 text-[#8B9E7C]" />
+          <div>
+            <p className="text-xl font-mono font-bold text-[#1A1A1E]">{sessions.filter(s => s.status === 'SCHEDULED').length}</p>
+            <p className="text-[10px] font-mono text-[#8C8580]">Agendados</p>
+          </div>
+        </div>
+        <div className="inventory-item flex items-center gap-3">
+          <CheckCircle className="h-5 w-5 text-[#B8755C]" />
+          <div>
+            <p className="text-xl font-mono font-bold text-[#1A1A1E]">{sessions.filter(s => s.status === 'COMPLETED').length}</p>
+            <p className="text-[10px] font-mono text-[#8C8580]">Concluidos</p>
+          </div>
+        </div>
+        <div className="inventory-item flex items-center gap-3">
+          <Brain className="h-5 w-5 text-[#8B9E7C]" />
+          <div>
+            <p className="text-xl font-mono font-bold text-[#1A1A1E]">{sessions.filter(s => s.type === 'THERAPY').length}</p>
+            <p className="text-[10px] font-mono text-[#8C8580]">Terapia</p>
+          </div>
+        </div>
+        <div className="inventory-item flex items-center gap-3">
+          <Target className="h-5 w-5 text-[#B8755C]" />
+          <div>
+            <p className="text-xl font-mono font-bold text-[#1A1A1E]">{sessions.filter(s => s.type === 'COACHING').length}</p>
+            <p className="text-[10px] font-mono text-[#8C8580]">Coaching</p>
+          </div>
+        </div>
       </div>
 
-      {/* Sessions List */}
+      {/* ═══ ENCOUNTER REPORTS ═══ */}
       <Card>
         <CardHeader>
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList>
-              <TabsTrigger value="todas">Todas</TabsTrigger>
-              <TabsTrigger value="agendadas">Agendadas</TabsTrigger>
-              <TabsTrigger value="concluidas">Concluidas</TabsTrigger>
+              <TabsTrigger value="todas">Todos</TabsTrigger>
+              <TabsTrigger value="agendadas">Agendados</TabsTrigger>
+              <TabsTrigger value="concluidas">Relatorios</TabsTrigger>
             </TabsList>
           </Tabs>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-3">
             {filteredSessions.map((session) => (
               <div
                 key={session.id}
-                className="rounded-lg border border-[#8C8580]/20 p-4 transition-colors hover:bg-[#8C8580]/5"
+                className={`encounter-card rounded-lg border border-[#8C8580]/20 p-4 transition-colors hover:bg-[#8C8580]/5 ${
+                  session.type === 'THERAPY' ? 'encounter-card-therapy' : 'encounter-card-coaching'
+                }`}
               >
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="flex gap-4">
-                    <div
-                      className={`flex h-12 w-12 items-center justify-center rounded-full ${
-                        session.type === 'THERAPY'
-                          ? 'bg-[#8B9E7C]/10'
-                          : 'bg-[#B8755C]/10'
-                      }`}
-                    >
-                      {session.type === 'THERAPY' ? (
-                        <Brain
-                          className={`h-6 w-6 ${
-                            session.type === 'THERAPY'
-                              ? 'text-[#8B9E7C]'
-                              : 'text-[#B8755C]'
-                          }`}
-                        />
-                      ) : (
-                        <Target className="h-6 w-6 text-[#B8755C]" />
-                      )}
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="flex gap-3">
+                    {/* Party member avatar */}
+                    <div className={`flex h-10 w-10 items-center justify-center rounded-full border-2 text-white text-xs font-bold ${
+                      session.type === 'THERAPY' ? 'border-[#8B9E7C] bg-[#8B9E7C]' : 'border-[#B8755C] bg-[#B8755C]'
+                    }`}>
+                      {session.professional.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <h4 className="font-semibold text-[#1A1A1E]">
+                        <h4 className="font-serif font-semibold text-[#1A1A1E] text-sm">
                           {session.type === 'THERAPY' ? 'Terapia' : 'Coaching'}
                         </h4>
                         <Badge
-                          variant={
-                            session.status === 'SCHEDULED'
-                              ? 'secondary'
-                              : session.status === 'COMPLETED'
-                              ? 'default'
-                              : 'destructive'
-                          }
+                          variant={session.status === 'SCHEDULED' ? 'secondary' : session.status === 'COMPLETED' ? 'default' : 'destructive'}
+                          className="text-[10px]"
                         >
-                          {session.status === 'SCHEDULED' && 'Agendada'}
-                          {session.status === 'COMPLETED' && 'Concluida'}
-                          {session.status === 'CANCELLED' && 'Cancelada'}
+                          {session.status === 'SCHEDULED' && 'Agendado'}
+                          {session.status === 'COMPLETED' && 'Relatorio Pronto'}
+                          {session.status === 'CANCELLED' && 'Cancelado'}
                         </Badge>
                       </div>
-                      <p className="text-sm text-[#8C8580]">
-                        {session.professional.name} - {session.professional.role}
-                      </p>
-                      <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-[#8C8580]">
+                      <p className="text-xs text-[#8C8580]">{session.professional.name} — {session.professional.role}</p>
+                      <div className="mt-1.5 flex flex-wrap items-center gap-2 text-[10px] font-mono text-[#8C8580]">
+                        <span className="flex items-center gap-1"><Calendar className="h-3 w-3" />{formatDateTime(session.scheduledAt)}</span>
+                        <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{session.duration} min</span>
                         <span className="flex items-center gap-1">
-                          <Calendar className="h-4 w-4" />
-                          {formatDateTime(session.scheduledAt)}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Clock className="h-4 w-4" />
-                          {session.duration} min
-                        </span>
-                        <span className="flex items-center gap-1">
-                          {session.isOnline ? (
-                            <>
-                              <Video className="h-4 w-4" />
-                              Online
-                            </>
-                          ) : (
-                            <>
-                              <MapPin className="h-4 w-4" />
-                              Presencial
-                            </>
-                          )}
+                          {session.isOnline ? <><Video className="h-3 w-3" />Online</> : <><MapPin className="h-3 w-3" />Presencial</>}
                         </span>
                       </div>
-                      {/* Session notes preview */}
                       {session.notes && (
-                        <div className="mt-2 flex items-start gap-2 text-sm">
-                          <MessageSquare className="h-4 w-4 text-[#8B9E7C] mt-0.5" />
+                        <div className="mt-1.5 flex items-start gap-1.5 text-xs">
+                          <MessageSquare className="h-3 w-3 text-[#8B9E7C] mt-0.5" />
                           <p className="text-[#8C8580] italic line-clamp-1">{session.notes}</p>
                         </div>
                       )}
@@ -525,55 +459,41 @@ export default function SessoesPage() {
 
                   <div className="flex gap-2">
                     {session.status === 'SCHEDULED' && (
-                      <Button
-                        size="sm"
-                        onClick={() => handleJoinSession(session)}
-                        className="bg-[#B8755C] text-[#1A1A1E] hover:bg-[#93c800]"
-                      >
-                        <Play className="mr-2 h-4 w-4" />
+                      <Button size="sm" onClick={() => handleJoinSession(session)}>
+                        <Play className="mr-1.5 h-3.5 w-3.5" />
                         Entrar
                       </Button>
                     )}
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleViewDetails(session)}
-                    >
-                      <FileText className="mr-2 h-4 w-4" />
-                      {session.status === 'COMPLETED' ? 'Ver Detalhes' : 'Notas'}
+                    <Button variant="outline" size="sm" onClick={() => handleViewDetails(session)}>
+                      <Scroll className="mr-1.5 h-3.5 w-3.5" />
+                      {session.status === 'COMPLETED' ? 'Relatorio' : 'Notas'}
                     </Button>
                   </div>
                 </div>
 
-                {/* AI Summary for completed sessions */}
+                {/* AI Intelligence Report */}
                 {session.status === 'COMPLETED' && session.aiSummary && (
-                  <div className="mt-4 rounded-lg bg-[#B8755C]/5 p-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Sparkles className="h-4 w-4 text-[#B8755C]" />
-                      <span className="text-sm font-medium text-[#1A1A1E]">
-                        Resumo da IA
+                  <div className="mt-3 oracle-message p-3">
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <Sparkles className="h-3.5 w-3.5 text-[#B8755C]" />
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#B8755C]">
+                        Relatorio de Inteligencia
                       </span>
                     </div>
-                    <p className="text-sm text-[#8C8580]">{session.aiSummary}</p>
+                    <p className="text-xs text-[#8C8580]">{session.aiSummary}</p>
                     {session.aiActionItems && (
-                      <div className="mt-3 space-y-2">
-                        <p className="text-xs font-medium text-[#8C8580]">
-                          Acoes identificadas:
+                      <div className="mt-2 space-y-1">
+                        <p className="text-[10px] font-mono uppercase tracking-wider text-[#8C8580]">
+                          Quests recebidas:
                         </p>
                         {session.aiActionItems.map((item, idx) => (
-                          <div key={idx} className="flex items-center gap-2 text-sm">
+                          <div key={idx} className="flex items-center gap-2 text-xs">
                             {item.completed ? (
-                              <CheckCircle className="h-4 w-4 text-[#B8755C]" />
+                              <span className="achievement-seal h-4 w-4 text-[8px]">✓</span>
                             ) : (
                               <div className="h-4 w-4 rounded-full border-2 border-[#8C8580]/30" />
                             )}
-                            <span
-                              className={
-                                item.completed
-                                  ? 'text-[#8C8580] line-through'
-                                  : 'text-[#1A1A1E]'
-                              }
-                            >
+                            <span className={item.completed ? 'text-[#8C8580] line-through' : 'text-[#1A1A1E]'}>
                               {item.title}
                             </span>
                           </div>
@@ -587,7 +507,7 @@ export default function SessoesPage() {
 
             {filteredSessions.length === 0 && (
               <div className="py-8 text-center">
-                <p className="text-[#8C8580]">Nenhuma sessao encontrada</p>
+                <p className="text-[#8C8580]">Nenhum encontro encontrado</p>
               </div>
             )}
           </div>
@@ -600,152 +520,116 @@ export default function SessoesPage() {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Video className="h-5 w-5 text-[#B8755C]" />
-              Sessao ao Vivo
+              Encontro ao Vivo
             </DialogTitle>
             <DialogDescription>
               {selectedSession?.type === 'THERAPY' ? 'Terapia' : 'Coaching'} com {selectedSession?.professional.name}
             </DialogDescription>
           </DialogHeader>
-
           <div className="flex-1 grid grid-cols-2 gap-4 py-4">
-            {/* Professional video */}
             <div className="relative bg-gradient-to-br from-[#1A1A1E] to-[#1A1A1E]/80 rounded-lg flex items-center justify-center aspect-video">
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#8B9E7C]/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Users className="h-10 w-10 text-[#8B9E7C]" />
+                <div className="w-16 h-16 bg-[#8B9E7C]/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <Users className="h-8 w-8 text-[#8B9E7C]" />
                 </div>
-                <p className="text-white font-medium">{selectedSession?.professional.name}</p>
-                <p className="text-white/60 text-sm">{selectedSession?.professional.role}</p>
+                <p className="text-white font-medium text-sm">{selectedSession?.professional.name}</p>
+                <p className="text-white/60 text-xs">{selectedSession?.professional.role}</p>
               </div>
-              <Badge className="absolute top-3 left-3 bg-[#B8755C] text-[#1A1A1E]">
-                Conectado
-              </Badge>
+              <Badge className="absolute top-3 left-3 bg-[#8B9E7C] text-white text-[10px]">Conectado</Badge>
             </div>
-
-            {/* User video */}
             <div className="relative bg-gradient-to-br from-[#8C8580]/50 to-[#8C8580]/30 rounded-lg flex items-center justify-center aspect-video">
               {isVideoOn ? (
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-[#B8755C]/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Users className="h-10 w-10 text-[#B8755C]" />
+                  <div className="w-16 h-16 bg-[#B8755C]/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Users className="h-8 w-8 text-[#B8755C]" />
                   </div>
-                  <p className="text-[#1A1A1E] font-medium">Voce</p>
+                  <p className="text-[#1A1A1E] font-medium text-sm">Voce</p>
                 </div>
               ) : (
                 <div className="text-center">
-                  <VideoOff className="h-12 w-12 text-[#8C8580] mx-auto mb-2" />
-                  <p className="text-[#8C8580]">Camera desligada</p>
+                  <VideoOff className="h-10 w-10 text-[#8C8580] mx-auto mb-1" />
+                  <p className="text-[#8C8580] text-xs">Camera desligada</p>
                 </div>
               )}
               {isMuted && (
-                <Badge variant="destructive" className="absolute top-3 left-3">
-                  <MicOff className="h-3 w-3 mr-1" />
-                  Mudo
+                <Badge variant="destructive" className="absolute top-3 left-3 text-[10px]">
+                  <MicOff className="h-3 w-3 mr-1" />Mudo
                 </Badge>
               )}
             </div>
           </div>
-
-          {/* Controls */}
           <div className="flex items-center justify-center gap-4 py-4 border-t">
-            <Button
-              variant={isMuted ? "destructive" : "outline"}
-              size="lg"
-              className="rounded-full w-14 h-14"
-              onClick={() => setIsMuted(!isMuted)}
-            >
-              {isMuted ? <MicOff className="h-6 w-6" /> : <Mic className="h-6 w-6" />}
+            <Button variant={isMuted ? "destructive" : "outline"} size="lg" className="rounded-full w-12 h-12" onClick={() => setIsMuted(!isMuted)}>
+              {isMuted ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5" />}
             </Button>
-            <Button
-              variant={!isVideoOn ? "destructive" : "outline"}
-              size="lg"
-              className="rounded-full w-14 h-14"
-              onClick={() => setIsVideoOn(!isVideoOn)}
-            >
-              {isVideoOn ? <Video className="h-6 w-6" /> : <VideoOff className="h-6 w-6" />}
+            <Button variant={!isVideoOn ? "destructive" : "outline"} size="lg" className="rounded-full w-12 h-12" onClick={() => setIsVideoOn(!isVideoOn)}>
+              {isVideoOn ? <Video className="h-5 w-5" /> : <VideoOff className="h-5 w-5" />}
             </Button>
-            <Button
-              variant="destructive"
-              size="lg"
-              className="rounded-full w-14 h-14"
-              onClick={handleEndCall}
-            >
-              <PhoneOff className="h-6 w-6" />
+            <Button variant="destructive" size="lg" className="rounded-full w-12 h-12" onClick={handleEndCall}>
+              <PhoneOff className="h-5 w-5" />
             </Button>
           </div>
         </DialogContent>
       </Dialog>
 
-      {/* Session Details/Notes Dialog */}
+      {/* Session Details Dialog */}
       <Dialog open={showDetailsDialog} onOpenChange={setShowDetailsDialog}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Detalhes da Sessao</DialogTitle>
+            <DialogTitle>Relatorio do Encontro</DialogTitle>
             <DialogDescription>
               {selectedSession?.type === 'THERAPY' ? 'Terapia' : 'Coaching'} com {selectedSession?.professional.name}
               {' - '}{selectedSession && formatDateTime(selectedSession.scheduledAt)}
             </DialogDescription>
           </DialogHeader>
-
           <div className="space-y-4 py-4">
-            {/* AI Summary if completed */}
             {selectedSession?.status === 'COMPLETED' && selectedSession?.aiSummary && (
-              <div className="rounded-lg bg-[#B8755C]/5 p-4">
+              <div className="oracle-message p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Sparkles className="h-4 w-4 text-[#B8755C]" />
-                  <span className="text-sm font-medium text-[#1A1A1E]">Resumo da IA</span>
+                  <span className="text-xs font-mono uppercase tracking-wider text-[#B8755C]">Relatorio de Inteligencia</span>
                 </div>
                 <p className="text-sm text-[#8C8580]">{selectedSession.aiSummary}</p>
               </div>
             )}
-
-            {/* Professional notes if any */}
             {selectedSession?.professionalNotes && (
-              <div className="rounded-lg bg-[#8B9E7C]/5 p-4">
+              <div className="rounded-lg bg-[#8B9E7C]/5 border border-[#8B9E7C]/20 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Brain className="h-4 w-4 text-[#8B9E7C]" />
-                  <span className="text-sm font-medium text-[#1A1A1E]">
-                    Notas do Profissional
-                  </span>
+                  <span className="text-xs font-mono uppercase tracking-wider text-[#8B9E7C]">Notas do Profissional</span>
                 </div>
                 <p className="text-sm text-[#8C8580]">{selectedSession.professionalNotes}</p>
               </div>
             )}
-
-            {/* User notes */}
             <div className="space-y-2">
-              <Label htmlFor="session-notes" className="flex items-center gap-2">
+              <Label htmlFor="session-notes" className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider">
                 <MessageSquare className="h-4 w-4 text-[#8C8580]" />
-                Minhas Anotacoes
+                Diario do Aventureiro
               </Label>
               <Textarea
                 id="session-notes"
-                placeholder="Escreva suas anotacoes sobre esta sessao..."
+                placeholder="Suas anotacoes sobre este encontro..."
                 value={sessionNotes}
                 onChange={(e) => setSessionNotes(e.target.value)}
-                className="min-h-[120px]"
+                className="min-h-[100px]"
               />
-              <p className="text-xs text-[#8C8580]">
-                Estas anotacoes sao privadas e apenas voce pode ve-las.
-              </p>
+              <p className="text-[10px] font-mono text-[#8C8580]">Notas privadas</p>
             </div>
-
-            {/* Action items if completed */}
             {selectedSession?.status === 'COMPLETED' && selectedSession?.aiActionItems && (
               <div className="space-y-2">
-                <Label className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-[#8C8580]" />
-                  Acoes Identificadas
+                <Label className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider">
+                  <Target className="h-4 w-4 text-[#8C8580]" />
+                  Quests Recebidas
                 </Label>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   {selectedSession.aiActionItems.map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2 p-2 rounded border border-[#8C8580]/20">
                       {item.completed ? (
-                        <CheckCircle className="h-5 w-5 text-[#B8755C]" />
+                        <span className="achievement-seal h-5 w-5 text-[10px]">✓</span>
                       ) : (
                         <div className="h-5 w-5 rounded-full border-2 border-[#8C8580]/30" />
                       )}
-                      <span className={item.completed ? 'text-[#8C8580] line-through' : 'text-[#1A1A1E]'}>
+                      <span className={`text-sm ${item.completed ? 'text-[#8C8580] line-through' : 'text-[#1A1A1E]'}`}>
                         {item.title}
                       </span>
                     </div>
@@ -754,17 +638,11 @@ export default function SessoesPage() {
               </div>
             )}
           </div>
-
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowDetailsDialog(false)}>
-              Cancelar
-            </Button>
-            <Button
-              onClick={handleSaveNotes}
-              className="bg-[#B8755C] text-[#1A1A1E] hover:bg-[#93c800]"
-            >
+            <Button variant="outline" onClick={() => setShowDetailsDialog(false)}>Cancelar</Button>
+            <Button onClick={handleSaveNotes}>
               <Send className="mr-2 h-4 w-4" />
-              Salvar Notas
+              Salvar
             </Button>
           </DialogFooter>
         </DialogContent>

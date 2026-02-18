@@ -195,10 +195,10 @@ export default function ConteudoPage() {
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case 'THERAPY': return 'bg-purple-100 text-purple-700'
-      case 'COACHING': return 'bg-blue-100 text-blue-700'
-      case 'CARE_TEAM': return 'bg-green-100 text-green-700'
-      default: return 'bg-gray-100 text-gray-700'
+      case 'THERAPY': return 'bg-[#B8755C]/10 text-[#B8755C]'
+      case 'COACHING': return 'bg-[#8B9E7C]/10 text-[#8B9E7C]'
+      case 'CARE_TEAM': return 'bg-amber-500/10 text-amber-500'
+      default: return 'bg-[#8C8580]/10 text-[#8C8580]'
     }
   }
 
@@ -208,16 +208,16 @@ export default function ConteudoPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#001011]">Conteudo e Sessoes</h1>
-          <p className="text-[#757780]">Videos educativos e agendamento de sessoes ao vivo</p>
+          <h1 className="text-3xl font-serif font-bold text-[#1A1A1E]">Conteudo e Sessoes</h1>
+          <p className="text-[#8C8580]">Videos educativos e agendamento de sessoes ao vivo</p>
         </div>
         <Dialog open={isScheduleDialogOpen} onOpenChange={setIsScheduleDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]">
+            <Button>
               <CalendarPlus className="mr-2 h-4 w-4" />
               Agendar Sessao ao Vivo
             </Button>
@@ -237,16 +237,16 @@ export default function ConteudoPage() {
                     <div
                       key={index}
                       onClick={() => setSelectedSlot(slot)}
-                      className={`p-3 border rounded-lg cursor-pointer transition-colors ${
+                      className={`p-3 border rounded-md cursor-pointer transition-colors ${
                         selectedSlot === slot
-                          ? 'border-[#6CCFF6] bg-[#6CCFF6]/10'
-                          : 'border-gray-200 hover:border-[#6CCFF6]/50'
+                          ? 'border-[#B8755C] bg-[#B8755C]/10'
+                          : 'border-[#8C8580]/20 hover:border-[#B8755C]/50'
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="font-medium text-[#001011]">{formatDate(slot.date)}</p>
-                          <p className="text-sm text-[#757780]">{slot.time} - {slot.professional}</p>
+                          <p className="font-medium text-[#1A1A1E]">{formatDate(slot.date)}</p>
+                          <p className="text-sm text-[#8C8580]">{slot.time} - {slot.professional}</p>
                         </div>
                         <Badge className={getTypeColor(slot.type)}>
                           {getTypeLabel(slot.type)}
@@ -276,7 +276,6 @@ export default function ConteudoPage() {
               <Button
                 onClick={handleScheduleSession}
                 disabled={!selectedSlot}
-                className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]"
               >
                 Confirmar Agendamento
               </Button>
@@ -290,12 +289,12 @@ export default function ConteudoPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="p-3 bg-[#6CCFF6]/20 rounded-full">
-                <Video className="h-6 w-6 text-[#6CCFF6]" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#B8755C]">
+                <Video className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#001011]">{videos.length}</p>
-                <p className="text-sm text-[#757780]">Videos Disponiveis</p>
+                <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{videos.length}</p>
+                <p className="text-sm text-[#8C8580]">Videos Disponiveis</p>
               </div>
             </div>
           </CardContent>
@@ -303,12 +302,12 @@ export default function ConteudoPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="p-3 bg-[#A4DF00]/20 rounded-full">
-                <CheckCircle className="h-6 w-6 text-[#A4DF00]" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#8B9E7C]">
+                <CheckCircle className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#001011]">{watchedCount}</p>
-                <p className="text-sm text-[#757780]">Assistidos</p>
+                <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{watchedCount}</p>
+                <p className="text-sm text-[#8C8580]">Assistidos</p>
               </div>
             </div>
           </CardContent>
@@ -316,12 +315,12 @@ export default function ConteudoPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="p-3 bg-yellow-100 rounded-full">
-                <Play className="h-6 w-6 text-yellow-600" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500">
+                <Play className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#001011]">{inProgressCount}</p>
-                <p className="text-sm text-[#757780]">Em Progresso</p>
+                <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{inProgressCount}</p>
+                <p className="text-sm text-[#8C8580]">Em Progresso</p>
               </div>
             </div>
           </CardContent>
@@ -329,12 +328,12 @@ export default function ConteudoPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="p-3 bg-purple-100 rounded-full">
-                <Calendar className="h-6 w-6 text-purple-600" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-500">
+                <Calendar className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#001011]">{scheduledSessions.length}</p>
-                <p className="text-sm text-[#757780]">Sessoes Agendadas</p>
+                <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{scheduledSessions.length}</p>
+                <p className="text-sm text-[#8C8580]">Sessoes Agendadas</p>
               </div>
             </div>
           </CardContent>
@@ -351,7 +350,7 @@ export default function ConteudoPage() {
           {/* Filters */}
           <div className="flex flex-col gap-4 md:flex-row md:items-center">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#757780]" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#8C8580]" />
               <Input
                 placeholder="Buscar videos..."
                 value={searchQuery}
@@ -368,7 +367,7 @@ export default function ConteudoPage() {
                     variant={selectedCategory === cat.value ? 'default' : 'outline'}
                     size="sm"
                     onClick={() => setSelectedCategory(cat.value)}
-                    className={selectedCategory === cat.value ? 'bg-[#6CCFF6] text-[#001011] hover:bg-[#5bb8e0]' : ''}
+                    className={selectedCategory === cat.value ? '' : ''}
                   >
                     <Icon className="mr-1 h-4 w-4" />
                     {cat.label}
@@ -381,7 +380,7 @@ export default function ConteudoPage() {
           {/* Video Grid */}
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredVideos.map((video) => (
-              <Card key={video.id} className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group">
+              <Card key={video.id} className="overflow-hidden card-hover cursor-pointer group">
                 <div
                   className="relative"
                   onClick={() => {
@@ -390,27 +389,27 @@ export default function ConteudoPage() {
                   }}
                 >
                   {/* Thumbnail placeholder */}
-                  <div className="aspect-video bg-gradient-to-br from-[#6CCFF6]/30 to-[#A4DF00]/30 flex items-center justify-center relative">
-                    <Video className="h-12 w-12 text-[#001011]/30" />
+                  <div className="aspect-video bg-gradient-to-br from-[#B8755C]/20 to-[#8B9E7C]/20 flex items-center justify-center relative">
+                    <Video className="h-12 w-12 text-[#1A1A1E]/20" />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                       <div className="opacity-0 group-hover:opacity-100 transition-opacity">
                         <div className="p-3 bg-white rounded-full shadow-lg">
-                          <Play className="h-6 w-6 text-[#001011] fill-[#001011]" />
+                          <Play className="h-6 w-6 text-[#1A1A1E] fill-[#1A1A1E]" />
                         </div>
                       </div>
                     </div>
                     {video.watched && video.progress === 100 && (
                       <div className="absolute top-2 right-2">
-                        <Badge className="bg-[#A4DF00] text-[#001011]">
+                        <Badge className="bg-[#8B9E7C] text-white">
                           <CheckCircle className="mr-1 h-3 w-3" />
                           Assistido
                         </Badge>
                       </div>
                     )}
                     {video.progress > 0 && video.progress < 100 && (
-                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200">
+                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#8C8580]/20">
                         <div
-                          className="h-full bg-[#6CCFF6]"
+                          className="h-full bg-[#B8755C]"
                           style={{ width: `${video.progress}%` }}
                         />
                       </div>
@@ -421,18 +420,18 @@ export default function ConteudoPage() {
                       <Badge variant="outline" className="text-xs">
                         {categories.find(c => c.value === video.category)?.label}
                       </Badge>
-                      <span className="text-xs text-[#757780] flex items-center">
+                      <span className="text-xs text-[#8C8580] flex items-center">
                         <Clock className="mr-1 h-3 w-3" />
                         {video.duration}
                       </span>
                     </div>
-                    <h3 className="font-semibold text-[#001011] line-clamp-2 mb-1">
+                    <h3 className="font-semibold text-[#1A1A1E] line-clamp-2 mb-1">
                       {video.title}
                     </h3>
-                    <p className="text-sm text-[#757780] line-clamp-2 mb-2">
+                    <p className="text-sm text-[#8C8580] line-clamp-2 mb-2">
                       {video.description}
                     </p>
-                    <p className="text-xs text-[#757780]">
+                    <p className="text-xs text-[#8C8580]">
                       {video.instructor}
                     </p>
                   </CardContent>
@@ -443,7 +442,7 @@ export default function ConteudoPage() {
 
           {filteredVideos.length === 0 && (
             <Card className="p-8 text-center">
-              <p className="text-[#757780]">Nenhum video encontrado para os filtros selecionados.</p>
+              <p className="text-[#8C8580]">Nenhum video encontrado para os filtros selecionados.</p>
             </Card>
           )}
         </TabsContent>
@@ -458,7 +457,7 @@ export default function ConteudoPage() {
                       <Badge className={getTypeColor(session.type)}>
                         {getTypeLabel(session.type)}
                       </Badge>
-                      <Badge variant="outline" className="text-[#A4DF00] border-[#A4DF00]">
+                      <Badge variant="outline" className="text-[#8B9E7C] border-[#8B9E7C]">
                         Confirmada
                       </Badge>
                     </div>
@@ -469,9 +468,9 @@ export default function ConteudoPage() {
                   </CardHeader>
                   {session.notes && (
                     <CardContent>
-                      <div className="bg-gray-50 p-3 rounded-lg">
-                        <p className="text-sm text-[#757780]">
-                          <span className="font-medium text-[#001011]">Suas observacoes:</span><br />
+                      <div className="bg-[#F5F0EB] p-3 rounded-md">
+                        <p className="text-sm text-[#8C8580]">
+                          <span className="font-medium text-[#1A1A1E]">Suas observacoes:</span><br />
                           {session.notes}
                         </p>
                       </div>
@@ -482,14 +481,13 @@ export default function ConteudoPage() {
             </div>
           ) : (
             <Card className="p-8 text-center">
-              <Calendar className="h-12 w-12 text-[#757780] mx-auto mb-4" />
-              <h3 className="font-semibold text-[#001011] mb-2">Nenhuma sessao agendada</h3>
-              <p className="text-[#757780] mb-4">
+              <Calendar className="h-12 w-12 text-[#8C8580] mx-auto mb-4" />
+              <h3 className="font-semibold text-[#1A1A1E] mb-2">Nenhuma sessao agendada</h3>
+              <p className="text-[#8C8580] mb-4">
                 Agende uma sessao ao vivo com nossos profissionais para dar continuidade ao seu desenvolvimento.
               </p>
               <Button
                 onClick={() => setIsScheduleDialogOpen(true)}
-                className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]"
               >
                 <CalendarPlus className="mr-2 h-4 w-4" />
                 Agendar Primeira Sessao
@@ -512,7 +510,7 @@ export default function ConteudoPage() {
               </DialogHeader>
               <div className="space-y-4">
                 {/* Video Player Placeholder */}
-                <div className="aspect-video bg-gradient-to-br from-[#001011] to-[#001011]/80 rounded-lg flex items-center justify-center">
+                <div className="aspect-video bg-gradient-to-br from-[#1A1A1E] to-[#1A1A1E]/80 rounded-md flex items-center justify-center">
                   <div className="text-center">
                     <div className="p-4 bg-white/10 rounded-full inline-block mb-4 cursor-pointer hover:bg-white/20 transition-colors">
                       <Play className="h-12 w-12 text-white fill-white" />
@@ -521,15 +519,15 @@ export default function ConteudoPage() {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-[#001011] mb-2">Sobre este video</h4>
-                  <p className="text-[#757780]">{selectedVideo.description}</p>
+                  <h4 className="font-semibold text-[#1A1A1E] mb-2">Sobre este video</h4>
+                  <p className="text-[#8C8580]">{selectedVideo.description}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <Badge variant="outline">
                     {categories.find(c => c.value === selectedVideo.category)?.label}
                   </Badge>
                   {selectedVideo.progress > 0 && (
-                    <Badge variant="outline" className="text-[#6CCFF6] border-[#6CCFF6]">
+                    <Badge variant="outline" className="text-[#B8755C] border-[#B8755C]">
                       {selectedVideo.progress}% concluido
                     </Badge>
                   )}

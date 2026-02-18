@@ -17,17 +17,18 @@ import {
   Settings,
   Users,
   LogOut,
-  Heart,
+  Compass,
   ChevronLeft,
   ChevronRight,
   Shield,
   Video,
+  Heart,
 } from 'lucide-react'
 import { useState } from 'react'
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard },
-  { name: 'Mapa da Vida', href: '/mapa-da-vida', icon: Map },
+  { name: 'Mapa da Vida', href: '/mapa-da-vida', icon: Compass },
   { name: 'Conteudo', href: '/conteudo', icon: Video },
   { name: 'Agenda', href: '/agenda', icon: Calendar },
   { name: 'Sessoes', href: '/sessoes', icon: Heart },
@@ -50,31 +51,34 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        'fixed left-0 top-0 z-40 h-screen bg-[#001011] text-white transition-all duration-300',
+        'fixed left-0 top-0 z-40 h-screen bg-[#2C2C2C] text-[#F5F0EB] transition-all duration-300',
         collapsed ? 'w-20' : 'w-64'
       )}
     >
       <div className="flex h-full flex-col">
         {/* Logo */}
-        <div className="flex h-16 items-center justify-between px-4">
+        <div className="flex h-16 items-center justify-between px-4 border-b border-[#B8755C]/20">
           {!collapsed && (
-            <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#A4DF00]">
-                <Heart className="h-6 w-6 text-[#001011]" />
+            <Link href="/" className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-sm border border-[#B8755C]/40">
+                <Compass className="h-6 w-6 text-[#C4956A]" />
               </div>
-              <span className="text-xl font-bold">Human Care</span>
+              <div>
+                <span className="text-lg font-bold tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Life Map</span>
+                <p className="text-[10px] uppercase tracking-[0.15em] text-[#B8755C]/60">Arquitetura Humana</p>
+              </div>
             </Link>
           )}
           {collapsed && (
-            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-lg bg-[#A4DF00]">
-              <Heart className="h-6 w-6 text-[#001011]" />
+            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-sm border border-[#B8755C]/40">
+              <Compass className="h-6 w-6 text-[#C4956A]" />
             </div>
           )}
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setCollapsed(!collapsed)}
-            className="text-white hover:bg-white/10"
+            className="text-[#F5F0EB]/60 hover:bg-[#B8755C]/10 hover:text-[#F5F0EB]"
           >
             {collapsed ? (
               <ChevronRight className="h-5 w-5" />
@@ -93,10 +97,10 @@ export function Sidebar() {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+                  'flex items-center gap-3 rounded-sm px-3 py-2.5 text-sm font-medium transition-colors',
                   isActive
-                    ? 'bg-[#A4DF00] text-[#001011]'
-                    : 'text-gray-300 hover:bg-white/10 hover:text-white'
+                    ? 'bg-[#B8755C] text-[#F5F0EB]'
+                    : 'text-[#F5F0EB]/60 hover:bg-[#B8755C]/15 hover:text-[#F5F0EB]'
                 )}
               >
                 <item.icon className="h-5 w-5 flex-shrink-0" />
@@ -108,9 +112,9 @@ export function Sidebar() {
           {/* Admin section */}
           {isAdmin && (
             <>
-              <div className="my-4 border-t border-white/10" />
+              <div className="my-4 border-t border-[#B8755C]/20" />
               {!collapsed && (
-                <p className="px-3 text-xs font-semibold uppercase text-gray-400">
+                <p className="px-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#B8755C]/50">
                   Administracao
                 </p>
               )}
@@ -121,10 +125,10 @@ export function Sidebar() {
                     key={item.name}
                     href={item.href}
                     className={cn(
-                      'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+                      'flex items-center gap-3 rounded-sm px-3 py-2.5 text-sm font-medium transition-colors',
                       isActive
-                        ? 'bg-[#A4DF00] text-[#001011]'
-                        : 'text-gray-300 hover:bg-white/10 hover:text-white'
+                        ? 'bg-[#B8755C] text-[#F5F0EB]'
+                        : 'text-[#F5F0EB]/60 hover:bg-[#B8755C]/15 hover:text-[#F5F0EB]'
                     )}
                   >
                     <item.icon className="h-5 w-5 flex-shrink-0" />
@@ -137,7 +141,7 @@ export function Sidebar() {
         </nav>
 
         {/* User section */}
-        <div className="border-t border-white/10 p-4">
+        <div className="border-t border-[#B8755C]/20 p-4">
           {/* Demo mode switch */}
           <div className="mb-4 flex gap-2">
             <Button
@@ -145,8 +149,8 @@ export function Sidebar() {
               size="sm"
               onClick={switchToDemo}
               className={cn(
-                'flex-1 text-xs',
-                !isAdmin ? 'bg-[#6CCFF6] text-[#001011]' : 'text-gray-400 hover:bg-white/10'
+                'flex-1 text-xs rounded-sm',
+                !isAdmin ? 'bg-[#B8755C] text-[#F5F0EB]' : 'text-[#F5F0EB]/50 hover:bg-[#B8755C]/15'
               )}
             >
               {!collapsed && 'Professor'}
@@ -156,8 +160,8 @@ export function Sidebar() {
               size="sm"
               onClick={switchToAdmin}
               className={cn(
-                'flex-1 text-xs',
-                isAdmin ? 'bg-[#6CCFF6] text-[#001011]' : 'text-gray-400 hover:bg-white/10'
+                'flex-1 text-xs rounded-sm',
+                isAdmin ? 'bg-[#8B9E7C] text-[#F5F0EB]' : 'text-[#F5F0EB]/50 hover:bg-[#B8755C]/15'
               )}
             >
               <Shield className="h-4 w-4" />
@@ -167,28 +171,27 @@ export function Sidebar() {
 
           {currentUser && (
             <div className="flex items-center gap-3">
-              <Avatar className="h-10 w-10">
+              <Avatar className="h-10 w-10 border border-[#B8755C]/30">
                 <AvatarImage src={currentUser.avatar || undefined} />
-                <AvatarFallback>{getInitials(currentUser.name)}</AvatarFallback>
+                <AvatarFallback className="bg-[#B8755C] text-[#F5F0EB] text-sm">
+                  {getInitials(currentUser.name)}
+                </AvatarFallback>
               </Avatar>
               {!collapsed && (
                 <div className="flex-1 overflow-hidden">
-                  <p className="truncate text-sm font-medium">{currentUser.name}</p>
-                  <p className="truncate text-xs text-gray-400">{currentUser.email}</p>
+                  <p className="truncate text-sm font-medium text-[#F5F0EB]">{currentUser.name}</p>
+                  <p className="truncate text-xs text-[#F5F0EB]/40">{currentUser.email}</p>
                 </div>
               )}
             </div>
           )}
 
-          {/* Encryption notice */}
+          {/* Tagline */}
           {!collapsed && (
-            <div className="mt-4 rounded-lg bg-white/5 p-3">
-              <div className="flex items-center gap-2">
-                <Shield className="h-4 w-4 text-[#A4DF00]" />
-                <span className="text-xs text-gray-400">
-                  Dados protegidos com criptografia AES-256
-                </span>
-              </div>
+            <div className="mt-4 border-t border-[#B8755C]/10 pt-3">
+              <p className="text-[10px] italic text-[#B8755C]/40" style={{ fontFamily: "'Playfair Display', serif" }}>
+                &ldquo;O que te limita e o que esta te limitando.&rdquo;
+              </p>
             </div>
           )}
         </div>

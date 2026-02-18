@@ -16,6 +16,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { IconBadge } from '@/components/ui/decorative-elements'
 import {
   Users,
   Plus,
@@ -105,11 +106,11 @@ const roleIcons = {
 }
 
 const roleColors = {
-  PROFESSOR: 'bg-[#6CCFF6]/10 text-[#6CCFF6]',
+  PROFESSOR: 'bg-[#B8755C]/10 text-[#B8755C]',
   TERAPEUTA: 'bg-purple-500/10 text-purple-500',
-  COACH: 'bg-[#A4DF00]/10 text-[#A4DF00]',
+  COACH: 'bg-[#8B9E7C]/10 text-[#8B9E7C]',
   CARE_TEAM: 'bg-amber-500/10 text-amber-500',
-  ADMIN: 'bg-[#001011]/10 text-[#001011]',
+  ADMIN: 'bg-[#1A1A1E]/10 text-[#1A1A1E]',
 }
 
 export default function AdminUsuariosPage() {
@@ -135,12 +136,12 @@ export default function AdminUsuariosPage() {
   }
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-8 animate-fade-in">
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-[#001011]">Gestao de Usuarios</h2>
-          <p className="text-[#757780]">
+          <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Gestao de Usuarios</h2>
+          <p className="text-[#8C8580]">
             Administre professores e profissionais da plataforma
           </p>
         </div>
@@ -201,12 +202,12 @@ export default function AdminUsuariosPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#757780]/10">
-                <Users className="h-6 w-6 text-[#757780]" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#8C8580]/20">
+                <Users className="h-5 w-5 text-[#8C8580]" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#001011]">{stats.total}</p>
-                <p className="text-sm text-[#757780]">Total de usuarios</p>
+                <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{stats.total}</p>
+                <p className="text-sm text-[#8C8580]">Total de usuarios</p>
               </div>
             </div>
           </CardContent>
@@ -214,12 +215,10 @@ export default function AdminUsuariosPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#A4DF00]/10">
-                <UserCheck className="h-6 w-6 text-[#A4DF00]" />
-              </div>
+              <IconBadge icon={UserCheck} variant="sage" />
               <div>
-                <p className="text-2xl font-bold text-[#001011]">{stats.active}</p>
-                <p className="text-sm text-[#757780]">Usuarios ativos</p>
+                <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{stats.active}</p>
+                <p className="text-sm text-[#8C8580]">Usuarios ativos</p>
               </div>
             </div>
           </CardContent>
@@ -227,12 +226,10 @@ export default function AdminUsuariosPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#6CCFF6]/10">
-                <Heart className="h-6 w-6 text-[#6CCFF6]" />
-              </div>
+              <IconBadge icon={Heart} variant="copper" />
               <div>
-                <p className="text-2xl font-bold text-[#001011]">{stats.professors}</p>
-                <p className="text-sm text-[#757780]">Professores</p>
+                <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{stats.professors}</p>
+                <p className="text-sm text-[#8C8580]">Professores</p>
               </div>
             </div>
           </CardContent>
@@ -240,12 +237,12 @@ export default function AdminUsuariosPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500/10">
-                <Brain className="h-6 w-6 text-purple-500" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-500">
+                <Brain className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#001011]">{stats.professionals}</p>
-                <p className="text-sm text-[#757780]">Profissionais</p>
+                <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{stats.professionals}</p>
+                <p className="text-sm text-[#8C8580]">Profissionais</p>
               </div>
             </div>
           </CardContent>
@@ -257,7 +254,7 @@ export default function AdminUsuariosPage() {
         <CardContent className="pt-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#757780]" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8C8580]" />
               <Input
                 placeholder="Buscar por nome ou email..."
                 value={search}
@@ -296,7 +293,7 @@ export default function AdminUsuariosPage() {
               return (
                 <div
                   key={user.id}
-                  className="flex items-center gap-4 rounded-lg border border-[#757780]/20 p-4"
+                  className="flex items-center gap-4 rounded-md border border-[#8C8580]/20 p-4"
                 >
                   <Avatar className="h-12 w-12">
                     <AvatarFallback className={roleColor}>
@@ -306,15 +303,15 @@ export default function AdminUsuariosPage() {
 
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <h4 className="font-semibold text-[#001011]">{user.name}</h4>
+                      <h4 className="font-semibold text-[#1A1A1E]">{user.name}</h4>
                       {!user.isActive && (
                         <Badge variant="outline" className="text-red-500">
                           Inativo
                         </Badge>
                       )}
                     </div>
-                    <p className="text-sm text-[#757780]">{user.email}</p>
-                    <div className="mt-1 flex items-center gap-3 text-xs text-[#757780]">
+                    <p className="text-sm text-[#8C8580]">{user.email}</p>
+                    <div className="mt-1 flex items-center gap-3 text-xs text-[#8C8580]">
                       <Badge className={roleColor}>
                         <RoleIcon className="mr-1 h-3 w-3" />
                         {translations.userRole[user.role as keyof typeof translations.userRole]}
@@ -348,8 +345,8 @@ export default function AdminUsuariosPage() {
 
             {filteredUsers.length === 0 && (
               <div className="py-8 text-center">
-                <Users className="mx-auto h-12 w-12 text-[#757780]/50" />
-                <p className="mt-4 text-[#757780]">Nenhum usuario encontrado</p>
+                <Users className="mx-auto h-12 w-12 text-[#8C8580]/50" />
+                <p className="mt-4 text-[#8C8580]">Nenhum usuario encontrado</p>
               </div>
             )}
           </div>

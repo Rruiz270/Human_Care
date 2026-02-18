@@ -32,6 +32,8 @@ import {
   Sparkles,
   TrendingUp,
 } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+import { LifeMapDiagram, FlowingLines, EditorialQuote, IconBadge, SectionDivider } from '@/components/ui/decorative-elements'
 
 // Demo data for timeline
 const timelineEvents = [
@@ -133,12 +135,12 @@ export default function MapaDaVidaPage() {
   const [showAddEventDialog, setShowAddEventDialog] = useState(false)
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-8 animate-fade-in">
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-[#001011]">Mapa da Vida</h2>
-          <p className="text-[#757780]">
+          <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Mapa da Vida</h2>
+          <p className="text-[#8C8580]">
             Visualize sua jornada completa - passado, presente e futuro
           </p>
         </div>
@@ -211,8 +213,11 @@ export default function MapaDaVidaPage() {
         </Dialog>
       </div>
 
+      {/* Life Map Diagram */}
+      <LifeMapDiagram />
+
       {/* Main Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="passado" className="flex items-center gap-2">
             <Clock className="h-4 w-4" />
@@ -229,12 +234,12 @@ export default function MapaDaVidaPage() {
         </TabsList>
 
         {/* PASSADO TAB */}
-        <TabsContent value="passado" className="space-y-6">
+        <TabsContent value="passado" className="space-y-8">
           {/* Timeline Visual */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-[#6CCFF6]" />
+                <Clock className="h-5 w-5 text-[#8B9E7C]" />
                 Linha do Tempo
               </CardTitle>
               <CardDescription>
@@ -244,7 +249,7 @@ export default function MapaDaVidaPage() {
             <CardContent>
               <div className="relative">
                 {/* Timeline line */}
-                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[#757780]/20" />
+                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[#8C8580]/20" />
 
                 {/* Events */}
                 <div className="space-y-6">
@@ -254,7 +259,7 @@ export default function MapaDaVidaPage() {
                       <div
                         className={`absolute left-2 top-2 h-5 w-5 rounded-full border-4 ${
                           event.isPositive
-                            ? 'border-[#6CCFF6] bg-white'
+                            ? 'border-[#8B9E7C] bg-white'
                             : 'border-red-500 bg-white'
                         }`}
                       />
@@ -262,14 +267,14 @@ export default function MapaDaVidaPage() {
                       <div
                         className={`rounded-lg border p-4 ${
                           event.isPositive
-                            ? 'border-[#6CCFF6]/30 bg-[#6CCFF6]/5'
+                            ? 'border-[#8B9E7C]/30 bg-[#8B9E7C]/5'
                             : 'border-red-500/30 bg-red-500/5'
                         }`}
                       >
                         <div className="flex items-start justify-between gap-4">
                           <div>
                             <div className="flex items-center gap-2">
-                              <h4 className="font-semibold text-[#001011]">
+                              <h4 className="font-semibold text-[#1A1A1E]">
                                 {event.title}
                               </h4>
                               <Badge
@@ -284,17 +289,17 @@ export default function MapaDaVidaPage() {
                                 {event.eventType === 'HEALTH' && 'Saude'}
                               </Badge>
                             </div>
-                            <p className="mt-1 text-sm text-[#757780]">
+                            <p className="mt-1 text-sm text-[#8C8580]">
                               {event.description}
                             </p>
                           </div>
                           <div className="text-right">
-                            <span className="text-lg font-bold text-[#001011]">
+                            <span className="text-lg font-bold text-[#1A1A1E]">
                               {event.ageAtEvent} anos
                             </span>
-                            <div className="mt-1 flex items-center gap-1 text-xs text-[#757780]">
+                            <div className="mt-1 flex items-center gap-1 text-xs text-[#8C8580]">
                               Impacto:
-                              <span className="font-semibold text-[#001011]">
+                              <span className="font-semibold text-[#1A1A1E]">
                                 {event.impact}/10
                               </span>
                             </div>
@@ -312,7 +317,7 @@ export default function MapaDaVidaPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Users className="h-5 w-5 text-[#A4DF00]" />
+                <Users className="h-5 w-5 text-[#B8755C]" />
                 Relacoes Familiares
               </CardTitle>
               <CardDescription>
@@ -324,12 +329,12 @@ export default function MapaDaVidaPage() {
                 {familyRelations.map((relation) => (
                   <div
                     key={relation.id}
-                    className="rounded-lg border border-[#757780]/20 p-4"
+                    className="rounded-lg border border-[#8C8580]/20 p-4"
                   >
                     <div className="flex items-center justify-between">
                       <div>
-                        <h4 className="font-medium text-[#001011]">{relation.name}</h4>
-                        <p className="text-sm text-[#757780]">
+                        <h4 className="font-medium text-[#1A1A1E]">{relation.name}</h4>
+                        <p className="text-sm text-[#8C8580]">
                           {relation.relationType === 'FATHER' && 'Pai'}
                           {relation.relationType === 'MOTHER' && 'Mae'}
                           {relation.relationType === 'SIBLING' && 'Irmao(a)'}
@@ -338,10 +343,10 @@ export default function MapaDaVidaPage() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-[#001011]">
+                        <div className="text-2xl font-bold text-[#1A1A1E]">
                           {relation.quality}
                         </div>
-                        <p className="text-xs text-[#757780]">Qualidade</p>
+                        <p className="text-xs text-[#8C8580]">Qualidade</p>
                       </div>
                     </div>
                     <Progress value={relation.quality * 10} className="mt-3 h-2" />
@@ -353,7 +358,7 @@ export default function MapaDaVidaPage() {
         </TabsContent>
 
         {/* PRESENTE TAB */}
-        <TabsContent value="presente" className="space-y-6">
+        <TabsContent value="presente" className="space-y-8">
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Body Health */}
             <Card>
@@ -366,43 +371,43 @@ export default function MapaDaVidaPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="rounded-lg bg-[#757780]/5 p-3">
-                    <p className="text-sm text-[#757780]">Peso</p>
-                    <p className="text-xl font-bold text-[#001011]">
+                  <div className="rounded-lg bg-[#8C8580]/5 p-3">
+                    <p className="text-sm text-[#8C8580]">Peso</p>
+                    <p className="text-xl font-bold text-[#1A1A1E]">
                       {bodyHealthData.weight} kg
                     </p>
                   </div>
-                  <div className="rounded-lg bg-[#757780]/5 p-3">
-                    <p className="text-sm text-[#757780]">Altura</p>
-                    <p className="text-xl font-bold text-[#001011]">
+                  <div className="rounded-lg bg-[#8C8580]/5 p-3">
+                    <p className="text-sm text-[#8C8580]">Altura</p>
+                    <p className="text-xl font-bold text-[#1A1A1E]">
                       {bodyHealthData.height} m
                     </p>
                   </div>
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-[#757780]">Horas de sono</span>
+                    <span className="text-sm text-[#8C8580]">Horas de sono</span>
                     <span className="font-semibold">{bodyHealthData.sleepHours}h</span>
                   </div>
                   <Progress value={bodyHealthData.sleepHours * 12.5} className="h-2" />
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-[#757780]">Qualidade do sono</span>
+                    <span className="text-sm text-[#8C8580]">Qualidade do sono</span>
                     <span className="font-semibold">{bodyHealthData.sleepQuality}/10</span>
                   </div>
                   <Progress value={bodyHealthData.sleepQuality * 10} className="h-2" />
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-[#757780]">Nivel de energia</span>
+                    <span className="text-sm text-[#8C8580]">Nivel de energia</span>
                     <span className="font-semibold">{bodyHealthData.energyLevel}/10</span>
                   </div>
                   <Progress value={bodyHealthData.energyLevel * 10} className="h-2" />
                 </div>
-                <div className="rounded-lg border border-[#757780]/20 p-3">
-                  <p className="text-sm text-[#757780]">Frequencia de exercicios</p>
-                  <p className="font-medium text-[#001011]">
+                <div className="rounded-lg border border-[#8C8580]/20 p-3">
+                  <p className="text-sm text-[#8C8580]">Frequencia de exercicios</p>
+                  <p className="font-medium text-[#1A1A1E]">
                     {bodyHealthData.exerciseFrequency}
                   </p>
                 </div>
@@ -413,43 +418,43 @@ export default function MapaDaVidaPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Brain className="h-5 w-5 text-[#6CCFF6]" />
+                  <Brain className="h-5 w-5 text-[#8B9E7C]" />
                   Mente
                 </CardTitle>
                 <CardDescription>Estado mental e exposicao diaria</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="rounded-lg border border-[#757780]/20 p-3">
-                  <p className="text-sm text-[#757780]">Trabalho</p>
-                  <p className="font-medium text-[#001011]">
+                <div className="rounded-lg border border-[#8C8580]/20 p-3">
+                  <p className="text-sm text-[#8C8580]">Trabalho</p>
+                  <p className="font-medium text-[#1A1A1E]">
                     {mindStateData.workDescription}
                   </p>
-                  <p className="mt-1 text-sm text-[#757780]">
+                  <p className="mt-1 text-sm text-[#8C8580]">
                     {mindStateData.workHoursPerDay}h por dia
                   </p>
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-[#757780]">Nivel de estresse</span>
+                    <span className="text-sm text-[#8C8580]">Nivel de estresse</span>
                     <span className="font-semibold text-amber-600">
                       {mindStateData.stressLevel}/10
                     </span>
                   </div>
-                  <div className="h-2 w-full overflow-hidden rounded-full bg-[#757780]/20">
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-[#8C8580]/20">
                     <div
                       className="h-full bg-amber-500"
                       style={{ width: `${mindStateData.stressLevel * 10}%` }}
                     />
                   </div>
                 </div>
-                <div className="rounded-lg bg-[#757780]/5 p-3">
-                  <p className="text-sm text-[#757780]">Tempo de tela</p>
-                  <p className="text-xl font-bold text-[#001011]">
+                <div className="rounded-lg bg-[#8C8580]/5 p-3">
+                  <p className="text-sm text-[#8C8580]">Tempo de tela</p>
+                  <p className="text-xl font-bold text-[#1A1A1E]">
                     {mindStateData.screenTimeHours}h/dia
                   </p>
                 </div>
                 <div>
-                  <p className="mb-2 text-sm font-medium text-[#757780]">
+                  <p className="mb-2 text-sm font-medium text-[#8C8580]">
                     Principais preocupacoes
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -467,37 +472,37 @@ export default function MapaDaVidaPage() {
         </TabsContent>
 
         {/* FUTURO TAB */}
-        <TabsContent value="futuro" className="space-y-6">
+        <TabsContent value="futuro" className="space-y-8">
           {/* Purpose */}
-          <Card className="border-[#A4DF00]/30 bg-gradient-to-br from-[#A4DF00]/5 to-transparent">
+          <Card className="border-[#B8755C]/30 bg-gradient-to-br from-[#B8755C]/5 to-transparent">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-[#A4DF00]" />
+                <Sparkles className="h-5 w-5 text-[#B8755C]" />
                 Proposito
               </CardTitle>
               <CardDescription>Sua razao de ser</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="rounded-lg bg-white p-4 shadow-sm">
-                <p className="text-lg font-medium text-[#001011]">
+                <p className="text-lg font-medium text-[#1A1A1E]">
                   &quot;{purposeData.statement}&quot;
                 </p>
               </div>
               <div>
-                <p className="mb-2 text-sm font-medium text-[#757780]">Sonhos</p>
+                <p className="mb-2 text-sm font-medium text-[#8C8580]">Sonhos</p>
                 <div className="space-y-2">
                   {purposeData.dreams.map((dream, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-2 rounded-lg border border-[#757780]/20 p-3"
+                      className="flex items-center gap-2 rounded-lg border border-[#8C8580]/20 p-3"
                     >
-                      <Star className="h-4 w-4 text-[#A4DF00]" />
-                      <span className="text-[#001011]">{dream}</span>
+                      <Star className="h-4 w-4 text-[#B8755C]" />
+                      <span className="text-[#1A1A1E]">{dream}</span>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="rounded-lg bg-[#001011] p-4 text-white">
+              <div className="rounded-lg bg-[#1A1A1E] p-4 text-white">
                 <p className="text-sm text-gray-400">Legado</p>
                 <p className="mt-1">{purposeData.legacy}</p>
               </div>
@@ -510,7 +515,7 @@ export default function MapaDaVidaPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <CardTitle className="flex items-center gap-2">
-                    <Target className="h-5 w-5 text-[#6CCFF6]" />
+                    <Target className="h-5 w-5 text-[#8B9E7C]" />
                     Projetos
                   </CardTitle>
                   <CardDescription>Iniciativas em andamento</CardDescription>
@@ -526,12 +531,12 @@ export default function MapaDaVidaPage() {
                 {projects.map((project) => (
                   <div
                     key={project.id}
-                    className="rounded-lg border border-[#757780]/20 p-4"
+                    className="rounded-lg border border-[#8C8580]/20 p-4"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
-                          <h4 className="font-semibold text-[#001011]">
+                          <h4 className="font-semibold text-[#1A1A1E]">
                             {project.title}
                           </h4>
                           <Badge
@@ -546,10 +551,10 @@ export default function MapaDaVidaPage() {
                               : 'Planejando'}
                           </Badge>
                         </div>
-                        <p className="text-sm text-[#757780]">{project.category}</p>
+                        <p className="text-sm text-[#8C8580]">{project.category}</p>
                       </div>
                       <div className="text-right">
-                        <span className="text-2xl font-bold text-[#001011]">
+                        <span className="text-2xl font-bold text-[#1A1A1E]">
                           {project.progress}%
                         </span>
                       </div>
@@ -562,6 +567,9 @@ export default function MapaDaVidaPage() {
           </Card>
         </TabsContent>
       </Tabs>
+
+      {/* Editorial Quote */}
+      <EditorialQuote text="O mapa nao e o territorio, mas sem mapa nao ha jornada." />
     </div>
   )
 }

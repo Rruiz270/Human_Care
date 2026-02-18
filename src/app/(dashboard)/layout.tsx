@@ -13,7 +13,7 @@ export default function DashboardLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-[#FFFFFC]">
+    <div className="min-h-screen blueprint-bg parchment-texture">
       {/* Sidebar - hidden on mobile */}
       <div className="hidden lg:block">
         <Sidebar />
@@ -23,7 +23,7 @@ export default function DashboardLayout({
       {sidebarOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div
-            className="fixed inset-0 bg-[#001011]/50"
+            className="fixed inset-0 bg-[#1A1A1E]/40"
             onClick={() => setSidebarOpen(false)}
           />
           <div className="fixed inset-y-0 left-0 w-64">
@@ -35,7 +35,7 @@ export default function DashboardLayout({
       {/* Main content */}
       <div className="lg:pl-64">
         <Header onMenuClick={() => setSidebarOpen(true)} />
-        <main className="p-4 lg:p-8">
+        <main className="p-6 lg:p-10">
           {children}
         </main>
       </div>

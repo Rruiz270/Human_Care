@@ -199,10 +199,10 @@ export default function AgendaPage() {
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case 'THERAPY': return 'bg-purple-100 text-purple-700'
-      case 'COACHING': return 'bg-blue-100 text-blue-700'
-      case 'CARE_TEAM': return 'bg-green-100 text-green-700'
-      default: return 'bg-gray-100 text-gray-700'
+      case 'THERAPY': return 'bg-[#B8755C]/10 text-[#B8755C]'
+      case 'COACHING': return 'bg-[#8B9E7C]/10 text-[#8B9E7C]'
+      case 'CARE_TEAM': return 'bg-amber-500/10 text-amber-500'
+      default: return 'bg-[#8C8580]/10 text-[#8C8580]'
     }
   }
 
@@ -212,10 +212,10 @@ export default function AgendaPage() {
   }
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-8 animate-fade-in">
       {/* Success notification */}
       {showSuccess && (
-        <div className="fixed top-4 right-4 z-50 bg-[#A4DF00] text-[#001011] px-4 py-3 rounded-lg shadow-lg flex items-center gap-2 animate-fade-in">
+        <div className="fixed top-4 right-4 z-50 bg-[#8B9E7C] text-white px-4 py-3 rounded-md shadow-lg flex items-center gap-2 animate-fade-in">
           <CheckCircle className="h-5 w-5" />
           <span className="font-medium">Sessao agendada com sucesso!</span>
         </div>
@@ -224,14 +224,14 @@ export default function AgendaPage() {
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-[#001011]">Agenda</h2>
-          <p className="text-[#757780]">
+          <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Agenda</h2>
+          <p className="text-[#8C8580]">
             Visualize e gerencie suas sessoes
           </p>
         </div>
         <Dialog open={isScheduleDialogOpen} onOpenChange={setIsScheduleDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]">
+            <Button>
               <Plus className="mr-2 h-4 w-4" />
               Agendar Sessao
             </Button>
@@ -251,16 +251,16 @@ export default function AgendaPage() {
                     <div
                       key={index}
                       onClick={() => setSelectedSlot(slot)}
-                      className={`p-3 border rounded-lg cursor-pointer transition-colors ${
+                      className={`p-3 border rounded-md cursor-pointer transition-colors ${
                         selectedSlot === slot
-                          ? 'border-[#6CCFF6] bg-[#6CCFF6]/10'
-                          : 'border-gray-200 hover:border-[#6CCFF6]/50'
+                          ? 'border-[#B8755C] bg-[#B8755C]/10'
+                          : 'border-[#8C8580]/20 hover:border-[#B8755C]/50'
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="font-medium text-[#001011]">{formatDate(slot.date)}</p>
-                          <p className="text-sm text-[#757780]">{slot.time} - {slot.professional}</p>
+                          <p className="font-medium text-[#1A1A1E]">{formatDate(slot.date)}</p>
+                          <p className="text-sm text-[#8C8580]">{slot.time} - {slot.professional}</p>
                         </div>
                         <Badge className={getTypeColor(slot.type)}>
                           {getTypeLabel(slot.type)}
@@ -290,7 +290,6 @@ export default function AgendaPage() {
               <Button
                 onClick={handleScheduleSession}
                 disabled={!selectedSlot}
-                className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]"
               >
                 Confirmar Agendamento
               </Button>
@@ -331,7 +330,7 @@ export default function AgendaPage() {
               {daysOfWeek.map((day) => (
                 <div
                   key={day}
-                  className="py-2 text-center text-sm font-medium text-[#757780]"
+                  className="py-2 text-center text-sm font-mono font-medium text-[#8C8580]"
                 >
                   {day}
                 </div>
@@ -355,17 +354,17 @@ export default function AgendaPage() {
                     }
                   }}
                   className={`
-                    relative aspect-square rounded-lg p-2 text-sm transition-colors
-                    ${day === null ? 'cursor-default' : 'hover:bg-[#757780]/10'}
+                    relative aspect-square rounded-md p-2 text-sm transition-colors
+                    ${day === null ? 'cursor-default' : 'hover:bg-[#8C8580]/10'}
                     ${
                       isToday(day || 0)
-                        ? 'bg-[#A4DF00] text-[#001011] font-bold hover:bg-[#8BC500]'
+                        ? 'bg-[#B8755C] text-white font-bold hover:bg-[#8B5A3E]'
                         : ''
                     }
                     ${
                       selectedDate?.getDate() === day &&
                       selectedDate?.getMonth() === currentDate.getMonth()
-                        ? 'ring-2 ring-[#6CCFF6]'
+                        ? 'ring-2 ring-[#8B9E7C]'
                         : ''
                     }
                   `}
@@ -375,7 +374,7 @@ export default function AgendaPage() {
                     <div className="absolute bottom-1 left-1/2 -translate-x-1/2">
                       <div
                         className={`h-1.5 w-1.5 rounded-full ${
-                          isToday(day) ? 'bg-[#001011]' : 'bg-[#6CCFF6]'
+                          isToday(day) ? 'bg-white' : 'bg-[#B8755C]'
                         }`}
                       />
                     </div>
@@ -386,8 +385,8 @@ export default function AgendaPage() {
 
             {/* Selected date events */}
             {selectedDate && (
-              <div className="mt-6 border-t border-[#757780]/20 pt-4">
-                <h4 className="font-medium text-[#001011] mb-3">
+              <div className="mt-6 border-t border-[#8C8580]/20 pt-4">
+                <h4 className="font-medium text-[#1A1A1E] mb-3">
                   Eventos em {selectedDate.getDate()}/{selectedDate.getMonth() + 1}
                 </h4>
                 <div className="space-y-2">
@@ -395,28 +394,28 @@ export default function AgendaPage() {
                     getEventsForDate(selectedDate).map((event) => (
                       <div
                         key={event.id}
-                        className={`flex items-center gap-3 rounded-lg p-3 ${
+                        className={`flex items-center gap-3 rounded-md p-3 ${
                           event.type === 'THERAPY'
-                            ? 'bg-[#6CCFF6]/10'
+                            ? 'bg-[#B8755C]/10'
                             : event.type === 'COACHING'
-                            ? 'bg-[#A4DF00]/10'
-                            : 'bg-[#757780]/10'
+                            ? 'bg-[#8B9E7C]/10'
+                            : 'bg-[#8C8580]/10'
                         }`}
                       >
                         {event.type === 'THERAPY' ? (
-                          <Brain className="h-5 w-5 text-[#6CCFF6]" />
+                          <Brain className="h-5 w-5 text-[#B8755C]" />
                         ) : event.type === 'COACHING' ? (
-                          <Target className="h-5 w-5 text-[#A4DF00]" />
+                          <Target className="h-5 w-5 text-[#8B9E7C]" />
                         ) : (
-                          <Users className="h-5 w-5 text-[#757780]" />
+                          <Users className="h-5 w-5 text-[#8C8580]" />
                         )}
                         <div className="flex-1">
-                          <p className="font-medium text-[#001011]">{event.title}</p>
-                          <p className="text-sm text-[#757780]">
+                          <p className="font-medium text-[#1A1A1E]">{event.title}</p>
+                          <p className="text-sm text-[#8C8580]">
                             {event.time} - {event.duration} min
                           </p>
                           {event.notes && (
-                            <p className="text-sm text-[#757780] mt-1 italic">
+                            <p className="text-sm text-[#8C8580] mt-1 italic">
                               Nota: {event.notes}
                             </p>
                           )}
@@ -430,7 +429,7 @@ export default function AgendaPage() {
                       </div>
                     ))
                   ) : (
-                    <p className="text-sm text-[#757780]">Nenhum evento nesta data</p>
+                    <p className="text-sm text-[#8C8580]">Nenhum evento nesta data</p>
                   )}
                 </div>
               </div>
@@ -442,7 +441,7 @@ export default function AgendaPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
-              <Calendar className="h-5 w-5 text-[#6CCFF6]" />
+              <Calendar className="h-5 w-5 text-[#B8755C]" />
               Proximos Eventos
             </CardTitle>
           </CardHeader>
@@ -450,17 +449,17 @@ export default function AgendaPage() {
             {upcomingEvents.map((event) => (
               <div
                 key={event.id}
-                className="rounded-lg border border-[#757780]/20 p-3"
+                className="rounded-md border border-[#8C8580]/20 p-3"
               >
                 <div className="flex items-center gap-2 mb-2">
                   {event.type === 'THERAPY' ? (
-                    <Brain className="h-4 w-4 text-[#6CCFF6]" />
+                    <Brain className="h-4 w-4 text-[#B8755C]" />
                   ) : event.type === 'COACHING' ? (
-                    <Target className="h-4 w-4 text-[#A4DF00]" />
+                    <Target className="h-4 w-4 text-[#8B9E7C]" />
                   ) : (
-                    <Users className="h-4 w-4 text-[#757780]" />
+                    <Users className="h-4 w-4 text-[#8C8580]" />
                   )}
-                  <span className="font-medium text-[#001011] text-sm">
+                  <span className="font-medium text-[#1A1A1E] text-sm">
                     {event.type === 'THERAPY'
                       ? 'Terapia'
                       : event.type === 'COACHING'
@@ -468,8 +467,8 @@ export default function AgendaPage() {
                       : 'Check-in'}
                   </span>
                 </div>
-                <p className="text-sm text-[#757780] mb-2">{event.title}</p>
-                <div className="flex items-center gap-3 text-xs text-[#757780]">
+                <p className="text-sm text-[#8C8580] mb-2">{event.title}</p>
+                <div className="flex items-center gap-3 text-xs text-[#8C8580]">
                   <span className="flex items-center gap-1">
                     <Calendar className="h-3 w-3" />
                     {new Date(event.date).toLocaleDateString('pt-BR', {
@@ -486,7 +485,7 @@ export default function AgendaPage() {
             ))}
 
             {upcomingEvents.length === 0 && (
-              <p className="text-sm text-[#757780] text-center py-4">
+              <p className="text-sm text-[#8C8580] text-center py-4">
                 Nenhum evento agendado
               </p>
             )}

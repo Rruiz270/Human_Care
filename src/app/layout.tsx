@@ -1,23 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Human Care - Plataforma de Cuidado e Desenvolvimento Pessoal",
-  description: "Plataforma holistica de cuidado e desenvolvimento pessoal para professores. Mapeie sua vida, acompanhe seu progresso e alcance seu proposito.",
-  keywords: ["cuidado", "desenvolvimento pessoal", "terapia", "coaching", "professores", "bem-estar"],
-  authors: [{ name: "Better Tech" }],
+  title: "Life Map - Arquitetura Humana | Desbloqueando o Potencial Humano",
+  description: "Uma estrutura de cuidado integrado para navegar a disrupção transformacional e converter consciência em performance.",
+  keywords: ["life map", "cuidado integrado", "arquitetura humana", "desenvolvimento humano", "terapia", "coaching"],
+  authors: [{ name: "Life Map Model" }],
 };
 
 export default function RootLayout({
@@ -27,9 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#FFFFFC]`}
-      >
+      <body className="antialiased bg-[#F5F0EB] text-[#1A1A1E]">
         <TooltipProvider>
           {children}
         </TooltipProvider>

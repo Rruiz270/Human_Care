@@ -26,11 +26,11 @@ export default function ConfiguracoesPage() {
   const { currentUser } = useUserStore()
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-8 animate-fade-in">
       {/* Header */}
       <div>
-        <h2 className="text-2xl font-bold text-[#001011]">Configuracoes</h2>
-        <p className="text-[#757780]">
+        <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Configuracoes</h2>
+        <p className="text-[#8C8580]">
           Gerencie suas preferencias e informacoes pessoais
         </p>
       </div>
@@ -65,7 +65,7 @@ export default function ConfiguracoesPage() {
               <div className="flex items-center gap-6">
                 <Avatar className="h-20 w-20">
                   <AvatarImage src={currentUser?.avatar || undefined} />
-                  <AvatarFallback className="bg-[#6CCFF6] text-[#001011] text-xl">
+                  <AvatarFallback className="bg-[#B8755C] text-white text-xl">
                     {getInitials(currentUser?.name || 'U')}
                   </AvatarFallback>
                 </Avatar>
@@ -74,7 +74,7 @@ export default function ConfiguracoesPage() {
                     <Upload className="mr-2 h-4 w-4" />
                     Alterar Foto
                   </Button>
-                  <p className="mt-2 text-sm text-[#757780]">
+                  <p className="mt-2 text-sm text-[#8C8580]">
                     JPG, PNG ou GIF. Max 2MB.
                   </p>
                 </div>
@@ -166,8 +166,8 @@ export default function ConfiguracoesPage() {
             <CardContent className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-[#001011]">Lembretes de Sessao</p>
-                  <p className="text-sm text-[#757780]">
+                  <p className="font-medium text-[#1A1A1E]">Lembretes de Sessao</p>
+                  <p className="text-sm text-[#8C8580]">
                     Receber lembretes antes das sessoes agendadas
                   </p>
                 </div>
@@ -176,8 +176,8 @@ export default function ConfiguracoesPage() {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-[#001011]">Missoes Pendentes</p>
-                  <p className="text-sm text-[#757780]">
+                  <p className="font-medium text-[#1A1A1E]">Missoes Pendentes</p>
+                  <p className="text-sm text-[#8C8580]">
                     Notificacoes sobre missoes proximas do prazo
                   </p>
                 </div>
@@ -186,8 +186,8 @@ export default function ConfiguracoesPage() {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-[#001011]">Insights da IA</p>
-                  <p className="text-sm text-[#757780]">
+                  <p className="font-medium text-[#1A1A1E]">Insights da IA</p>
+                  <p className="text-sm text-[#8C8580]">
                     Receber insights e analises personalizadas
                   </p>
                 </div>
@@ -196,8 +196,8 @@ export default function ConfiguracoesPage() {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-[#001011]">Lembrete Diario</p>
-                  <p className="text-sm text-[#757780]">
+                  <p className="font-medium text-[#1A1A1E]">Lembrete Diario</p>
+                  <p className="text-sm text-[#8C8580]">
                     Lembrete para registro de pensamentos e sentimentos
                   </p>
                 </div>
@@ -206,8 +206,8 @@ export default function ConfiguracoesPage() {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-[#001011]">Emails de Marketing</p>
-                  <p className="text-sm text-[#757780]">
+                  <p className="font-medium text-[#1A1A1E]">Emails de Marketing</p>
+                  <p className="text-sm text-[#8C8580]">
                     Novidades e atualizacoes da plataforma
                   </p>
                 </div>
@@ -227,28 +227,28 @@ export default function ConfiguracoesPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="rounded-lg bg-[#A4DF00]/10 p-4">
+              <div className="rounded-md bg-[#8B9E7C]/10 p-4">
                 <div className="flex items-center gap-3">
-                  <Shield className="h-6 w-6 text-[#A4DF00]" />
+                  <Shield className="h-6 w-6 text-[#8B9E7C]" />
                   <div>
-                    <p className="font-medium text-[#001011]">
+                    <p className="font-medium text-[#1A1A1E]">
                       Criptografia AES-256
                     </p>
-                    <p className="text-sm text-[#757780]">
+                    <p className="text-sm text-[#8C8580]">
                       Todos os seus dados sao criptografados em repouso e em transito
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="rounded-lg bg-[#6CCFF6]/10 p-4">
+              <div className="rounded-md bg-[#B8755C]/10 p-4">
                 <div className="flex items-center gap-3">
-                  <Key className="h-6 w-6 text-[#6CCFF6]" />
+                  <Key className="h-6 w-6 text-[#B8755C]" />
                   <div>
-                    <p className="font-medium text-[#001011]">
+                    <p className="font-medium text-[#1A1A1E]">
                       Acesso Controlado
                     </p>
-                    <p className="text-sm text-[#757780]">
+                    <p className="text-sm text-[#8C8580]">
                       Apenas profissionais autorizados podem acessar seus dados
                     </p>
                   </div>
@@ -267,8 +267,8 @@ export default function ConfiguracoesPage() {
             <CardContent className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-[#001011]">Terapeuta</p>
-                  <p className="text-sm text-[#757780]">
+                  <p className="font-medium text-[#1A1A1E]">Terapeuta</p>
+                  <p className="text-sm text-[#8C8580]">
                     Permitir acesso ao Mapa da Vida completo
                   </p>
                 </div>
@@ -277,8 +277,8 @@ export default function ConfiguracoesPage() {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-[#001011]">Coach</p>
-                  <p className="text-sm text-[#757780]">
+                  <p className="font-medium text-[#1A1A1E]">Coach</p>
+                  <p className="text-sm text-[#8C8580]">
                     Permitir acesso a metas e projetos
                   </p>
                 </div>
@@ -287,8 +287,8 @@ export default function ConfiguracoesPage() {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-[#001011]">Time de Cuidado</p>
-                  <p className="text-sm text-[#757780]">
+                  <p className="font-medium text-[#1A1A1E]">Time de Cuidado</p>
+                  <p className="text-sm text-[#8C8580]">
                     Permitir acesso ao acompanhamento diario
                   </p>
                 </div>
@@ -297,8 +297,8 @@ export default function ConfiguracoesPage() {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-[#001011]">Analise Anonimizada</p>
-                  <p className="text-sm text-[#757780]">
+                  <p className="font-medium text-[#1A1A1E]">Analise Anonimizada</p>
+                  <p className="text-sm text-[#8C8580]">
                     Contribuir para pesquisas de forma anonima
                   </p>
                 </div>
@@ -318,7 +318,7 @@ export default function ConfiguracoesPage() {
               <Button variant="outline">
                 Solicitar Exportacao
               </Button>
-              <p className="mt-2 text-sm text-[#757780]">
+              <p className="mt-2 text-sm text-[#8C8580]">
                 Voce recebera um email com o link para download em ate 48 horas
               </p>
             </CardContent>
@@ -335,7 +335,7 @@ export default function ConfiguracoesPage() {
               <Button variant="destructive">
                 Excluir Minha Conta
               </Button>
-              <p className="mt-2 text-sm text-[#757780]">
+              <p className="mt-2 text-sm text-[#8C8580]">
                 Esta acao excluira permanentemente todos os seus dados
               </p>
             </CardContent>

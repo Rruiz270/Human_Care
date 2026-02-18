@@ -4,21 +4,21 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-[#A4DF00] text-[#001011] hover:bg-[#8BC500] focus-visible:ring-[#A4DF00]",
+        default: "bg-[#B8755C] text-white hover:bg-[#8B5A3E] focus-visible:ring-[#8B9E7C]",
         destructive: "bg-red-500 text-white hover:bg-red-600 focus-visible:ring-red-500",
-        outline: "border border-[#757780] bg-transparent hover:bg-[#757780]/10 focus-visible:ring-[#6CCFF6]",
-        secondary: "bg-[#6CCFF6] text-[#001011] hover:bg-[#5BBFE6] focus-visible:ring-[#6CCFF6]",
-        ghost: "hover:bg-[#757780]/10 hover:text-[#001011]",
-        link: "text-[#6CCFF6] underline-offset-4 hover:underline",
+        outline: "border border-[#8C8580]/30 bg-transparent hover:bg-[#8C8580]/10 focus-visible:ring-[#8B9E7C]",
+        secondary: "bg-[#8B9E7C] text-white hover:bg-[#6E8160] focus-visible:ring-[#8B9E7C]",
+        ghost: "hover:bg-[#8C8580]/10 hover:text-[#1A1A1E]",
+        link: "text-[#B8755C] underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-lg px-8",
+        lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
       },
     },

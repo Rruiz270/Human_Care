@@ -182,10 +182,10 @@ export default function SessoesPage() {
   }
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-8 animate-fade-in">
       {/* Success notification */}
       {showSuccess && (
-        <div className="fixed top-4 right-4 z-50 bg-[#A4DF00] text-[#001011] px-4 py-3 rounded-lg shadow-lg flex items-center gap-2 animate-fade-in">
+        <div className="fixed top-4 right-4 z-50 bg-[#B8755C] text-[#1A1A1E] px-4 py-3 rounded-lg shadow-lg flex items-center gap-2 animate-fade-in">
           <CheckCircle className="h-5 w-5" />
           <span className="font-medium">{successMessage}</span>
         </div>
@@ -194,8 +194,8 @@ export default function SessoesPage() {
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-[#001011]">Sessoes</h2>
-          <p className="text-[#757780]">
+          <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Sessoes</h2>
+          <p className="text-[#8C8580]">
             Gerencie suas sessoes de terapia, coaching e acompanhamento
           </p>
         </div>
@@ -233,13 +233,13 @@ export default function SessoesPage() {
                 <div className="space-y-2">
                   <Label>Arquivo de Transcricao</Label>
                   <div className="flex items-center justify-center w-full">
-                    <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-[#757780]/30 border-dashed rounded-lg cursor-pointer hover:bg-[#757780]/5">
+                    <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-[#8C8580]/30 border-dashed rounded-lg cursor-pointer hover:bg-[#8C8580]/5">
                       <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                        <Upload className="h-8 w-8 text-[#757780] mb-2" />
-                        <p className="text-sm text-[#757780]">
+                        <Upload className="h-8 w-8 text-[#8C8580] mb-2" />
+                        <p className="text-sm text-[#8C8580]">
                           Clique para enviar ou arraste o arquivo
                         </p>
-                        <p className="text-xs text-[#757780]">
+                        <p className="text-xs text-[#8C8580]">
                           TXT, DOC, PDF (max 10MB)
                         </p>
                       </div>
@@ -264,11 +264,11 @@ export default function SessoesPage() {
                 <Button
                   onClick={handleAnalyzeTranscript}
                   disabled={isAnalyzing || !transcriptText.trim()}
-                  className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]"
+                  className="bg-[#B8755C] text-[#1A1A1E] hover:bg-[#93c800]"
                 >
                   {isAnalyzing ? (
                     <>
-                      <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-[#001011] border-t-transparent" />
+                      <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-[#1A1A1E] border-t-transparent" />
                       Analisando...
                     </>
                   ) : (
@@ -284,7 +284,7 @@ export default function SessoesPage() {
 
           <Dialog open={showNewSessionDialog} onOpenChange={setShowNewSessionDialog}>
             <DialogTrigger asChild>
-              <Button className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]">
+              <Button className="bg-[#B8755C] text-[#1A1A1E] hover:bg-[#93c800]">
                 <Plus className="mr-2 h-4 w-4" />
                 Agendar Sessao
               </Button>
@@ -355,7 +355,7 @@ export default function SessoesPage() {
                 </Button>
                 <Button
                   onClick={handleScheduleSession}
-                  className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]"
+                  className="bg-[#B8755C] text-[#1A1A1E] hover:bg-[#93c800]"
                 >
                   Agendar
                 </Button>
@@ -370,14 +370,14 @@ export default function SessoesPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#6CCFF6]/10">
-                <Calendar className="h-6 w-6 text-[#6CCFF6]" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#8B9E7C]/10">
+                <Calendar className="h-6 w-6 text-[#8B9E7C]" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#001011]">
+                <p className="text-2xl font-bold text-[#1A1A1E]">
                   {sessions.filter(s => s.status === 'SCHEDULED').length}
                 </p>
-                <p className="text-sm text-[#757780]">Sessoes agendadas</p>
+                <p className="text-sm text-[#8C8580]">Sessoes agendadas</p>
               </div>
             </div>
           </CardContent>
@@ -385,14 +385,14 @@ export default function SessoesPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#A4DF00]/10">
-                <CheckCircle className="h-6 w-6 text-[#A4DF00]" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#B8755C]/10">
+                <CheckCircle className="h-6 w-6 text-[#B8755C]" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#001011]">
+                <p className="text-2xl font-bold text-[#1A1A1E]">
                   {sessions.filter(s => s.status === 'COMPLETED').length}
                 </p>
-                <p className="text-sm text-[#757780]">Sessoes concluidas</p>
+                <p className="text-sm text-[#8C8580]">Sessoes concluidas</p>
               </div>
             </div>
           </CardContent>
@@ -400,14 +400,14 @@ export default function SessoesPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#001011]/10">
-                <Brain className="h-6 w-6 text-[#001011]" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1A1A1E]/10">
+                <Brain className="h-6 w-6 text-[#1A1A1E]" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#001011]">
+                <p className="text-2xl font-bold text-[#1A1A1E]">
                   {sessions.filter(s => s.type === 'THERAPY').length}
                 </p>
-                <p className="text-sm text-[#757780]">Terapia</p>
+                <p className="text-sm text-[#8C8580]">Terapia</p>
               </div>
             </div>
           </CardContent>
@@ -415,14 +415,14 @@ export default function SessoesPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#757780]/10">
-                <Target className="h-6 w-6 text-[#757780]" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#8C8580]/10">
+                <Target className="h-6 w-6 text-[#8C8580]" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#001011]">
+                <p className="text-2xl font-bold text-[#1A1A1E]">
                   {sessions.filter(s => s.type === 'COACHING').length}
                 </p>
-                <p className="text-sm text-[#757780]">Coaching</p>
+                <p className="text-sm text-[#8C8580]">Coaching</p>
               </div>
             </div>
           </CardContent>
@@ -445,32 +445,32 @@ export default function SessoesPage() {
             {filteredSessions.map((session) => (
               <div
                 key={session.id}
-                className="rounded-lg border border-[#757780]/20 p-4 transition-colors hover:bg-[#757780]/5"
+                className="rounded-lg border border-[#8C8580]/20 p-4 transition-colors hover:bg-[#8C8580]/5"
               >
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div className="flex gap-4">
                     <div
                       className={`flex h-12 w-12 items-center justify-center rounded-full ${
                         session.type === 'THERAPY'
-                          ? 'bg-[#6CCFF6]/10'
-                          : 'bg-[#A4DF00]/10'
+                          ? 'bg-[#8B9E7C]/10'
+                          : 'bg-[#B8755C]/10'
                       }`}
                     >
                       {session.type === 'THERAPY' ? (
                         <Brain
                           className={`h-6 w-6 ${
                             session.type === 'THERAPY'
-                              ? 'text-[#6CCFF6]'
-                              : 'text-[#A4DF00]'
+                              ? 'text-[#8B9E7C]'
+                              : 'text-[#B8755C]'
                           }`}
                         />
                       ) : (
-                        <Target className="h-6 w-6 text-[#A4DF00]" />
+                        <Target className="h-6 w-6 text-[#B8755C]" />
                       )}
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <h4 className="font-semibold text-[#001011]">
+                        <h4 className="font-semibold text-[#1A1A1E]">
                           {session.type === 'THERAPY' ? 'Terapia' : 'Coaching'}
                         </h4>
                         <Badge
@@ -487,10 +487,10 @@ export default function SessoesPage() {
                           {session.status === 'CANCELLED' && 'Cancelada'}
                         </Badge>
                       </div>
-                      <p className="text-sm text-[#757780]">
+                      <p className="text-sm text-[#8C8580]">
                         {session.professional.name} - {session.professional.role}
                       </p>
-                      <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-[#757780]">
+                      <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-[#8C8580]">
                         <span className="flex items-center gap-1">
                           <Calendar className="h-4 w-4" />
                           {formatDateTime(session.scheduledAt)}
@@ -516,8 +516,8 @@ export default function SessoesPage() {
                       {/* Session notes preview */}
                       {session.notes && (
                         <div className="mt-2 flex items-start gap-2 text-sm">
-                          <MessageSquare className="h-4 w-4 text-[#6CCFF6] mt-0.5" />
-                          <p className="text-[#757780] italic line-clamp-1">{session.notes}</p>
+                          <MessageSquare className="h-4 w-4 text-[#8B9E7C] mt-0.5" />
+                          <p className="text-[#8C8580] italic line-clamp-1">{session.notes}</p>
                         </div>
                       )}
                     </div>
@@ -528,7 +528,7 @@ export default function SessoesPage() {
                       <Button
                         size="sm"
                         onClick={() => handleJoinSession(session)}
-                        className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]"
+                        className="bg-[#B8755C] text-[#1A1A1E] hover:bg-[#93c800]"
                       >
                         <Play className="mr-2 h-4 w-4" />
                         Entrar
@@ -547,31 +547,31 @@ export default function SessoesPage() {
 
                 {/* AI Summary for completed sessions */}
                 {session.status === 'COMPLETED' && session.aiSummary && (
-                  <div className="mt-4 rounded-lg bg-[#A4DF00]/5 p-4">
+                  <div className="mt-4 rounded-lg bg-[#B8755C]/5 p-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <Sparkles className="h-4 w-4 text-[#A4DF00]" />
-                      <span className="text-sm font-medium text-[#001011]">
+                      <Sparkles className="h-4 w-4 text-[#B8755C]" />
+                      <span className="text-sm font-medium text-[#1A1A1E]">
                         Resumo da IA
                       </span>
                     </div>
-                    <p className="text-sm text-[#757780]">{session.aiSummary}</p>
+                    <p className="text-sm text-[#8C8580]">{session.aiSummary}</p>
                     {session.aiActionItems && (
                       <div className="mt-3 space-y-2">
-                        <p className="text-xs font-medium text-[#757780]">
+                        <p className="text-xs font-medium text-[#8C8580]">
                           Acoes identificadas:
                         </p>
                         {session.aiActionItems.map((item, idx) => (
                           <div key={idx} className="flex items-center gap-2 text-sm">
                             {item.completed ? (
-                              <CheckCircle className="h-4 w-4 text-[#A4DF00]" />
+                              <CheckCircle className="h-4 w-4 text-[#B8755C]" />
                             ) : (
-                              <div className="h-4 w-4 rounded-full border-2 border-[#757780]/30" />
+                              <div className="h-4 w-4 rounded-full border-2 border-[#8C8580]/30" />
                             )}
                             <span
                               className={
                                 item.completed
-                                  ? 'text-[#757780] line-through'
-                                  : 'text-[#001011]'
+                                  ? 'text-[#8C8580] line-through'
+                                  : 'text-[#1A1A1E]'
                               }
                             >
                               {item.title}
@@ -587,7 +587,7 @@ export default function SessoesPage() {
 
             {filteredSessions.length === 0 && (
               <div className="py-8 text-center">
-                <p className="text-[#757780]">Nenhuma sessao encontrada</p>
+                <p className="text-[#8C8580]">Nenhuma sessao encontrada</p>
               </div>
             )}
           </div>
@@ -599,7 +599,7 @@ export default function SessoesPage() {
         <DialogContent className="max-w-4xl h-[80vh]">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <Video className="h-5 w-5 text-[#A4DF00]" />
+              <Video className="h-5 w-5 text-[#B8755C]" />
               Sessao ao Vivo
             </DialogTitle>
             <DialogDescription>
@@ -609,32 +609,32 @@ export default function SessoesPage() {
 
           <div className="flex-1 grid grid-cols-2 gap-4 py-4">
             {/* Professional video */}
-            <div className="relative bg-gradient-to-br from-[#001011] to-[#001011]/80 rounded-lg flex items-center justify-center aspect-video">
+            <div className="relative bg-gradient-to-br from-[#1A1A1E] to-[#1A1A1E]/80 rounded-lg flex items-center justify-center aspect-video">
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#6CCFF6]/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Users className="h-10 w-10 text-[#6CCFF6]" />
+                <div className="w-20 h-20 bg-[#8B9E7C]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Users className="h-10 w-10 text-[#8B9E7C]" />
                 </div>
                 <p className="text-white font-medium">{selectedSession?.professional.name}</p>
                 <p className="text-white/60 text-sm">{selectedSession?.professional.role}</p>
               </div>
-              <Badge className="absolute top-3 left-3 bg-[#A4DF00] text-[#001011]">
+              <Badge className="absolute top-3 left-3 bg-[#B8755C] text-[#1A1A1E]">
                 Conectado
               </Badge>
             </div>
 
             {/* User video */}
-            <div className="relative bg-gradient-to-br from-[#757780]/50 to-[#757780]/30 rounded-lg flex items-center justify-center aspect-video">
+            <div className="relative bg-gradient-to-br from-[#8C8580]/50 to-[#8C8580]/30 rounded-lg flex items-center justify-center aspect-video">
               {isVideoOn ? (
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-[#A4DF00]/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Users className="h-10 w-10 text-[#A4DF00]" />
+                  <div className="w-20 h-20 bg-[#B8755C]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Users className="h-10 w-10 text-[#B8755C]" />
                   </div>
-                  <p className="text-[#001011] font-medium">Voce</p>
+                  <p className="text-[#1A1A1E] font-medium">Voce</p>
                 </div>
               ) : (
                 <div className="text-center">
-                  <VideoOff className="h-12 w-12 text-[#757780] mx-auto mb-2" />
-                  <p className="text-[#757780]">Camera desligada</p>
+                  <VideoOff className="h-12 w-12 text-[#8C8580] mx-auto mb-2" />
+                  <p className="text-[#8C8580]">Camera desligada</p>
                 </div>
               )}
               {isMuted && (
@@ -690,32 +690,32 @@ export default function SessoesPage() {
           <div className="space-y-4 py-4">
             {/* AI Summary if completed */}
             {selectedSession?.status === 'COMPLETED' && selectedSession?.aiSummary && (
-              <div className="rounded-lg bg-[#A4DF00]/5 p-4">
+              <div className="rounded-lg bg-[#B8755C]/5 p-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <Sparkles className="h-4 w-4 text-[#A4DF00]" />
-                  <span className="text-sm font-medium text-[#001011]">Resumo da IA</span>
+                  <Sparkles className="h-4 w-4 text-[#B8755C]" />
+                  <span className="text-sm font-medium text-[#1A1A1E]">Resumo da IA</span>
                 </div>
-                <p className="text-sm text-[#757780]">{selectedSession.aiSummary}</p>
+                <p className="text-sm text-[#8C8580]">{selectedSession.aiSummary}</p>
               </div>
             )}
 
             {/* Professional notes if any */}
             {selectedSession?.professionalNotes && (
-              <div className="rounded-lg bg-[#6CCFF6]/5 p-4">
+              <div className="rounded-lg bg-[#8B9E7C]/5 p-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <Brain className="h-4 w-4 text-[#6CCFF6]" />
-                  <span className="text-sm font-medium text-[#001011]">
+                  <Brain className="h-4 w-4 text-[#8B9E7C]" />
+                  <span className="text-sm font-medium text-[#1A1A1E]">
                     Notas do Profissional
                   </span>
                 </div>
-                <p className="text-sm text-[#757780]">{selectedSession.professionalNotes}</p>
+                <p className="text-sm text-[#8C8580]">{selectedSession.professionalNotes}</p>
               </div>
             )}
 
             {/* User notes */}
             <div className="space-y-2">
               <Label htmlFor="session-notes" className="flex items-center gap-2">
-                <MessageSquare className="h-4 w-4 text-[#757780]" />
+                <MessageSquare className="h-4 w-4 text-[#8C8580]" />
                 Minhas Anotacoes
               </Label>
               <Textarea
@@ -725,7 +725,7 @@ export default function SessoesPage() {
                 onChange={(e) => setSessionNotes(e.target.value)}
                 className="min-h-[120px]"
               />
-              <p className="text-xs text-[#757780]">
+              <p className="text-xs text-[#8C8580]">
                 Estas anotacoes sao privadas e apenas voce pode ve-las.
               </p>
             </div>
@@ -734,18 +734,18 @@ export default function SessoesPage() {
             {selectedSession?.status === 'COMPLETED' && selectedSession?.aiActionItems && (
               <div className="space-y-2">
                 <Label className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-[#757780]" />
+                  <CheckCircle className="h-4 w-4 text-[#8C8580]" />
                   Acoes Identificadas
                 </Label>
                 <div className="space-y-2">
                   {selectedSession.aiActionItems.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-2 p-2 rounded border border-[#757780]/20">
+                    <div key={idx} className="flex items-center gap-2 p-2 rounded border border-[#8C8580]/20">
                       {item.completed ? (
-                        <CheckCircle className="h-5 w-5 text-[#A4DF00]" />
+                        <CheckCircle className="h-5 w-5 text-[#B8755C]" />
                       ) : (
-                        <div className="h-5 w-5 rounded-full border-2 border-[#757780]/30" />
+                        <div className="h-5 w-5 rounded-full border-2 border-[#8C8580]/30" />
                       )}
-                      <span className={item.completed ? 'text-[#757780] line-through' : 'text-[#001011]'}>
+                      <span className={item.completed ? 'text-[#8C8580] line-through' : 'text-[#1A1A1E]'}>
                         {item.title}
                       </span>
                     </div>
@@ -761,7 +761,7 @@ export default function SessoesPage() {
             </Button>
             <Button
               onClick={handleSaveNotes}
-              className="bg-[#A4DF00] text-[#001011] hover:bg-[#93c800]"
+              className="bg-[#B8755C] text-[#1A1A1E] hover:bg-[#93c800]"
             >
               <Send className="mr-2 h-4 w-4" />
               Salvar Notas

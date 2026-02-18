@@ -59,13 +59,19 @@ export function generateId(): string {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
-// Better Tech Colors
+// Life Map Editorial Colors
 export const colors = {
-  paleAzure: '#6CCFF6',
-  richBlack: '#001011',
-  gray: '#757780',
-  babyPowder: '#FFFFFC',
-  yellowGreen: '#A4DF00',
+  copper: '#B8755C',
+  copperLight: '#C4956A',
+  copperDark: '#8B5A3E',
+  sage: '#8B9E7C',
+  sageLight: '#A3B596',
+  sageDark: '#6E8160',
+  ink: '#1A1A1E',
+  stone: '#8C8580',
+  parchment: '#F5F0EB',
+  parchmentLight: '#FAF8F5',
+  parchmentDark: '#E8E0D6',
 } as const
 
 // Portuguese translations for enums

@@ -17,6 +17,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { IconBadge } from '@/components/ui/decorative-elements'
 import {
   Target,
   Plus,
@@ -94,11 +95,11 @@ const missions = [
 ]
 
 const missionTypeColors = {
-  THERAPY_TASK: { bg: 'bg-[#6CCFF6]/10', text: 'text-[#6CCFF6]', label: 'Terapia' },
-  COACHING_TASK: { bg: 'bg-[#A4DF00]/10', text: 'text-[#A4DF00]', label: 'Coaching' },
+  THERAPY_TASK: { bg: 'bg-[#B8755C]/10', text: 'text-[#B8755C]', label: 'Terapia' },
+  COACHING_TASK: { bg: 'bg-[#8B9E7C]/10', text: 'text-[#8B9E7C]', label: 'Coaching' },
   DAILY_HABIT: { bg: 'bg-purple-500/10', text: 'text-purple-500', label: 'Habito' },
   REFLECTION: { bg: 'bg-amber-500/10', text: 'text-amber-500', label: 'Reflexao' },
-  ACTION: { bg: 'bg-[#001011]/10', text: 'text-[#001011]', label: 'Acao' },
+  ACTION: { bg: 'bg-[#1A1A1E]/10', text: 'text-[#1A1A1E]', label: 'Acao' },
 }
 
 export default function MissoesPage() {
@@ -124,12 +125,12 @@ export default function MissoesPage() {
   const completionRate = Math.round((stats.completed / stats.total) * 100)
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-8 animate-fade-in">
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-[#001011]">Missoes</h2>
-          <p className="text-[#757780]">
+          <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Missoes</h2>
+          <p className="text-[#8C8580]">
             Tarefas e habitos para sua evolucao pessoal
           </p>
         </div>
@@ -193,12 +194,10 @@ export default function MissoesPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#A4DF00]/10">
-                <Target className="h-6 w-6 text-[#A4DF00]" />
-              </div>
+              <IconBadge icon={Target} variant="copper" />
               <div>
-                <p className="text-2xl font-bold text-[#001011]">{stats.total}</p>
-                <p className="text-sm text-[#757780]">Total de missoes</p>
+                <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{stats.total}</p>
+                <p className="text-sm text-[#8C8580]">Total de missoes</p>
               </div>
             </div>
           </CardContent>
@@ -206,12 +205,10 @@ export default function MissoesPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-500/10">
-                <CheckCircle className="h-6 w-6 text-green-500" />
-              </div>
+              <IconBadge icon={CheckCircle} variant="sage" />
               <div>
-                <p className="text-2xl font-bold text-[#001011]">{stats.completed}</p>
-                <p className="text-sm text-[#757780]">Concluidas</p>
+                <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{stats.completed}</p>
+                <p className="text-sm text-[#8C8580]">Concluidas</p>
               </div>
             </div>
           </CardContent>
@@ -219,12 +216,12 @@ export default function MissoesPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/10">
-                <Clock className="h-6 w-6 text-amber-500" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500">
+                <Clock className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-[#001011]">{stats.inProgress}</p>
-                <p className="text-sm text-[#757780]">Em andamento</p>
+                <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{stats.inProgress}</p>
+                <p className="text-sm text-[#8C8580]">Em andamento</p>
               </div>
             </div>
           </CardContent>
@@ -232,12 +229,10 @@ export default function MissoesPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#6CCFF6]/10">
-                <TrendingUp className="h-6 w-6 text-[#6CCFF6]" />
-              </div>
+              <IconBadge icon={TrendingUp} variant="copper" />
               <div>
-                <p className="text-2xl font-bold text-[#001011]">{completionRate}%</p>
-                <p className="text-sm text-[#757780]">Taxa de conclusao</p>
+                <p className="text-2xl font-mono font-bold text-[#1A1A1E]">{completionRate}%</p>
+                <p className="text-sm text-[#8C8580]">Taxa de conclusao</p>
               </div>
             </div>
           </CardContent>
@@ -291,16 +286,16 @@ export default function MissoesPage() {
 
           return (
             <Card key={mission.id} className="card-hover">
-              <CardContent className="p-4">
+              <CardContent className="p-6">
                 <div className="flex items-start gap-4">
                   {/* Status indicator */}
                   <button
                     className={`mt-1 flex h-6 w-6 items-center justify-center rounded-full border-2 transition-colors ${
                       mission.status === 'COMPLETED'
-                        ? 'border-[#A4DF00] bg-[#A4DF00]'
+                        ? 'border-[#8B9E7C] bg-[#8B9E7C]'
                         : mission.status === 'IN_PROGRESS'
-                        ? 'border-[#6CCFF6]'
-                        : 'border-[#757780]/30 hover:border-[#757780]'
+                        ? 'border-[#B8755C]'
+                        : 'border-[#8C8580]/30 hover:border-[#8C8580]'
                     }`}
                   >
                     {mission.status === 'COMPLETED' && (
@@ -314,8 +309,8 @@ export default function MissoesPage() {
                       <h4
                         className={`font-semibold ${
                           mission.status === 'COMPLETED'
-                            ? 'text-[#757780] line-through'
-                            : 'text-[#001011]'
+                            ? 'text-[#8C8580] line-through'
+                            : 'text-[#1A1A1E]'
                         }`}
                       >
                         {mission.title}
@@ -336,20 +331,20 @@ export default function MissoesPage() {
                         {typeStyle.label}
                       </Badge>
                       {mission.streak && mission.streak > 0 && (
-                        <Badge variant="outline" className="bg-orange-500/10 text-orange-500">
+                        <Badge variant="outline" className="bg-[#B8755C]/10 text-[#B8755C]">
                           <Flame className="mr-1 h-3 w-3" />
                           {mission.streak} dias
                         </Badge>
                       )}
                     </div>
 
-                    <p className="mt-1 text-sm text-[#757780]">{mission.description}</p>
+                    <p className="mt-1 text-sm text-[#8C8580]">{mission.description}</p>
 
                     {mission.progress !== undefined && (
                       <div className="mt-3 space-y-1">
                         <div className="flex items-center justify-between text-sm">
-                          <span className="text-[#757780]">Progresso</span>
-                          <span className="font-medium text-[#001011]">
+                          <span className="text-[#8C8580]">Progresso</span>
+                          <span className="font-mono font-medium text-[#1A1A1E]">
                             {mission.progress}%
                           </span>
                         </div>
@@ -357,7 +352,7 @@ export default function MissoesPage() {
                       </div>
                     )}
 
-                    <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-[#757780]">
+                    <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-[#8C8580]">
                       {mission.dueDate && (
                         <span className="flex items-center gap-1">
                           <Calendar className="h-4 w-4" />
@@ -390,8 +385,8 @@ export default function MissoesPage() {
         {filteredMissions.length === 0 && (
           <Card>
             <CardContent className="py-8 text-center">
-              <Target className="mx-auto h-12 w-12 text-[#757780]/50" />
-              <p className="mt-4 text-[#757780]">Nenhuma missao encontrada</p>
+              <Target className="mx-auto h-12 w-12 text-[#8C8580]/50" />
+              <p className="mt-4 text-[#8C8580]">Nenhuma missao encontrada</p>
               <Button
                 variant="outline"
                 className="mt-4"

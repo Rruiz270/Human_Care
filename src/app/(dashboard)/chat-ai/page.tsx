@@ -197,9 +197,9 @@ Quer que eu aprofunde em algum aspecto especifico?`
 
   return (
     <div className="mx-auto max-w-4xl animate-fade-in">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-[#001011]">Chat com IA</h2>
-        <p className="text-[#757780]">
+      <div className="mb-8">
+        <h2 className="text-3xl font-serif font-bold text-[#1A1A1E]">Chat com IA</h2>
+        <p className="text-[#8C8580]">
           Seu assistente de cuidado e desenvolvimento pessoal 24/7
         </p>
       </div>
@@ -216,10 +216,10 @@ Quer que eu aprofunde em algum aspecto especifico?`
                 <button
                   key={index}
                   onClick={() => handleSend(prompt.prompt)}
-                  className="flex w-full items-center gap-2 rounded-lg border border-[#757780]/20 p-3 text-left text-sm transition-colors hover:bg-[#757780]/5"
+                  className="flex w-full items-center gap-2 rounded-md border border-[#8C8580]/20 p-3 text-left text-sm transition-colors hover:bg-[#8C8580]/5"
                 >
-                  <prompt.icon className="h-4 w-4 text-[#6CCFF6]" />
-                  <span className="text-[#001011]">{prompt.title}</span>
+                  <prompt.icon className="h-4 w-4 text-[#8B9E7C]" />
+                  <span className="text-[#1A1A1E]">{prompt.title}</span>
                 </button>
               ))}
             </CardContent>
@@ -243,8 +243,8 @@ Quer que eu aprofunde em algum aspecto especifico?`
                       <AvatarFallback
                         className={
                           message.role === 'assistant'
-                            ? 'bg-[#A4DF00] text-[#001011]'
-                            : 'bg-[#6CCFF6] text-[#001011]'
+                            ? 'bg-[#B8755C] text-white'
+                            : 'bg-[#8B9E7C] text-white'
                         }
                       >
                         {message.role === 'assistant' ? (
@@ -263,8 +263,8 @@ Quer que eu aprofunde em algum aspecto especifico?`
                       <div
                         className={`rounded-2xl px-4 py-3 ${
                           message.role === 'user'
-                            ? 'bg-[#001011] text-white'
-                            : 'bg-[#757780]/10 text-[#001011]'
+                            ? 'bg-[#8C8580]/20 text-[#1A1A1E]'
+                            : 'border-l-3 border-l-[#B8755C] bg-[#F5F0EB] text-[#1A1A1E]'
                         }`}
                       >
                         <div className="whitespace-pre-wrap text-sm">
@@ -277,7 +277,7 @@ Quer que eu aprofunde em algum aspecto especifico?`
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => copyToClipboard(message.content, message.id)}
-                            className="flex items-center gap-1 text-xs text-[#757780] hover:text-[#001011]"
+                            className="flex items-center gap-1 text-xs text-[#8C8580] hover:text-[#1A1A1E]"
                           >
                             {copiedId === message.id ? (
                               <>
@@ -301,7 +301,7 @@ Quer que eu aprofunde em algum aspecto especifico?`
                             <Badge
                               key={idx}
                               variant="outline"
-                              className="cursor-pointer hover:bg-[#757780]/10"
+                              className="cursor-pointer border-[#8B9E7C]/40 text-[#8B9E7C] hover:bg-[#8B9E7C]/10"
                               onClick={() => handleSend(suggestion)}
                             >
                               {suggestion}
@@ -316,13 +316,13 @@ Quer que eu aprofunde em algum aspecto especifico?`
                 {isLoading && (
                   <div className="flex gap-3">
                     <Avatar className="h-8 w-8">
-                      <AvatarFallback className="bg-[#A4DF00] text-[#001011]">
+                      <AvatarFallback className="bg-[#B8755C] text-white">
                         <Sparkles className="h-4 w-4" />
                       </AvatarFallback>
                     </Avatar>
-                    <div className="flex items-center gap-2 rounded-2xl bg-[#757780]/10 px-4 py-3">
-                      <RefreshCw className="h-4 w-4 animate-spin text-[#757780]" />
-                      <span className="text-sm text-[#757780]">Pensando...</span>
+                    <div className="flex items-center gap-2 rounded-2xl bg-[#8C8580]/10 px-4 py-3">
+                      <RefreshCw className="h-4 w-4 animate-spin text-[#8C8580]" />
+                      <span className="text-sm text-[#8C8580]">Pensando...</span>
                     </div>
                   </div>
                 )}
@@ -332,7 +332,7 @@ Quer que eu aprofunde em algum aspecto especifico?`
             </CardContent>
 
             {/* Input Area */}
-            <div className="border-t border-[#757780]/20 p-4">
+            <div className="border-t border-[#8C8580]/20 p-4">
               <div className="flex gap-3">
                 <Textarea
                   value={input}
@@ -354,7 +354,7 @@ Quer que eu aprofunde em algum aspecto especifico?`
                   <Send className="h-5 w-5" />
                 </Button>
               </div>
-              <p className="mt-2 text-center text-xs text-[#757780]">
+              <p className="mt-2 text-center text-xs text-[#8C8580]">
                 A IA tem acesso ao seu Mapa da Vida para oferecer respostas personalizadas
               </p>
             </div>

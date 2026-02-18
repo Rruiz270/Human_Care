@@ -23,6 +23,7 @@ import {
   Shield,
   Video,
   Heart,
+  BookOpen,
 } from 'lucide-react'
 import { useState } from 'react'
 
@@ -39,6 +40,7 @@ const navigation = [
 
 const adminNavigation = [
   { name: 'Usuarios', href: '/admin/usuarios', icon: Users },
+  { name: 'Conteudo Life Map', href: '/admin/conteudo', icon: BookOpen },
   { name: 'Configuracoes', href: '/configuracoes', icon: Settings },
 ]
 
